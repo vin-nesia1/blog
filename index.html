@@ -59,17 +59,31 @@
         }
         
         .container {
-            max-width: 100%;
-            width: 100%;
+            width: 100vw;
+            min-height: 100vh;
             margin: 0;
             padding: 0;
             background: #ffffff;
+            overflow-x: hidden;
         }
         
         .article-content {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 40px 20px;
+            width: 100%;
+            max-width: none;
+            margin: 0;
+            padding: 40px 5% 60px;
+        }
+        
+        @media (min-width: 1200px) {
+            .article-content {
+                padding: 60px 10% 80px;
+            }
+        }
+        
+        @media (min-width: 1600px) {
+            .article-content {
+                padding: 80px 15% 100px;
+            }
         }
         
         h1 {
@@ -271,17 +285,35 @@
         .footer {
             background: #1a1a1a;
             color: #ffffff;
-            padding: 50px 0 30px;
+            padding: 50px 0 0;
             margin-top: 60px;
+            width: 100%;
         }
         
         .footer-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
+            width: 100%;
+            padding: 0 5%;
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(4, 1fr);
             gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        @media (max-width: 1024px) {
+            .footer-content {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 30px;
+                padding: 0 4%;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 25px;
+                padding: 0 5%;
+                text-align: left;
+            }
         }
         
         .footer-section h3 {
@@ -314,14 +346,14 @@
         }
         
         .footer-bottom {
+            width: 100%;
             text-align: center;
-            margin-top: 40px;
-            padding: 30px 20px;
+            padding: 25px 5%;
             border-top: 1px solid #333333;
             background: #0d0d0d;
             color: #ffffff;
-            font-size: 1rem;
-            font-weight: 500;
+            font-size: 0.95rem;
+            font-weight: 400;
         }
         
         .social-links {
@@ -351,11 +383,12 @@
         /* Responsive Design */
         @media (max-width: 768px) {
             .article-content {
-                padding: 30px 15px;
+                padding: 30px 4% 40px;
             }
             
             .intro-section, .steps, .cta-box, .highlight, .conclusion {
                 padding: 25px 20px;
+                margin: 25px 0;
             }
             
             .creative-ideas {
@@ -373,21 +406,16 @@
                 height: 35px;
                 font-size: 16px;
             }
-            
-            .footer-content {
-                grid-template-columns: 1fr;
-                gap: 30px;
-                text-align: center;
-            }
         }
         
         @media (max-width: 480px) {
             .article-content {
-                padding: 20px 10px;
+                padding: 20px 3% 30px;
             }
             
             .intro-section, .steps, .highlight, .cta-box {
                 padding: 20px 15px;
+                margin: 20px 0;
             }
             
             .idea-card {
