@@ -59,9 +59,9 @@
         }
         
         .container {
-            max-width: 800px;
+            max-width: 1200px;
             margin: 0 auto;
-            padding: 20px;
+            padding: 40px;
             background: var(--bg-color);
             box-shadow: var(--shadow);
             border-radius: 8px;
@@ -71,12 +71,12 @@
         
         .header {
             text-align: center;
-            margin-bottom: 40px;
-            padding: 30px 20px;
+            margin-bottom: 50px;
+            padding: 50px 40px;
             background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
             color: white;
-            border-radius: 8px;
-            margin: -20px -20px 40px -20px;
+            border-radius: 12px;
+            margin: -40px -40px 50px -40px;
         }
         
         h1 {
@@ -94,26 +94,35 @@
         
         h2 {
             color: var(--text-color);
-            font-size: 1.6rem;
-            margin: 30px 0 15px 0;
-            padding-bottom: 8px;
-            border-bottom: 2px solid var(--primary-color);
-            font-weight: 600;
+            font-size: 1.8rem;
+            margin: 40px 0 20px 0;
+            padding-bottom: 12px;
+            border-bottom: 3px solid var(--primary-color);
+            font-weight: 700;
+            text-align: left;
+        }
+        
+        article {
+            max-width: 900px;
+            margin: 0 auto;
+            line-height: 1.8;
         }
         
         p {
-            margin-bottom: 16px;
-            font-size: 1.1rem;
-            line-height: 1.7;
+            margin-bottom: 18px;
+            font-size: 1.15rem;
+            line-height: 1.8;
+            text-align: justify;
         }
         
         .highlight-box {
             background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
-            padding: 20px;
-            border-radius: 8px;
-            margin: 20px 0;
-            border-left: 4px solid var(--accent-color);
-            box-shadow: var(--shadow);
+            padding: 30px;
+            border-radius: 12px;
+            margin: 30px 0;
+            border-left: 5px solid var(--accent-color);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+            max-width: 900px;
         }
         
         .cta-button {
@@ -139,34 +148,43 @@
         
         .steps {
             background: var(--light-bg);
-            padding: 20px;
-            border-radius: 8px;
-            margin: 20px 0;
+            padding: 30px;
+            border-radius: 12px;
+            margin: 30px 0;
             border: 1px solid var(--border-color);
+            max-width: 900px;
         }
         
         .steps ol {
-            margin-left: 20px;
+            margin-left: 25px;
         }
         
         .steps li {
-            margin-bottom: 8px;
-            font-size: 1.1rem;
+            margin-bottom: 12px;
+            font-size: 1.15rem;
+            line-height: 1.6;
         }
         
         .benefits {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 16px;
-            margin: 20px 0;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 25px;
+            margin: 30px 0;
+            max-width: 900px;
         }
         
         .benefit-item {
             background: var(--bg-color);
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: var(--shadow);
-            border-left: 3px solid var(--primary-color);
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+            border-left: 4px solid var(--primary-color);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        
+        .benefit-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
         }
         
         .benefit-title {
@@ -178,11 +196,12 @@
         
         .conclusion-box {
             background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
-            padding: 25px;
-            border-radius: 8px;
-            margin: 30px 0;
+            padding: 40px;
+            border-radius: 15px;
+            margin: 40px 0;
             text-align: center;
-            box-shadow: var(--shadow);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+            max-width: 900px;
         }
         
         .conclusion-box h3 {
@@ -193,17 +212,17 @@
         
         .footer-links {
             background: var(--light-bg);
-            padding: 30px 20px;
-            margin: 40px -20px -20px -20px;
+            padding: 40px;
+            margin: 50px -40px -40px -40px;
             border-radius: 0 0 8px 8px;
         }
         
         .footer-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 30px;
-            max-width: 800px;
-            margin: 0 auto 30px;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            max-width: 1000px;
+            margin: 0 auto 40px;
         }
         
         .footer-section h4 {
@@ -256,23 +275,51 @@
             font-weight: 600;
         }
         
-        @media (max-width: 768px) {
+        @media (max-width: 1024px) {
             .container {
-                margin: 10px;
-                padding: 15px;
+                margin: 15px;
+                padding: 30px;
             }
             
             .header {
-                margin: -15px -15px 30px -15px;
-                padding: 20px 15px;
+                margin: -30px -30px 40px -30px;
+                padding: 40px 20px;
             }
             
             .footer-links {
-                margin: 30px -15px -15px -15px;
+                margin: 40px -30px -30px -30px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                margin: 10px;
+                padding: 20px;
+            }
+            
+            .header {
+                margin: -20px -20px 30px -20px;
+                padding: 30px 15px;
+            }
+            
+            .footer-links {
+                margin: 30px -20px -20px -20px;
             }
             
             .benefits {
                 grid-template-columns: 1fr;
+            }
+            
+            article {
+                max-width: 100%;
+            }
+            
+            p {
+                font-size: 1.1rem;
+            }
+            
+            h2 {
+                font-size: 1.6rem;
             }
         }
         
