@@ -15,68 +15,413 @@
   <link rel="icon" href="../favicon.ico" type="image/x-icon">
   <title>Kebijakan Privasi - Blog Vinnesia</title>
   <style>
-    *,*::before,*::after{box-sizing:border-box}
-    html{font-size:16px;scroll-behavior:smooth}
-    body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen,Ubuntu,Cantarell,sans-serif;margin:0;padding:0;background:#fff;color:#1a1a1a;line-height:1.7}
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
     
-    header{background:#212529;color:#fff;padding:2rem 1rem;text-align:center}
-    .logo{display:block;width:60px;height:60px;margin:0 auto 1rem;border-radius:50%;overflow:hidden}
-    .logo img{width:100%;height:100%;object-fit:cover}
-    header h1{margin:0 0 0.5rem 0;font-size:2.5rem;font-weight:700}
-    header p{margin:0;font-size:1.1rem;color:#e9ecef}
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      line-height: 1.6;
+      color: #2c2c2c;
+      background-color: #ffffff;
+    }
     
-    nav{background:#fff;border-bottom:1px solid #dee2e6;padding:1rem 0}
-    .nav-container{max-width:1200px;margin:0 auto;padding:0 1rem}
-    .nav-list{list-style:none;margin:0;padding:0;display:flex;gap:2rem;justify-content:center;flex-wrap:wrap}
-    .nav-list a{text-decoration:none;color:#495057;font-weight:500;padding:0.5rem 1rem;border-radius:4px;transition:all 0.2s}
-    .nav-list a:hover{background:#e9ecef;color:#212529}
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
     
-    main{max-width:900px;margin:0 auto;padding:3rem 1rem}
+    /* Header */
+    header {
+      background: #1a1a1a;
+      color: #ffffff;
+      padding: 60px 0;
+      text-align: center;
+    }
     
-    .privacy-section{background:#fff;border:1px solid #dee2e6;border-radius:8px;padding:2.5rem;margin-bottom:2rem;box-shadow:0 2px 8px rgba(0,0,0,0.05)}
+    .logo {
+      width: 60px;
+      height: 60px;
+      margin: 0 auto 20px;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 2px solid #ffffff;
+    }
     
-    .privacy-section h2{color:#212529;font-size:1.5rem;margin:0 0 1rem 0;border-left:4px solid #28a745;padding-left:1rem}
-    .privacy-section h3{color:#495057;font-size:1.25rem;margin:1.5rem 0 0.75rem 0}
-    .privacy-section h4{color:#6c757d;font-size:1.1rem;margin:1rem 0 0.5rem 0}
+    .logo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
     
-    .privacy-section p{margin:0 0 1rem 0;text-align:justify}
-    .privacy-section ul,.privacy-section ol{margin:0 0 1rem 1.5rem}
-    .privacy-section li{margin:0.25rem 0}
+    header h1 {
+      font-size: 3rem;
+      font-weight: 300;
+      margin-bottom: 15px;
+      letter-spacing: -1px;
+    }
     
-    .highlight{background:#d4edda;padding:1rem;border-radius:4px;border-left:3px solid #28a745;margin:1rem 0}
-    .warning{background:#fff3cd;padding:1rem;border-radius:4px;border-left:3px solid #ffc107;margin:1rem 0}
-    .info{background:#d1ecf1;padding:1rem;border-radius:4px;border-left:3px solid #17a2b8;margin:1rem 0}
+    header p {
+      font-size: 1.2rem;
+      color: #cccccc;
+      font-weight: 300;
+    }
     
-    .last-updated{background:#f8f9fa;padding:1rem;border-radius:4px;font-size:0.9rem;color:#6c757d;margin-bottom:2rem}
+    /* Navigation */
+    nav {
+      background: #ffffff;
+      border-bottom: 1px solid #e5e5e5;
+      padding: 0;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
     
-    .data-table{width:100%;border-collapse:collapse;margin:1rem 0}
-    .data-table th,.data-table td{border:1px solid #dee2e6;padding:0.75rem;text-align:left}
-    .data-table th{background:#f8f9fa;font-weight:600}
+    .nav-container {
+      display: flex;
+      justify-content: center;
+      padding: 0 20px;
+    }
     
-    .contact-info{background:#e8f5e8;padding:1.5rem;border-radius:6px;margin-top:2rem;text-align:center}
-    .contact-info h3{color:#155724;margin:0 0 1rem 0}
-    .contact-info p{color:#155724;margin:0.5rem 0}
-    .contact-info a{color:#0d6efd;text-decoration:none;font-weight:500}
-    .contact-info a:hover{text-decoration:underline}
+    .nav-list {
+      display: flex;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
     
-    footer{background:#f8f9fa;padding:2rem 1rem;margin-top:3rem;border-top:1px solid #dee2e6;text-align:center;color:#6c757d}
+    .nav-list a {
+      display: block;
+      padding: 20px 25px;
+      text-decoration: none;
+      color: #2c2c2c;
+      font-weight: 500;
+      transition: all 0.3s ease;
+    }
     
+    .nav-list a:hover {
+      color: #000000;
+      background: #f8f8f8;
+    }
+    
+    /* Main Content */
+    main {
+      padding: 50px 0;
+    }
+    
+    /* Last Updated Box */
+    .last-updated {
+      background: #f8f8f8;
+      border: 1px solid #e5e5e5;
+      border-radius: 8px;
+      padding: 25px;
+      margin-bottom: 40px;
+      font-size: 0.95rem;
+      color: #666666;
+    }
+    
+    .last-updated strong {
+      color: #1a1a1a;
+    }
+    
+    /* Privacy Sections */
+    .privacy-section {
+      background: #ffffff;
+      border: 1px solid #e5e5e5;
+      border-radius: 8px;
+      margin-bottom: 30px;
+      overflow: hidden;
+    }
+    
+    .section-header {
+      background: #f8f8f8;
+      padding: 25px 30px;
+      border-bottom: 1px solid #e5e5e5;
+    }
+    
+    .section-header h2 {
+      font-size: 1.6rem;
+      font-weight: 600;
+      color: #1a1a1a;
+      margin: 0;
+    }
+    
+    .section-content {
+      padding: 30px;
+    }
+    
+    .section-content p {
+      margin-bottom: 20px;
+      font-size: 1rem;
+      line-height: 1.7;
+      color: #4a4a4a;
+      text-align: justify;
+    }
+    
+    .section-content h3 {
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: #1a1a1a;
+      margin: 30px 0 15px 0;
+      padding-bottom: 8px;
+      border-bottom: 2px solid #f0f0f0;
+    }
+    
+    .section-content h4 {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: #2c2c2c;
+      margin: 25px 0 12px 0;
+    }
+    
+    .section-content ul,
+    .section-content ol {
+      margin: 20px 0;
+      padding-left: 30px;
+    }
+    
+    .section-content li {
+      margin-bottom: 8px;
+      color: #4a4a4a;
+      line-height: 1.6;
+    }
+    
+    .section-content li strong {
+      color: #1a1a1a;
+    }
+    
+    /* Highlight Boxes */
+    .highlight {
+      background: #f8f8f8;
+      border-left: 4px solid #1a1a1a;
+      padding: 20px;
+      margin: 25px 0;
+      border-radius: 0 6px 6px 0;
+    }
+    
+    .highlight strong {
+      color: #1a1a1a;
+      font-weight: 600;
+    }
+    
+    .highlight p {
+      margin: 0;
+      color: #2c2c2c;
+    }
+    
+    .warning {
+      background: #fffbf0;
+      border-left: 4px solid #666666;
+      padding: 20px;
+      margin: 25px 0;
+      border-radius: 0 6px 6px 0;
+    }
+    
+    .warning strong {
+      color: #1a1a1a;
+      font-weight: 600;
+    }
+    
+    .warning p {
+      margin: 0;
+      color: #2c2c2c;
+    }
+    
+    .info {
+      background: #f8f8f8;
+      border-left: 4px solid #666666;
+      padding: 20px;
+      margin: 25px 0;
+      border-radius: 0 6px 6px 0;
+    }
+    
+    .info strong {
+      color: #1a1a1a;
+      font-weight: 600;
+    }
+    
+    .info p {
+      margin: 0;
+      color: #2c2c2c;
+    }
+    
+    /* Data Table */
+    .data-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 25px 0;
+      background: #ffffff;
+      border: 1px solid #e5e5e5;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    
+    .data-table th {
+      background: #f8f8f8;
+      color: #1a1a1a;
+      font-weight: 600;
+      padding: 15px 12px;
+      text-align: left;
+      border-bottom: 2px solid #e5e5e5;
+    }
+    
+    .data-table td {
+      padding: 12px;
+      border-bottom: 1px solid #f0f0f0;
+      color: #4a4a4a;
+    }
+    
+    .data-table tbody tr:hover {
+      background: #fafafa;
+    }
+    
+    .data-table tbody tr:last-child td {
+      border-bottom: none;
+    }
+    
+    /* Contact Info */
+    .contact-info {
+      background: #f8f8f8;
+      border: 1px solid #e5e5e5;
+      border-radius: 8px;
+      padding: 40px;
+      text-align: center;
+      margin-top: 40px;
+    }
+    
+    .contact-info h3 {
+      font-size: 1.5rem;
+      color: #1a1a1a;
+      margin: 0 0 20px 0;
+      font-weight: 600;
+    }
+    
+    .contact-info p {
+      color: #4a4a4a;
+      margin: 12px 0;
+      font-size: 1rem;
+    }
+    
+    .contact-info em {
+      color: #666666;
+      font-size: 0.9rem;
+    }
+    
+    .contact-info a {
+      color: #1a1a1a;
+      text-decoration: none;
+      font-weight: 600;
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.3s ease;
+    }
+    
+    .contact-info a:hover {
+      border-bottom-color: #1a1a1a;
+    }
+    
+    /* Links in content */
+    .section-content a {
+      color: #1a1a1a;
+      text-decoration: none;
+      font-weight: 600;
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.3s ease;
+    }
+    
+    .section-content a:hover {
+      border-bottom-color: #1a1a1a;
+    }
+    
+    /* Footer */
+    footer {
+      background: #f8f8f8;
+      padding: 40px 0;
+      text-align: center;
+      color: #666666;
+      border-top: 1px solid #e5e5e5;
+      margin-top: 50px;
+    }
+    
+    footer p {
+      margin: 10px 0;
+    }
+    
+    footer a {
+      color: #1a1a1a;
+      text-decoration: none;
+      font-weight: 500;
+    }
+    
+    footer a:hover {
+      text-decoration: underline;
+    }
+    
+    /* Two Column Layout for larger screens */
+    @media (min-width: 1200px) {
+      .two-column {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 40px;
+        align-items: start;
+      }
+    }
+    
+    /* Responsive Design */
     @media (max-width: 768px) {
-      header h1{font-size:2rem}
-      main{padding:2rem 1rem}
-      .privacy-section{padding:1.5rem}
-      .nav-list{gap:1rem;justify-content:flex-start}
-      .data-table{font-size:0.9rem}
+      header h1 {
+        font-size: 2.5rem;
+      }
+      
+      .container {
+        padding: 0 15px;
+      }
+      
+      .section-content,
+      .section-header {
+        padding: 20px;
+      }
+      
+      .last-updated,
+      .contact-info {
+        padding: 20px;
+      }
+      
+      .nav-list {
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+      
+      .nav-list a {
+        padding: 15px 20px;
+      }
+      
+      .data-table {
+        font-size: 0.9rem;
+      }
+      
+      .data-table th,
+      .data-table td {
+        padding: 8px 6px;
+      }
+      
+      main {
+        padding: 30px 0;
+      }
     }
   </style>
 </head>
 <body>
   <header>
-    <div class="logo">
-      <img src="../logo.png" alt="Logo Blog Vinnesia" width="60" height="60">
+    <div class="container">
+      <div class="logo">
+        <img src="../logo.png" alt="Logo Blog Vinnesia" width="60" height="60">
+      </div>
+      <h1>Kebijakan Privasi</h1>
+      <p>Privacy Policy - Blog Vinnesia</p>
     </div>
-    <h1>Kebijakan Privasi</h1>
-    <p>Privacy Policy - Blog Vinnesia</p>
   </header>
   
   <nav>
@@ -93,269 +438,320 @@
   </nav>
   
   <main>
-    <div class="last-updated">
-      <strong>Terakhir diperbarui:</strong> 18 Agustus 2025<br>
-      <strong>Berlaku efektif:</strong> 18 Agustus 2025
-    </div>
-    
-    <section class="privacy-section">
-      <h2>🔒 Komitmen Privasi Kami</h2>
-      <p>Blog Vinnesia berkomitmen untuk melindungi privasi dan keamanan data pribadi pengunjung. Kebijakan privasi ini menjelaskan bagaimana kami mengumpulkan, menggunakan, menyimpan, dan melindungi informasi Anda saat menggunakan layanan kami.</p>
-      
-      <div class="highlight">
-        <strong>Prinsip Kami:</strong> Transparansi, Keamanan, dan Kontrol penuh atas data pribadi Anda.
+    <div class="container">
+      <div class="last-updated">
+        <strong>Terakhir diperbarui:</strong> 18 Agustus 2025<br>
+        <strong>Berlaku efektif:</strong> 18 Agustus 2025
       </div>
-    </section>
-    
-    <section class="privacy-section">
-      <h2>📊 Informasi yang Kami Kumpulkan</h2>
       
-      <h3>2.1 Informasi yang Dikumpulkan Secara Otomatis</h3>
-      <p>Ketika Anda mengunjungi Blog Vinnesia, kami secara otomatis mengumpulkan informasi berikut:</p>
-      <ul>
-        <li><strong>Data Teknis:</strong> Alamat IP, jenis browser, sistem operasi, resolusi layar</li>
-        <li><strong>Data Penggunaan:</strong> Halaman yang dikunjungi, waktu kunjungan, durasi sesi</li>
-        <li><strong>Data Referral:</strong> Sumber traffic (search engine, social media, direct)</li>
-        <li><strong>Data Perangkat:</strong> Jenis perangkat (desktop, mobile, tablet)</li>
-      </ul>
+      <section class="privacy-section">
+        <div class="section-header">
+          <h2>Komitmen Privasi Kami</h2>
+        </div>
+        <div class="section-content">
+          <p>Blog Vinnesia berkomitmen untuk melindungi privasi dan keamanan data pribadi pengunjung. Kebijakan privasi ini menjelaskan bagaimana kami mengumpulkan, menggunakan, menyimpan, dan melindungi informasi Anda saat menggunakan layanan kami.</p>
+          
+          <div class="highlight">
+            <strong>Prinsip Kami:</strong> Transparansi, Keamanan, dan Kontrol penuh atas data pribadi Anda.
+          </div>
+        </div>
+      </section>
       
-      <h3>2.2 Informasi yang Anda Berikan Secara Sukarela</h3>
-      <ul>
-        <li><strong>Formulir Kontak:</strong> Nama, email, pesan</li>
-        <li><strong>Komentar:</strong> Nama, email, isi komentar (jika fitur tersedia)</li>
-        <li><strong>Newsletter:</strong> Alamat email untuk berlangganan</li>
-        <li><strong>Feedback:</strong> Saran dan masukan yang Anda berikan</li>
-      </ul>
+      <section class="privacy-section">
+        <div class="section-header">
+          <h2>Informasi yang Kami Kumpulkan</h2>
+        </div>
+        <div class="section-content">
+          <h3>2.1 Informasi yang Dikumpulkan Secara Otomatis</h3>
+          <p>Ketika Anda mengunjungi Blog Vinnesia, kami secara otomatis mengumpulkan informasi berikut:</p>
+          <ul>
+            <li><strong>Data Teknis:</strong> Alamat IP, jenis browser, sistem operasi, resolusi layar</li>
+            <li><strong>Data Penggunaan:</strong> Halaman yang dikunjungi, waktu kunjungan, durasi sesi</li>
+            <li><strong>Data Referral:</strong> Sumber traffic (search engine, social media, direct)</li>
+            <li><strong>Data Perangkat:</strong> Jenis perangkat (desktop, mobile, tablet)</li>
+          </ul>
+          
+          <h3>2.2 Informasi yang Anda Berikan Secara Sukarela</h3>
+          <ul>
+            <li><strong>Formulir Kontak:</strong> Nama, email, pesan</li>
+            <li><strong>Komentar:</strong> Nama, email, isi komentar (jika fitur tersedia)</li>
+            <li><strong>Newsletter:</strong> Alamat email untuk berlangganan</li>
+            <li><strong>Feedback:</strong> Saran dan masukan yang Anda berikan</li>
+          </ul>
+          
+          <h3>2.3 Data dari Pihak Ketiga</h3>
+          <p>Kami menggunakan layanan pihak ketiga yang mungkin mengumpulkan data tambahan:</p>
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Layanan</th>
+                <th>Data yang Dikumpulkan</th>
+                <th>Tujuan</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Google Analytics</td>
+                <td>Data penggunaan situs, demografi</td>
+                <td>Analisis traffic dan perilaku pengguna</td>
+              </tr>
+              <tr>
+                <td>Google AdSense</td>
+                <td>Data iklan, preferensi</td>
+                <td>Personalisasi iklan</td>
+              </tr>
+              <tr>
+                <td>Ad Networks</td>
+                <td>Data iklan, cookies</td>
+                <td>Monetisasi dan targeting iklan</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
       
-      <h3>2.3 Data dari Pihak Ketiga</h3>
-      <p>Kami menggunakan layanan pihak ketiga yang mungkin mengumpulkan data tambahan:</p>
-      <table class="data-table">
-        <thead>
-          <tr>
-            <th>Layanan</th>
-            <th>Data yang Dikumpulkan</th>
-            <th>Tujuan</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>Google Analytics</td>
-            <td>Data penggunaan situs, demografi</td>
-            <td>Analisis traffic dan perilaku pengguna</td>
-          </tr>
-          <tr>
-            <td>Google AdSense</td>
-            <td>Data iklan, preferensi</td>
-            <td>Personalisasi iklan</td>
-          </tr>
-          <tr>
-            <td>Ad Networks</td>
-            <td>Data iklan, cookies</td>
-            <td>Monetisasi dan targeting iklan</td>
-          </tr>
-        </tbody>
-      </table>
-    </section>
-    
-    <section class="privacy-section">
-      <h2>🎯 Bagaimana Kami Menggunakan Informasi</h2>
+      <section class="privacy-section">
+        <div class="section-header">
+          <h2>Bagaimana Kami Menggunakan Informasi</h2>
+        </div>
+        <div class="section-content">
+          <div class="two-column">
+            <div>
+              <h3>3.1 Tujuan Penggunaan Data</h3>
+              <ul>
+                <li><strong>Operasional Situs:</strong> Menyediakan dan memelihara layanan</li>
+                <li><strong>Peningkatan Layanan:</strong> Menganalisis penggunaan untuk perbaikan</li>
+                <li><strong>Komunikasi:</strong> Merespons pertanyaan dan feedback</li>
+                <li><strong>Keamanan:</strong> Mencegah spam, fraud, dan aktivitas mencurigakan</li>
+                <li><strong>Legal Compliance:</strong> Memenuhi kewajiban hukum</li>
+                <li><strong>Monetisasi:</strong> Menampilkan iklan yang relevan</li>
+              </ul>
+            </div>
+            
+            <div>
+              <h3>3.2 Dasar Hukum Pemrosesan (GDPR Compliance)</h3>
+              <ul>
+                <li><strong>Kepentingan Sah:</strong> Operasional situs dan analisis</li>
+                <li><strong>Persetujuan:</strong> Newsletter dan komunikasi pemasaran</li>
+                <li><strong>Kewajiban Legal:</strong> Compliance dengan regulasi</li>
+                <li><strong>Kontrak:</strong> Penyediaan layanan yang diminta</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
       
-      <h3>3.1 Tujuan Penggunaan Data</h3>
-      <ul>
-        <li><strong>Operasional Situs:</strong> Menyediakan dan memelihara layanan</li>
-        <li><strong>Peningkatan Layanan:</strong> Menganalisis penggunaan untuk perbaikan</li>
-        <li><strong>Komunikasi:</strong> Merespons pertanyaan dan feedback</li>
-        <li><strong>Keamanan:</strong> Mencegah spam, fraud, dan aktivitas mencurigakan</li>
-        <li><strong>Legal Compliance:</strong> Memenuhi kewajiban hukum</li>
-        <li><strong>Monetisasi:</strong> Menampilkan iklan yang relevan</li>
-      </ul>
+      <section class="privacy-section">
+        <div class="section-header">
+          <h2>Kebijakan Cookies</h2>
+        </div>
+        <div class="section-content">
+          <h3>4.1 Apa itu Cookies?</h3>
+          <p>Cookies adalah file kecil yang disimpan di perangkat Anda untuk mengingat preferensi dan meningkatkan pengalaman browsing.</p>
+          
+          <h3>4.2 Jenis Cookies yang Kami Gunakan</h3>
+          <ul>
+            <li><strong>Essential Cookies:</strong> Diperlukan untuk fungsi dasar situs</li>
+            <li><strong>Analytics Cookies:</strong> Google Analytics untuk memahami penggunaan situs</li>
+            <li><strong>Advertising Cookies:</strong> Untuk menampilkan iklan yang relevan</li>
+            <li><strong>Functional Cookies:</strong> Mengingat preferensi pengguna</li>
+          </ul>
+          
+          <div class="info">
+            <strong>Kontrol Cookies:</strong> Anda dapat mengatur atau menonaktifkan cookies melalui pengaturan browser, namun ini mungkin mempengaruhi fungsi situs.
+          </div>
+        </div>
+      </section>
       
-      <h3>3.2 Dasar Hukum Pemrosesan (GDPR Compliance)</h3>
-      <ul>
-        <li><strong>Kepentingan Sah:</strong> Operasional situs dan analisis</li>
-        <li><strong>Persetujuan:</strong> Newsletter dan komunikasi pemasaran</li>
-        <li><strong>Kewajiban Legal:</strong> Compliance dengan regulasi</li>
-        <li><strong>Kontrak:</strong> Penyediaan layanan yang diminta</li>
-      </ul>
-    </section>
-    
-    <section class="privacy-section">
-      <h2>🍪 Kebijakan Cookies</h2>
+      <section class="privacy-section">
+        <div class="section-header">
+          <h2>Keamanan Data</h2>
+        </div>
+        <div class="section-content">
+          <h3>5.1 Langkah-Langkah Keamanan</h3>
+          <ul>
+            <li><strong>Enkripsi SSL:</strong> Semua data ditransmisikan melalui HTTPS</li>
+            <li><strong>Server Security:</strong> Firewall dan monitoring 24/7</li>
+            <li><strong>Access Control:</strong> Akses terbatas hanya untuk personel yang berwenang</li>
+            <li><strong>Regular Updates:</strong> Sistem dan software diperbarui secara berkala</li>
+            <li><strong>Backup:</strong> Data di-backup secara rutin untuk pemulihan</li>
+          </ul>
+          
+          <h3>5.2 Penyimpanan Data</h3>
+          <p>Data disimpan di server yang berlokasi di Indonesia dan/atau negara dengan standar keamanan yang memadai. Kami menggunakan penyedia hosting terpercaya yang mematuhi standar keamanan internasional.</p>
+        </div>
+      </section>
       
-      <h3>4.1 Apa itu Cookies?</h3>
-      <p>Cookies adalah file kecil yang disimpan di perangkat Anda untuk mengingat preferensi dan meningkatkan pengalaman browsing.</p>
+      <section class="privacy-section">
+        <div class="section-header">
+          <h2>Berbagi Data dengan Pihak Ketiga</h2>
+        </div>
+        <div class="section-content">
+          <h3>6.1 Kapan Kami Berbagi Data</h3>
+          <p>Kami tidak menjual data pribadi Anda. Data hanya dibagikan dalam situasi berikut:</p>
+          <ul>
+            <li><strong>Service Providers:</strong> Google Analytics, hosting provider, email service</li>
+            <li><strong>Advertising Partners:</strong> Google AdSense dan ad networks (data anonim)</li>
+            <li><strong>Legal Requirements:</strong> Jika diwajibkan oleh hukum atau otoritas</li>
+            <li><strong>Business Transfer:</strong> Jika terjadi merger atau akuisisi</li>
+          </ul>
+          
+          <h3>6.2 Perlindungan dalam Berbagi</h3>
+          <ul>
+            <li>Data diproses oleh pihak ketiga yang terpercaya</li>
+            <li>Kontrak yang ketat tentang penggunaan data</li>
+            <li>Data dianonimisasi jika memungkinkan</li>
+            <li>Monitoring penggunaan data secara berkala</li>
+          </ul>
+        </div>
+      </section>
       
-      <h3>4.2 Jenis Cookies yang Kami Gunakan</h3>
-      <ul>
-        <li><strong>Essential Cookies:</strong> Diperlukan untuk fungsi dasar situs</li>
-        <li><strong>Analytics Cookies:</strong> Google Analytics untuk memahami penggunaan situs</li>
-        <li><strong>Advertising Cookies:</strong> Untuk menampilkan iklan yang relevan</li>
-        <li><strong>Functional Cookies:</strong> Mengingat preferensi pengguna</li>
-      </ul>
+      <section class="privacy-section">
+        <div class="section-header">
+          <h2>Retensi Data</h2>
+        </div>
+        <div class="section-content">
+          <h3>7.1 Periode Penyimpanan</h3>
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Jenis Data</th>
+                <th>Periode Retensi</th>
+                <th>Alasan</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Data Analytics</td>
+                <td>26 bulan</td>
+                <td>Sesuai kebijakan Google Analytics</td>
+              </tr>
+              <tr>
+                <td>Data Kontak</td>
+                <td>3 tahun</td>
+                <td>Komunikasi dan follow-up</td>
+              </tr>
+              <tr>
+                <td>Server Logs</td>
+                <td>12 bulan</td>
+                <td>Keamanan dan debugging</td>
+              </tr>
+              <tr>
+                <td>Email Newsletter</td>
+                <td>Sampai unsubscribe</td>
+                <td>Komunikasi berkelanjutan</td>
+              </tr>
+            </tbody>
+          </table>
+          
+          <h3>7.2 Penghapusan Data</h3>
+          <p>Data akan dihapus secara otomatis setelah periode retensi berakhir atau atas permintaan pengguna sesuai dengan hak-hak privasi yang berlaku.</p>
+        </div>
+      </section>
       
-      <div class="info">
-        <strong>Kontrol Cookies:</strong> Anda dapat mengatur atau menonaktifkan cookies melalui pengaturan browser, namun ini mungkin mempengaruhi fungsi situs.
+      <section class="privacy-section">
+        <div class="section-header">
+          <h2>Hak-Hak Anda</h2>
+        </div>
+        <div class="section-content">
+          <h3>8.1 Hak Privasi</h3>
+          <p>Sesuai dengan regulasi perlindungan data, Anda memiliki hak berikut:</p>
+          <ul>
+            <li><strong>Hak Akses:</strong> Mengetahui data pribadi apa yang kami miliki</li>
+            <li><strong>Hak Koreksi:</strong> Memperbaiki data yang tidak akurat</li>
+            <li><strong>Hak Penghapusan:</strong> Meminta penghapusan data (right to be forgotten)</li>
+            <li><strong>Hak Portabilitas:</strong> Mendapat copy data dalam format yang dapat dibaca</li>
+            <li><strong>Hak Pembatasan:</strong> Membatasi pemrosesan data</li>
+            <li><strong>Hak Keberatan:</strong> Menolak pemrosesan untuk tujuan tertentu</li>
+          </ul>
+          
+          <h3>8.2 Cara Menggunakan Hak</h3>
+          <p>Untuk menggunakan hak-hak di atas, silakan hubungi kami melalui:</p>
+          <ul>
+            <li>Email: <a href="mailto:privacy@vinnesia.my.id">privacy@vinnesia.my.id</a></li>
+            <li>Melalui formulir kontak di situs ini</li>
+          </ul>
+          
+          <div class="warning">
+            <strong>Catatan:</strong> Kami akan merespons permintaan Anda dalam waktu maksimal 30 hari dan dapat meminta verifikasi identitas untuk keamanan.
+          </div>
+        </div>
+      </section>
+      
+      <section class="privacy-section">
+        <div class="section-header">
+          <h2>Perlindungan Anak</h2>
+        </div>
+        <div class="section-content">
+          <p>Layanan kami tidak ditujukan untuk anak-anak di bawah usia 13 tahun. Kami tidak secara sengaja mengumpulkan informasi pribadi dari anak-anak di bawah usia tersebut. Jika Anda adalah orang tua dan mengetahui bahwa anak Anda telah memberikan data pribadi kepada kami, silakan hubungi kami untuk penghapusan data.</p>
+        </div>
+      </section>
+      
+      <section class="privacy-section">
+        <div class="section-header">
+          <h2>Transfer Data Internasional</h2>
+        </div>
+        <div class="section-content">
+          <p>Beberapa service provider kami (seperti Google) mungkin berlokasi di luar Indonesia. Dalam kasus tersebut, kami memastikan bahwa:</p>
+          <ul>
+            <li>Transfer dilakukan ke negara dengan tingkat perlindungan data yang memadai</li>
+            <li>Kontrak yang mencakup klausul perlindungan data standar</li>
+            <li>Compliance dengan regulasi transfer data internasional</li>
+          </ul>
+        </div>
+      </section>
+      
+      <section class="privacy-section">
+        <div class="section-header">
+          <h2>Aplikasi Mobile dan PWA</h2>
+        </div>
+        <div class="section-content">
+          <p>Jika kami menyediakan aplikasi mobile atau Progressive Web App (PWA), kebijakan privasi ini berlaku dengan beberapa tambahan:</p>
+          <ul>
+            <li>Permission akses device (kamera, lokasi, notifikasi)</li>
+            <li>Data yang disimpan locally di perangkat</li>
+            <li>Push notification dan data terkait</li>
+          </ul>
+        </div>
+      </section>
+      
+      <section class="privacy-section">
+        <div class="section-header">
+          <h2>Perubahan Kebijakan</h2>
+        </div>
+        <div class="section-content">
+          <p>Kami dapat memperbarui kebijakan privasi ini sewaktu-waktu untuk mencerminkan perubahan dalam:</p>
+          <ul>
+            <li>Praktik bisnis atau layanan</li>
+            <li>Regulasi dan hukum yang berlaku</li>
+            <li>Teknologi dan keamanan</li>
+          </ul>
+          
+          <p>Perubahan material akan dikomunikasikan melalui:</p>
+          <ul>
+            <li>Pemberitahuan di halaman utama situs</li>
+            <li>Email notification (jika Anda berlangganan)</li>
+            <li>Update di halaman ini dengan tanggal revisi</li>
+          </ul>
+        </div>
+      </section>
+      
+      <div class="contact-info">
+        <h3>Data Protection Officer</h3>
+        <p>Jika Anda memiliki pertanyaan, keluhan, atau ingin menggunakan hak privasi Anda:</p>
+        <p><strong>Email DPO:</strong> <a href="mailto:privacy@vinnesia.my.id">privacy@vinnesia.my.id</a></p>
+        <p><strong>Email Umum:</strong> <a href="mailto:admin@vinnesia.my.id">admin@vinnesia.my.id</a></p>
+        <p><strong>Website:</strong> <a href="https://www.vinnesia.my.id" target="_blank">www.vinnesia.my.id</a></p>
+        <p><em>Kami berkomitmen untuk merespons dalam 1-2 hari kerja</em></p>
       </div>
-    </section>
-    
-    <section class="privacy-section">
-      <h2>🛡️ Keamanan Data</h2>
-      
-      <h3>5.1 Langkah-Langkah Keamanan</h3>
-      <ul>
-        <li><strong>Enkripsi SSL:</strong> Semua data ditransmisikan melalui HTTPS</li>
-        <li><strong>Server Security:</strong> Firewall dan monitoring 24/7</li>
-        <li><strong>Access Control:</strong> Akses terbatas hanya untuk personel yang berwenang</li>
-        <li><strong>Regular Updates:</strong> Sistem dan software diperbarui secara berkala</li>
-        <li><strong>Backup:</strong> Data di-backup secara rutin untuk pemulihan</li>
-      </ul>
-      
-      <h3>5.2 Penyimpanan Data</h3>
-      <p>Data disimpan di server yang berlokasi di Indonesia dan/atau negara dengan standar keamanan yang memadai. Kami menggunakan penyedia hosting terpercaya yang mematuhi standar keamanan internasional.</p>
-    </section>
-    
-    <section class="privacy-section">
-      <h2>🔄 Berbagi Data dengan Pihak Ketiga</h2>
-      
-      <h3>6.1 Kapan Kami Berbagi Data</h3>
-      <p>Kami tidak menjual data pribadi Anda. Data hanya dibagikan dalam situasi berikut:</p>
-      <ul>
-        <li><strong>Service Providers:</strong> Google Analytics, hosting provider, email service</li>
-        <li><strong>Advertising Partners:</strong> Google AdSense dan ad networks (data anonim)</li>
-        <li><strong>Legal Requirements:</strong> Jika diwajibkan oleh hukum atau otoritas</li>
-        <li><strong>Business Transfer:</strong> Jika terjadi merger atau akuisisi</li>
-      </ul>
-      
-      <h3>6.2 Perlindungan dalam Berbagi</h3>
-      <ul>
-        <li>Data diproses oleh pihak ketiga yang terpercaya</li>
-        <li>Kontrak yang ketat tentang penggunaan data</li>
-        <li>Data dianonimisasi jika memungkinkan</li>
-        <li>Monitoring penggunaan data secara berkala</li>
-      </ul>
-    </section>
-    
-    <section class="privacy-section">
-      <h2>⏰ Retensi Data</h2>
-      
-      <h3>7.1 Periode Penyimpanan</h3>
-      <table class="data-table">
-        <thead>
-          <tr>
-            <th>Jenis Data</th>
-            <th>Periode Retensi</th>
-            <th>Alasan</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>Data Analytics</td>
-            <td>26 bulan</td>
-            <td>Sesuai kebijakan Google Analytics</td>
-          </tr>
-          <tr>
-            <td>Data Kontak</td>
-            <td>3 tahun</td>
-            <td>Komunikasi dan follow-up</td>
-          </tr>
-          <tr>
-            <td>Server Logs</td>
-            <td>12 bulan</td>
-            <td>Keamanan dan debugging</td>
-          </tr>
-          <tr>
-            <td>Email Newsletter</td>
-            <td>Sampai unsubscribe</td>
-            <td>Komunikasi berkelanjutan</td>
-          </tr>
-        </tbody>
-      </table>
-      
-      <h3>7.2 Penghapusan Data</h3>
-      <p>Data akan dihapus secara otomatis setelah periode retensi berakhir atau atas permintaan pengguna sesuai dengan hak-hak privasi yang berlaku.</p>
-    </section>
-    
-    <section class="privacy-section">
-      <h2>⚖️ Hak-Hak Anda</h2>
-      
-      <h3>8.1 Hak Privasi</h3>
-      <p>Sesuai dengan regulasi perlindungan data, Anda memiliki hak berikut:</p>
-      <ul>
-        <li><strong>Hak Akses:</strong> Mengetahui data pribadi apa yang kami miliki</li>
-        <li><strong>Hak Koreksi:</strong> Memperbaiki data yang tidak akurat</li>
-        <li><strong>Hak Penghapusan:</strong> Meminta penghapusan data (right to be forgotten)</li>
-        <li><strong>Hak Portabilitas:</strong> Mendapat copy data dalam format yang dapat dibaca</li>
-        <li><strong>Hak Pembatasan:</strong> Membatasi pemrosesan data</li>
-        <li><strong>Hak Keberatan:</strong> Menolak pemrosesan untuk tujuan tertentu</li>
-      </ul>
-      
-      <h3>8.2 Cara Menggunakan Hak</h3>
-      <p>Untuk menggunakan hak-hak di atas, silakan hubungi kami melalui:</p>
-      <ul>
-        <li>Email: <a href="mailto:privacy@vinnesia.my.id" style="color:#0d6efd">privacy@vinnesia.my.id</a></li>
-        <li>Melalui formulir kontak di situs ini</li>
-      </ul>
-      
-      <div class="warning">
-        <strong>Catatan:</strong> Kami akan merespons permintaan Anda dalam waktu maksimal 30 hari dan dapat meminta verifikasi identitas untuk keamanan.
-      </div>
-    </section>
-    
-    <section class="privacy-section">
-      <h2>👶 Perlindungan Anak</h2>
-      <p>Layanan kami tidak ditujukan untuk anak-anak di bawah usia 13 tahun. Kami tidak secara sengaja mengumpulkan informasi pribadi dari anak-anak di bawah usia tersebut. Jika Anda adalah orang tua dan mengetahui bahwa anak Anda telah memberikan data pribadi kepada kami, silakan hubungi kami untuk penghapusan data.</p>
-    </section>
-    
-    <section class="privacy-section">
-      <h2>🌍 Transfer Data Internasional</h2>
-      <p>Beberapa service provider kami (seperti Google) mungkin berlokasi di luar Indonesia. Dalam kasus tersebut, kami memastikan bahwa:</p>
-      <ul>
-        <li>Transfer dilakukan ke negara dengan tingkat perlindungan data yang memadai</li>
-        <li>Kontrak yang mencakup klausul perlindungan data standar</li>
-        <li>Compliance dengan regulasi transfer data internasional</li>
-      </ul>
-    </section>
-    
-    <section class="privacy-section">
-      <h2>📱 Aplikasi Mobile dan PWA</h2>
-      <p>Jika kami menyediakan aplikasi mobile atau Progressive Web App (PWA), kebijakan privasi ini berlaku dengan beberapa tambahan:</p>
-      <ul>
-        <li>Permission akses device (kamera, lokasi, notifikasi)</li>
-        <li>Data yang disimpan locally di perangkat</li>
-        <li>Push notification dan data terkait</li>
-      </ul>
-    </section>
-    
-    <section class="privacy-section">
-      <h2>🔄 Perubahan Kebijakan</h2>
-      <p>Kami dapat memperbarui kebijakan privasi ini sewaktu-waktu untuk mencerminkan perubahan dalam:</p>
-      <ul>
-        <li>Praktik bisnis atau layanan</li>
-        <li>Regulasi dan hukum yang berlaku</li>
-        <li>Teknologi dan keamanan</li>
-      </ul>
-      
-      <p>Perubahan material akan dikomunikasikan melalui:</p>
-      <ul>
-        <li>Pemberitahuan di halaman utama situs</li>
-        <li>Email notification (jika Anda berlangganan)</li>
-        <li>Update di halaman ini dengan tanggal revisi</li>
-      </ul>
-    </section>
-    
-    <div class="contact-info">
-      <h3>📧 Data Protection Officer</h3>
-      <p>Jika Anda memiliki pertanyaan, keluhan, atau ingin menggunakan hak privasi Anda:</p>
-      <p><strong>Email DPO:</strong> <a href="mailto:privacy@vinnesia.my.id">privacy@vinnesia.my.id</a></p>
-      <p><strong>Email Umum:</strong> <a href="mailto:admin@vinnesia.my.id">admin@vinnesia.my.id</a></p>
-      <p><strong>Website:</strong> <a href="https://www.vinnesia.my.id" target="_blank">www.vinnesia.my.id</a></p>
-      <p><em>Kami berkomitmen untuk merespons dalam 1-2 hari kerja</em></p>
     </div>
   </main>
   
   <footer>
-    <p>&copy; 2025 Blog Vinnesia. All rights reserved.</p>
-    <p><a href="../syarat" style="color:#0d6efd">Syarat & Ketentuan</a> | <a href="../kontak" style="color:#0d6efd">Hubungi Kami</a></p>
+    <div class="container">
+      <p>&copy; 2025 Blog Vinnesia. All rights reserved.</p>
+      <p><a href="../syarat">Syarat & Ketentuan</a> | <a href="../kontak">Hubungi Kami</a></p>
+    </div>
   </footer>
 </body>
 </html>
