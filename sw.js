@@ -1,9 +1,9 @@
 // Service Worker untuk Blog Vinnesia
-// Version: 1.0.0
+// Version: Auto (pakai timestamp)
 
-const CACHE_NAME = 'vinnesia-blog-v1.0.1';
-const STATIC_CACHE = 'vinnesia-static-v1';
-const DYNAMIC_CACHE = 'vinnesia-dynamic-v1';
+const CACHE_NAME = `vinnesia-blog-${Date.now()}`;
+const STATIC_CACHE = `vinnesia-static-${Date.now()}`;
+const DYNAMIC_CACHE = `vinnesia-dynamic-${Date.now()}`;
 
 // Files to cache on install
 const STATIC_FILES = [
@@ -16,7 +16,7 @@ const STATIC_FILES = [
 
 // Install event - cache static files
 self.addEventListener('install', (event) => {
-  console.log('Service Worker: Installing...');
+  console.log('Service Worker: Installing...', CACHE_NAME);
   
   event.waitUntil(
     caches.open(STATIC_CACHE)
@@ -36,7 +36,7 @@ self.addEventListener('install', (event) => {
 
 // Activate event - clean up old caches
 self.addEventListener('activate', (event) => {
-  console.log('Service Worker: Activating...');
+  console.log('Service Worker: Activating...', CACHE_NAME);
   
   event.waitUntil(
     caches.keys()
@@ -44,7 +44,7 @@ self.addEventListener('activate', (event) => {
         return Promise.all(
           cacheNames
             .filter((cacheName) => {
-              // Remove old caches that don't match current version
+              // Hapus cache lama (hanya simpan versi terbaru)
               return cacheName !== STATIC_CACHE && 
                      cacheName !== DYNAMIC_CACHE &&
                      cacheName.startsWith('vinnesia-');
@@ -67,39 +67,27 @@ self.addEventListener('fetch', (event) => {
   const { request } = event;
   const url = new URL(request.url);
   
-  // Skip non-GET requests
-  if (request.method !== 'GET') {
-    return;
-  }
-  
-  // Skip cross-origin requests (except for same domain)
-  if (url.origin !== location.origin) {
-    return;
-  }
+  if (request.method !== 'GET') return;
+  if (url.origin !== location.origin) return;
   
   event.respondWith(
     caches.match(request)
       .then((cachedResponse) => {
-        // Return cached version if available
         if (cachedResponse) {
           console.log('Service Worker: Serving from cache:', request.url);
           return cachedResponse;
         }
         
-        // Otherwise fetch from network
         console.log('Service Worker: Fetching from network:', request.url);
         return fetch(request)
           .then((networkResponse) => {
-            // Don't cache if not a success response
             if (!networkResponse || networkResponse.status !== 200 || networkResponse.type !== 'basic') {
               return networkResponse;
             }
             
-            // Determine which cache to use
             const responseClone = networkResponse.clone();
             const cacheToUse = isStaticAsset(request.url) ? STATIC_CACHE : DYNAMIC_CACHE;
             
-            // Cache the response
             caches.open(cacheToUse)
               .then((cache) => {
                 console.log('Service Worker: Caching new resource:', request.url);
@@ -111,13 +99,10 @@ self.addEventListener('fetch', (event) => {
           .catch((error) => {
             console.error('Service Worker: Network fetch failed:', error);
             
-            // Return offline fallback for HTML pages
             if (request.headers.get('accept').includes('text/html')) {
               return caches.match('/')
                 .then((fallback) => {
-                  if (fallback) {
-                    return fallback;
-                  }
+                  if (fallback) return fallback;
                   return new Response(
                     '<h1>Offline</h1><p>Halaman tidak tersedia saat offline. Silakan coba lagi nanti.</p>',
                     { 
@@ -146,19 +131,17 @@ function isStaticAsset(url) {
          urlPath.includes('/apple-touch-icon');
 }
 
-// Background sync for offline actions (if needed)
+// Background sync
 self.addEventListener('sync', (event) => {
   console.log('Service Worker: Background sync triggered:', event.tag);
-  
   if (event.tag === 'background-sync') {
     event.waitUntil(
-      // Handle background sync tasks here
       console.log('Service Worker: Performing background sync')
     );
   }
 });
 
-// Push notification handling (if needed)
+// Push notification
 self.addEventListener('push', (event) => {
   console.log('Service Worker: Push notification received');
   
@@ -167,20 +150,10 @@ self.addEventListener('push', (event) => {
     icon: '/logo.png',
     badge: '/favicon.ico',
     vibrate: [200, 100, 200],
-    data: {
-      url: '/'
-    },
+    data: { url: '/' },
     actions: [
-      {
-        action: 'open',
-        title: 'Buka Blog',
-        icon: '/logo.png'
-      },
-      {
-        action: 'close',
-        title: 'Tutup',
-        icon: '/favicon.ico'
-      }
+      { action: 'open', title: 'Buka Blog', icon: '/logo.png' },
+      { action: 'close', title: 'Tutup', icon: '/favicon.ico' }
     ]
   };
   
@@ -189,12 +162,10 @@ self.addEventListener('push', (event) => {
   );
 });
 
-// Notification click handling
+// Notification click
 self.addEventListener('notificationclick', (event) => {
   console.log('Service Worker: Notification clicked');
-  
   event.notification.close();
-  
   if (event.action === 'open') {
     event.waitUntil(
       clients.openWindow(event.notification.data.url || '/')
@@ -212,19 +183,17 @@ self.addEventListener('unhandledrejection', (event) => {
   console.error('Service Worker: Unhandled promise rejection:', event.reason);
 });
 
-// Message handling from main thread
+// Message handling
 self.addEventListener('message', (event) => {
   console.log('Service Worker: Message received:', event.data);
   
-  if (event.data && event.data.type === 'SKIP_WAITING') {
-    self.skipWaiting();
-  }
+  if (event.data?.type === 'SKIP_WAITING') self.skipWaiting();
   
-  if (event.data && event.data.type === 'GET_VERSION') {
+  if (event.data?.type === 'GET_VERSION') {
     event.ports[0].postMessage({ version: CACHE_NAME });
   }
   
-  if (event.data && event.data.type === 'CLEAR_CACHE') {
+  if (event.data?.type === 'CLEAR_CACHE') {
     event.waitUntil(
       caches.keys().then((cacheNames) => {
         return Promise.all(
@@ -241,4 +210,4 @@ self.addEventListener('message', (event) => {
   }
 });
 
-console.log('Service Worker: Script loaded successfully');
+console.log('Service Worker: Script loaded successfully', CACHE_NAME);
