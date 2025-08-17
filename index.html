@@ -18,6 +18,7 @@
   <link rel="canonical" href="https://blog.vinnesia.my.id">
   <link rel="icon" href="/favicon.ico" type="image/x-icon">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="shortcut icon" href="/favicon.ico">
   <title>Blog Vinnesia - Teknologi, SEO & Tutorial Terpercaya</title>
   <style>
     /* Critical CSS - Above the fold */
@@ -30,9 +31,13 @@
     .skip-link:focus{top:6px}
     
     /* Header */
-    header{background:#f8f9fa;padding:2rem 1rem;text-align:center;border-bottom:1px solid #e9ecef}
-    header h1{margin:0 0 0.5rem 0;font-size:2.5rem;font-weight:700;color:#212529}
-    header p{margin:0;font-size:1.125rem;color:#6c757d;max-width:600px;margin-left:auto;margin-right:auto}
+    header{background:#212529;color:#fff;padding:3rem 1rem;text-align:center;position:relative;overflow:hidden}
+    header::before{content:'';position:absolute;top:0;left:0;right:0;bottom:0;background:linear-gradient(135deg,rgba(0,0,0,0.1) 0%,rgba(255,255,255,0.05) 100%);pointer-events:none}
+    .hero-content{position:relative;z-index:2;max-width:800px;margin:0 auto}
+    .logo{display:block;width:80px;height:80px;margin:0 auto 1.5rem;border-radius:50%;background:#fff;padding:10px;box-shadow:0 4px 20px rgba(0,0,0,0.3)}
+    .logo img{width:100%;height:100%;object-fit:contain}
+    header h1{margin:0 0 1rem 0;font-size:3rem;font-weight:700;color:#fff;text-shadow:2px 2px 4px rgba(0,0,0,0.3)}
+    header p{margin:0;font-size:1.25rem;color:#e9ecef;line-height:1.6;text-shadow:1px 1px 2px rgba(0,0,0,0.3)}
     
     /* Navigation */
     nav{background:#fff;border-bottom:1px solid #dee2e6;position:relative}
@@ -85,6 +90,9 @@
     .newsletter-btn:hover{background:#0b5ed7}
     .newsletter-btn:focus{outline:2px solid #fff;outline-offset:-2px}
     
+    /* About section styles */
+    .widget strong{color:#212529;font-weight:600}
+    
     /* Footer */
     footer{background:#f8f9fa;padding:2rem 1rem;margin-top:3rem;border-top:1px solid #dee2e6;text-align:center}
     .footer-content{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:2rem;margin-bottom:2rem;text-align:left}
@@ -95,7 +103,8 @@
     
     /* Responsive design */
     @media (max-width: 768px) {
-      header h1{font-size:2rem}
+      header h1{font-size:2.5rem}
+      .logo{width:60px;height:60px;margin-bottom:1rem}
       main{grid-template-columns:1fr;gap:1.5rem;padding:1rem}
       .nav-list{justify-content:flex-start;gap:1rem}
       .post{padding:1rem}
@@ -103,8 +112,6 @@
       .search-form{flex-direction:column;gap:0.5rem}
       .search-input{border-radius:4px}
       .search-btn{border-radius:4px}
-      .newsletter-form{flex-direction:column}
-      .newsletter-input,.newsletter-btn{border-radius:4px}
     }
     
     /* Performance optimizations */
@@ -126,8 +133,13 @@
   
   <!-- Header -->
   <header>
-    <h1>Blog Vinnesia</h1>
-    <p>Sumber terpercaya untuk artikel teknologi, SEO, dan tutorial web development</p>
+    <div class="hero-content">
+      <div class="logo">
+        <img src="/logo.png" alt="Logo Blog Vinnesia" width="60" height="60">
+      </div>
+      <h1>Blog Vinnesia</h1>
+      <p>Sumber terpercaya untuk artikel teknologi, SEO, dan tutorial web development</p>
+    </div>
   </header>
   
   <!-- Navigation -->
@@ -298,23 +310,80 @@
         <div id="read-more-7" class="visually-hidden">Artikel tentang image optimizer tools</div>
       </article>
 
-      <!-- Article 8 -->
+      <!-- Article 9 -->
       <article class="post" itemscope itemtype="https://schema.org/BlogPosting">
         <div class="post-meta">
-          <span class="post-category">Tools</span>
-          <time datetime="2025-08-03" itemprop="datePublished">3 Agustus 2025</time>
-          <span aria-label="2156 kali dilihat">👁️ 2,156 views</span>
+          <span class="post-category">Tutorial</span>
+          <time datetime="2025-08-01" itemprop="datePublished">1 Agustus 2025</time>
+          <span aria-label="3421 kali dilihat">👁️ 3,421 views</span>
         </div>
         <h2 itemprop="headline">
-          <a href="#artikel-mockup-generator" itemprop="url">Tools Mockup Generator Gratis untuk Presentasi Project</a>
+          <a href="#artikel-responsive-design" itemprop="url">Tutorial Lengkap Responsive Web Design dari Nol</a>
         </h2>
         <p class="post-excerpt" itemprop="description">
-          Kumpulan tools online untuk membuat mockup website, mobile app, dan design presentasi yang profesional. Cocok untuk portfolio dan presentasi klien.
+          Panduan step-by-step membuat website responsif yang perfect di semua device. Mulai dari konsep mobile-first hingga advanced responsive techniques.
         </p>
-        <a href="#artikel-mockup-generator" class="read-more" aria-describedby="read-more-8">
+        <a href="#artikel-responsive-design" class="read-more" aria-describedby="read-more-9">
           Baca Selengkapnya →
         </a>
-        <div id="read-more-8" class="visually-hidden">Artikel tentang mockup generator tools</div>
+        <div id="read-more-9" class="visually-hidden">Tutorial responsive web design</div>
+      </article>
+
+      <!-- Article 10 -->
+      <article class="post" itemscope itemtype="https://schema.org/BlogPosting">
+        <div class="post-meta">
+          <span class="post-category">Tips</span>
+          <time datetime="2025-07-30" itemprop="datePublished">30 Juli 2025</time>
+          <span aria-label="2876 kali dilihat">👁️ 2,876 views</span>
+        </div>
+        <h2 itemprop="headline">
+          <a href="#artikel-coding-tips" itemprop="url">15 Tips Coding yang Harus Diketahui Setiap Developer</a>
+        </h2>
+        <p class="post-excerpt" itemprop="description">
+          Kumpulan tips praktis untuk meningkatkan produktivitas coding, clean code practices, debugging techniques, dan best practices development.
+        </p>
+        <a href="#artikel-coding-tips" class="read-more" aria-describedby="read-more-10">
+          Baca Selengkapnya →
+        </a>
+        <div id="read-more-10" class="visually-hidden">Tips coding untuk developer</div>
+      </article>
+
+      <!-- Article 11 -->
+      <article class="post" itemscope itemtype="https://schema.org/BlogPosting">
+        <div class="post-meta">
+          <span class="post-category">Tutorial</span>
+          <time datetime="2025-07-28" itemprop="datePublished">28 Juli 2025</time>
+          <span aria-label="2234 kali dilihat">👁️ 2,234 views</span>
+        </div>
+        <h2 itemprop="headline">
+          <a href="#artikel-git-workflow" itemprop="url">Menguasai Git Workflow untuk Team Development</a>
+        </h2>
+        <p class="post-excerpt" itemprop="description">
+          Tutorial lengkap Git workflow, branching strategy, merge vs rebase, dan collaboration best practices untuk tim development yang efisien.
+        </p>
+        <a href="#artikel-git-workflow" class="read-more" aria-describedby="read-more-11">
+          Baca Selengkapnya →
+        </a>
+        <div id="read-more-11" class="visually-hidden">Tutorial Git workflow</div>
+      </article>
+
+      <!-- Article 12 -->
+      <article class="post" itemscope itemtype="https://schema.org/BlogPosting">
+        <div class="post-meta">
+          <span class="post-category">Tips</span>
+          <time datetime="2025-07-26" itemprop="datePublished">26 Juli 2025</time>
+          <span aria-label="1945 kali dilihat">👁️ 1,945 views</span>
+        </div>
+        <h2 itemprop="headline">
+          <a href="#artikel-debugging-techniques" itemprop="url">Debugging Techniques yang Efektif untuk Web Developer</a>
+        </h2>
+        <p class="post-excerpt" itemprop="description">
+          Strategi debugging yang proven, tools terbaik, console techniques, dan methodologi systematic untuk menyelesaikan bug dengan cepat.
+        </p>
+        <a href="#artikel-debugging-techniques" class="read-more" aria-describedby="read-more-12">
+          Baca Selengkapnya →
+        </a>
+        <div id="read-more-12" class="visually-hidden">Tips debugging untuk developer</div>
       </article>
     </section>
     
@@ -322,24 +391,10 @@
     <aside class="sidebar" role="complementary" aria-label="Konten tambahan">
       
       <!-- Newsletter -->
-      <section class="widget" aria-labelledby="newsletter-heading">
-        <h3 id="newsletter-heading">Newsletter</h3>
-        <p>Dapatkan artikel terbaru langsung di email Anda setiap minggu.</p>
-        <form class="newsletter-form" aria-labelledby="newsletter-heading">
-          <label for="newsletter-email" class="visually-hidden">Alamat email</label>
-          <input 
-            type="email" 
-            id="newsletter-email" 
-            class="newsletter-input" 
-            placeholder="Email Anda"
-            required
-            aria-describedby="newsletter-help"
-          >
-          <div id="newsletter-help" class="visually-hidden">Masukkan email untuk berlangganan newsletter</div>
-          <button type="submit" class="newsletter-btn">
-            Langganan
-          </button>
-        </form>
+      <section class="widget" aria-labelledby="about-heading">
+        <h3 id="about-heading">Tentang Blog</h3>
+        <p>Blog Vinnesia menyediakan artikel berkualitas tinggi tentang teknologi web, SEO, dan tutorial development untuk komunitas developer Indonesia.</p>
+        <p><strong>Update terbaru:</strong> Setiap minggu kami publish 2-3 artikel baru yang telah diriset dengan mendalam.</p>
       </section>
       
       <!-- Categories -->
@@ -349,7 +404,7 @@
           <li><a href="/seo">SEO & Digital Marketing (45)</a></li>
           <li><a href="/development">Web Development (32)</a></li>
           <li><a href="/tools">Tools & Online Generator (35)</a></li>
-          <li><a href="/tutorial">Tutorial & Tips (28)</a></li>
+          <li><a href="/tutorial">Tutorial & Tips (42)</a></li>
           <li><a href="/teknologi">Teknologi Terkini (21)</a></li>
         </ul>
       </section>
@@ -358,11 +413,11 @@
       <section class="widget" aria-labelledby="popular-heading">
         <h3 id="popular-heading">Artikel Populer</h3>
         <ul>
-          <li><a href="#populer-1">15 Tools Color Palette Generator Online (15K views)</a></li>
-          <li><a href="#populer-2">Tools CSS Generator untuk Developer (12K views)</a></li>
-          <li><a href="#populer-3">10 Image Optimizer Gratis Terbaik (9K views)</a></li>
-          <li><a href="#populer-4">Cara Membuat QR Code Custom (8K views)</a></li>
-          <li><a href="#populer-5">Tools Mockup Generator Profesional (7K views)</a></li>
+          <li><a href="/tutorial-responsive-design">Tutorial Responsive Design Lengkap (8K views)</a></li>
+          <li><a href="/tips-coding-developer">15 Tips Coding untuk Developer (7K views)</a></li>
+          <li><a href="/git-workflow-team">Git Workflow untuk Tim (6K views)</a></li>
+          <li><a href="/debugging-techniques">Debugging Techniques Efektif (5K views)</a></li>
+          <li><a href="/css-generator-tools">Tools CSS Generator Online (4K views)</a></li>
         </ul>
       </section>
       
@@ -410,7 +465,7 @@
         <p><a href="https://vinnesia.my.id" rel="external">Vinnesia Official</a></p>
         <p><a href="#forum">Community Forum</a></p>
         <p><a href="/kontributor">Program Kontributor</a></p>
-        <p><a href="/newsletter">Newsletter Mingguan</a></p>
+        <p><a href="/rss">RSS Feed</a></p>
       </section>
     </div>
     
@@ -449,17 +504,6 @@
         // In real implementation, this would redirect to search results
         console.log('Searching for:', query);
         alert('Hasil pencarian untuk: "' + query + '" akan ditampilkan.');
-      }
-    });
-
-    // Newsletter subscription
-    document.querySelector('.newsletter-form').addEventListener('submit', function(e) {
-      e.preventDefault();
-      const email = document.getElementById('newsletter-email').value.trim();
-      if (email) {
-        console.log('Newsletter subscription:', email);
-        alert('Terima kasih! Email konfirmasi akan dikirim ke ' + email);
-        document.getElementById('newsletter-email').value = '';
       }
     });
 
