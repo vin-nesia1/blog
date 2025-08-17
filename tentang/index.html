@@ -16,96 +16,493 @@
   <link rel="icon" href="../favicon.ico" type="image/x-icon">
   <title>Tentang Kami - Blog Vinnesia</title>
   <style>
-    *,*::before,*::after{box-sizing:border-box}
-    html{font-size:16px;scroll-behavior:smooth}
-    body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen,Ubuntu,Cantarell,sans-serif;margin:0;padding:0;background:#fff;color:#1a1a1a;line-height:1.7}
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
     
-    header{background:linear-gradient(135deg,#212529 0%,#495057 100%);color:#fff;padding:3rem 1rem;text-align:center;position:relative;overflow:hidden}
-    header::before{content:'';position:absolute;top:0;left:0;right:0;bottom:0;background:rgba(255,255,255,0.05);backdrop-filter:blur(10px)}
-    .hero-content{position:relative;z-index:2}
-    .logo{display:block;width:80px;height:80px;margin:0 auto 1.5rem;border-radius:50%;overflow:hidden;box-shadow:0 4px 20px rgba(0,0,0,0.3)}
-    .logo img{width:100%;height:100%;object-fit:cover}
-    header h1{margin:0 0 1rem 0;font-size:3rem;font-weight:700;text-shadow:2px 2px 4px rgba(0,0,0,0.3)}
-    header p{margin:0;font-size:1.25rem;color:#e9ecef;text-shadow:1px 1px 2px rgba(0,0,0,0.3)}
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      line-height: 1.6;
+      color: #2c2c2c;
+      background-color: #ffffff;
+    }
     
-    nav{background:#fff;border-bottom:1px solid #dee2e6;padding:1rem 0;position:sticky;top:0;z-index:100}
-    .nav-container{max-width:1200px;margin:0 auto;padding:0 1rem}
-    .nav-list{list-style:none;margin:0;padding:0;display:flex;gap:2rem;justify-content:center;flex-wrap:wrap}
-    .nav-list a{text-decoration:none;color:#495057;font-weight:500;padding:0.5rem 1rem;border-radius:4px;transition:all 0.2s}
-    .nav-list a:hover{background:#e9ecef;color:#212529}
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
     
-    main{max-width:1000px;margin:0 auto;padding:3rem 1rem}
+    /* Header */
+    header {
+      background: #1a1a1a;
+      color: #ffffff;
+      padding: 80px 0;
+      text-align: center;
+    }
     
-    .about-section{background:#fff;border:1px solid #dee2e6;border-radius:12px;padding:2.5rem;margin-bottom:2rem;box-shadow:0 4px 16px rgba(0,0,0,0.08);position:relative;overflow:hidden}
-    .about-section::before{content:'';position:absolute;top:0;left:0;width:4px;height:100%;background:linear-gradient(to bottom,#0d6efd,#28a745)}
+    .hero-content {
+      max-width: 800px;
+      margin: 0 auto;
+    }
     
-    .about-section h2{color:#212529;font-size:1.75rem;margin:0 0 1.5rem 0;position:relative;padding-left:1rem}
-    .about-section h3{color:#495057;font-size:1.35rem;margin:1.5rem 0 1rem 0}
-    .about-section h4{color:#6c757d;font-size:1.15rem;margin:1rem 0 0.5rem 0}
+    .logo {
+      width: 80px;
+      height: 80px;
+      margin: 0 auto 30px;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 3px solid #ffffff;
+    }
     
-    .about-section p{margin:0 0 1.25rem 0;text-align:justify;padding-left:1rem}
-    .about-section ul{margin:0 0 1.25rem 2rem;padding-left:1rem}
-    .about-section li{margin:0.5rem 0}
+    .logo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
     
-    .highlight-box{background:linear-gradient(135deg,#e3f2fd 0%,#f3e5f5 100%);padding:1.5rem;border-radius:8px;border-left:4px solid #2196f3;margin:1.5rem 0}
-    .success-box{background:linear-gradient(135deg,#e8f5e8 0%,#f1f8e9 100%);padding:1.5rem;border-radius:8px;border-left:4px solid #28a745;margin:1.5rem 0}
-    .info-box{background:linear-gradient(135deg,#fff3e0 0%,#fce4ec 100%);padding:1.5rem;border-radius:8px;border-left:4px solid #ff9800;margin:1.5rem 0}
+    header h1 {
+      font-size: 3.5rem;
+      font-weight: 300;
+      margin-bottom: 20px;
+      letter-spacing: -1px;
+    }
     
-    .stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1.5rem;margin:2rem 0}
-    .stat-card{background:#fff;border:2px solid #e9ecef;border-radius:8px;padding:1.5rem;text-align:center;transition:all 0.3s;position:relative;overflow:hidden}
-    .stat-card::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,#0d6efd,#28a745,#ffc107)}
-    .stat-card:hover{transform:translateY(-4px);box-shadow:0 8px 25px rgba(0,0,0,0.15)}
-    .stat-number{font-size:2.5rem;font-weight:bold;color:#0d6efd;margin:0.5rem 0}
-    .stat-label{color:#6c757d;font-size:0.95rem;font-weight:500}
+    header p {
+      font-size: 1.3rem;
+      color: #cccccc;
+      font-weight: 300;
+    }
     
-    .team-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:2rem;margin:2rem 0}
-    .team-card{background:#fff;border:1px solid #dee2e6;border-radius:10px;padding:2rem;text-align:center;box-shadow:0 2px 12px rgba(0,0,0,0.08)}
-    .team-avatar{width:80px;height:80px;border-radius:50%;background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);margin:0 auto 1rem;display:flex;align-items:center;justify-content:center;color:#fff;font-size:2rem;font-weight:bold}
+    /* Navigation */
+    nav {
+      background: #ffffff;
+      border-bottom: 1px solid #e5e5e5;
+      padding: 0;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
     
-    .values-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1.5rem;margin:2rem 0}
-    .value-card{background:#f8f9fa;padding:1.5rem;border-radius:8px;border-left:4px solid #0d6efd;transition:all 0.3s}
-    .value-card:hover{background:#e9ecef;transform:translateX(4px)}
-    .value-icon{font-size:2.5rem;margin-bottom:1rem;color:#0d6efd}
-    .value-card h4{color:#212529;margin:0 0 0.75rem 0;font-size:1.2rem}
-    .value-card p{color:#6c757d;margin:0;font-size:0.95rem;line-height:1.6}
+    .nav-container {
+      display: flex;
+      justify-content: center;
+      padding: 0 20px;
+    }
     
-    .timeline{position:relative;padding:2rem 0}
-    .timeline::before{content:'';position:absolute;left:50%;top:0;bottom:0;width:2px;background:#dee2e6;transform:translateX(-50%)}
-    .timeline-item{position:relative;margin:2rem 0;display:flex;align-items:center}
-    .timeline-content{background:#fff;border:1px solid #dee2e6;border-radius:8px;padding:1.5rem;width:45%;box-shadow:0 2px 8px rgba(0,0,0,0.05)}
-    .timeline-content.left{margin-right:auto}
-    .timeline-content.right{margin-left:auto}
-    .timeline-year{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);background:#0d6efd;color:#fff;padding:0.5rem 1rem;border-radius:20px;font-weight:bold}
+    .nav-list {
+      display: flex;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
     
-    .cta-section{background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);color:#fff;padding:3rem 2rem;border-radius:12px;text-align:center;margin-top:3rem}
-    .cta-section h3{font-size:2rem;margin:0 0 1rem 0}
-    .cta-section p{font-size:1.1rem;margin:0 0 2rem 0;opacity:0.9}
-    .cta-buttons{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
-    .cta-btn{background:rgba(255,255,255,0.2);color:#fff;text-decoration:none;padding:0.75rem 1.5rem;border-radius:6px;font-weight:500;transition:all 0.3s;backdrop-filter:blur(10px)}
-    .cta-btn:hover{background:rgba(255,255,255,0.3);transform:translateY(-2px)}
+    .nav-list a {
+      display: block;
+      padding: 20px 30px;
+      text-decoration: none;
+      color: #2c2c2c;
+      font-weight: 500;
+      transition: all 0.3s ease;
+      position: relative;
+    }
     
-    footer{background:#f8f9fa;padding:3rem 1rem;margin-top:3rem;border-top:1px solid #dee2e6;text-align:center;color:#6c757d}
+    .nav-list a:hover,
+    .nav-list a[style] {
+      color: #000000;
+      background: #f8f8f8;
+    }
+    
+    /* Main Content */
+    main {
+      padding: 60px 0;
+    }
+    
+    .section {
+      background: #ffffff;
+      border: 1px solid #e5e5e5;
+      margin-bottom: 40px;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    
+    .section-header {
+      background: #f8f8f8;
+      padding: 30px 40px;
+      border-bottom: 1px solid #e5e5e5;
+    }
+    
+    .section-header h2 {
+      font-size: 2rem;
+      font-weight: 600;
+      color: #1a1a1a;
+      margin: 0;
+    }
+    
+    .section-content {
+      padding: 40px;
+    }
+    
+    .section-content p {
+      margin-bottom: 20px;
+      font-size: 1.1rem;
+      line-height: 1.7;
+      color: #4a4a4a;
+    }
+    
+    .section-content h3 {
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: #1a1a1a;
+      margin: 40px 0 20px 0;
+    }
+    
+    .section-content h4 {
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: #2c2c2c;
+      margin: 30px 0 15px 0;
+    }
+    
+    .section-content ul {
+      margin: 20px 0;
+      padding-left: 30px;
+    }
+    
+    .section-content li {
+      margin-bottom: 8px;
+      color: #4a4a4a;
+    }
+    
+    /* Grid Layouts */
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      margin: 30px 0;
+    }
+    
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 30px;
+      margin: 30px 0;
+    }
+    
+    .grid-4 {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 30px;
+      margin: 30px 0;
+    }
+    
+    /* Cards */
+    .card {
+      background: #ffffff;
+      border: 1px solid #e5e5e5;
+      border-radius: 8px;
+      padding: 30px;
+      text-align: center;
+      transition: all 0.3s ease;
+    }
+    
+    .card:hover {
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      transform: translateY(-2px);
+    }
+    
+    .card h4 {
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: #1a1a1a;
+      margin: 0 0 15px 0;
+    }
+    
+    .card p {
+      color: #4a4a4a;
+      font-size: 0.95rem;
+      line-height: 1.6;
+      margin: 0;
+    }
+    
+    /* Statistics Cards */
+    .stat-card {
+      background: #ffffff;
+      border: 1px solid #e5e5e5;
+      border-radius: 8px;
+      padding: 40px 30px;
+      text-align: center;
+      transition: all 0.3s ease;
+    }
+    
+    .stat-card:hover {
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      transform: translateY(-2px);
+    }
+    
+    .stat-number {
+      font-size: 3rem;
+      font-weight: 700;
+      color: #1a1a1a;
+      line-height: 1;
+      margin-bottom: 10px;
+    }
+    
+    .stat-label {
+      color: #666666;
+      font-size: 1rem;
+      font-weight: 500;
+    }
+    
+    /* Team Cards */
+    .team-card {
+      background: #ffffff;
+      border: 1px solid #e5e5e5;
+      border-radius: 8px;
+      padding: 40px 30px;
+      text-align: center;
+      transition: all 0.3s ease;
+    }
+    
+    .team-card:hover {
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      transform: translateY(-2px);
+    }
+    
+    .team-avatar {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      background: #1a1a1a;
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      font-weight: 600;
+      margin: 0 auto 20px;
+    }
+    
+    /* Timeline */
+    .timeline {
+      position: relative;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 40px 0;
+    }
+    
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 50%;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: #e5e5e5;
+      transform: translateX(-50%);
+    }
+    
+    .timeline-item {
+      position: relative;
+      margin: 50px 0;
+    }
+    
+    .timeline-content {
+      background: #ffffff;
+      border: 1px solid #e5e5e5;
+      border-radius: 8px;
+      padding: 30px;
+      width: 45%;
+      position: relative;
+    }
+    
+    .timeline-content.left {
+      margin-right: 55%;
+    }
+    
+    .timeline-content.right {
+      margin-left: 55%;
+    }
+    
+    .timeline-year {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      background: #1a1a1a;
+      color: #ffffff;
+      padding: 10px 20px;
+      border-radius: 20px;
+      font-weight: 600;
+      z-index: 10;
+    }
+    
+    /* Highlight Boxes */
+    .highlight-box {
+      background: #f8f8f8;
+      border-left: 4px solid #1a1a1a;
+      padding: 30px;
+      margin: 30px 0;
+      border-radius: 0 8px 8px 0;
+    }
+    
+    .highlight-box h4 {
+      color: #1a1a1a;
+      margin: 0 0 15px 0;
+    }
+    
+    .highlight-box p {
+      margin: 0;
+      color: #4a4a4a;
+    }
+    
+    /* CTA Section */
+    .cta-section {
+      background: #1a1a1a;
+      color: #ffffff;
+      padding: 60px 40px;
+      text-align: center;
+      margin: 60px 0 0 0;
+      border-radius: 8px;
+    }
+    
+    .cta-section h3 {
+      font-size: 2.5rem;
+      font-weight: 300;
+      margin: 0 0 20px 0;
+    }
+    
+    .cta-section p {
+      font-size: 1.2rem;
+      color: #cccccc;
+      margin: 0 0 40px 0;
+    }
+    
+    .cta-buttons {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    
+    .cta-btn {
+      background: #ffffff;
+      color: #1a1a1a;
+      text-decoration: none;
+      padding: 15px 30px;
+      border-radius: 5px;
+      font-weight: 600;
+      transition: all 0.3s ease;
+    }
+    
+    .cta-btn:hover {
+      background: #f0f0f0;
+      transform: translateY(-2px);
+    }
+    
+    /* Footer */
+    footer {
+      background: #f8f8f8;
+      padding: 40px 0;
+      text-align: center;
+      color: #666666;
+      border-top: 1px solid #e5e5e5;
+    }
+    
+    footer p {
+      margin: 10px 0;
+    }
+    
+    footer a {
+      color: #1a1a1a;
+      text-decoration: none;
+    }
+    
+    footer a:hover {
+      text-decoration: underline;
+    }
+    
+    /* Responsive Design */
+    @media (max-width: 1024px) {
+      .grid-4 {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      
+      .grid-3 {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
     
     @media (max-width: 768px) {
-      header h1{font-size:2.5rem}
-      main{padding:2rem 1rem}
-      .about-section{padding:1.5rem}
-      .nav-list{gap:1rem;justify-content:flex-start}
-      .timeline::before{left:20px}
-      .timeline-content{width:calc(100% - 60px);margin-left:60px !important}
-      .timeline-year{left:20px;transform:translateY(-50%)}
-      .cta-buttons{flex-direction:column;align-items:center}
+      header h1 {
+        font-size: 2.5rem;
+      }
+      
+      .container {
+        padding: 0 15px;
+      }
+      
+      .section-content {
+        padding: 30px 20px;
+      }
+      
+      .section-header {
+        padding: 20px;
+      }
+      
+      .grid-2,
+      .grid-3,
+      .grid-4 {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+      
+      .nav-list {
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+      
+      .nav-list a {
+        padding: 15px 20px;
+      }
+      
+      .timeline::before {
+        left: 30px;
+      }
+      
+      .timeline-content {
+        width: calc(100% - 80px);
+        margin-left: 80px !important;
+      }
+      
+      .timeline-year {
+        left: 30px;
+        transform: translateY(-50%);
+      }
+      
+      .cta-buttons {
+        flex-direction: column;
+        align-items: center;
+      }
+      
+      .cta-btn {
+        width: 200px;
+      }
     }
   </style>
 </head>
 <body>
   <header>
-    <div class="hero-content">
-      <div class="logo">
-        <img src="../logo.png" alt="Logo Blog Vinnesia" width="80" height="80">
+    <div class="container">
+      <div class="hero-content">
+        <div class="logo">
+          <img src="../logo.png" alt="Logo Blog Vinnesia" width="80" height="80">
+        </div>
+        <h1>Tentang Kami</h1>
+        <p>Mengenal lebih dekat Blog Vinnesia dan visi kami</p>
       </div>
-      <h1>Tentang Kami</h1>
-      <p>Mengenal lebih dekat Blog Vinnesia dan visi kami</p>
     </div>
   </header>
   
@@ -115,7 +512,7 @@
         <li><a href="../">Beranda</a></li>
         <li><a href="../seo">SEO</a></li>
         <li><a href="../tutorial">Tutorial</a></li>
-        <li><a href="../tentang" style="background:#e9ecef;color:#212529">Tentang</a></li>
+        <li><a href="../tentang" style="background:#f8f8f8;color:#000000">Tentang</a></li>
         <li><a href="../kontak">Kontak</a></li>
         <li><a href="../tools">Tools</a></li>
       </ul>
@@ -123,202 +520,250 @@
   </nav>
   
   <main>
-    <section class="about-section">
-      <h2>🚀 Selamat Datang di Blog Vinnesia</h2>
-      <p>Blog Vinnesia adalah platform digital yang didedikasikan untuk menyediakan konten berkualitas tinggi seputar teknologi web, SEO, digital marketing, dan pengembangan web untuk komunitas developer dan marketer Indonesia.</p>
+    <div class="container">
       
-      <p>Didirikan dengan visi untuk menjadi sumber informasi terpercaya, kami berkomitmen menyajikan artikel, tutorial, dan tools yang praktis dan dapat diimplementasikan langsung dalam pekerjaan sehari-hari.</p>
-      
-      <div class="highlight-box">
-        <h4>🎯 Misi Kami</h4>
-        <p><strong>"Memberdayakan komunitas tech Indonesia dengan pengetahuan yang dapat diaplikasikan langsung untuk meningkatkan skill dan produktivitas."</strong></p>
-      </div>
-    </section>
-    
-    <section class="about-section">
-      <h2>📊 Statistik Blog</h2>
-      <div class="stats-grid">
-        <div class="stat-card">
-          <div class="stat-number">175+</div>
-          <div class="stat-label">Artikel Berkualitas</div>
+      <!-- Introduction Section -->
+      <section class="section">
+        <div class="section-header">
+          <h2>Selamat Datang di Blog Vinnesia</h2>
         </div>
-        <div class="stat-card">
-          <div class="stat-number">50K+</div>
-          <div class="stat-label">Pembaca Bulanan</div>
-        </div>
-        <div class="stat-card">
-          <div class="stat-number">35+</div>
-          <div class="stat-label">Tools & Generator</div>
-        </div>
-        <div class="stat-card">
-          <div class="stat-number">98%</div>
-          <div class="stat-label">Satisfaction Rate</div>
-        </div>
-      </div>
-    </section>
-    
-    <section class="about-section">
-      <h2>💡 Apa yang Kami Tawarkan</h2>
-      
-      <h3>🎯 Kategori Konten Utama</h3>
-      <div class="values-grid">
-        <div class="value-card">
-          <div class="value-icon">🔍</div>
-          <h4>SEO & Digital Marketing</h4>
-          <p>Strategi SEO terkini, tips optimasi website, dan panduan digital marketing untuk meningkatkan visibility online Anda.</p>
-        </div>
-        
-        <div class="value-card">
-          <div class="value-icon">💻</div>
-          <h4>Web Development</h4>
-          <p>Tutorial coding, framework terbaru, best practices development, dan teknologi web modern untuk developer.</p>
-        </div>
-        
-        <div class="value-card">
-          <div class="value-icon">🛠️</div>
-          <h4>Tools & Generator</h4>
-          <p>Koleksi tools online gratis untuk mempercepat workflow, dari color picker hingga code generator.</p>
-        </div>
-        
-        <div class="value-card">
-          <div class="value-icon">📚</div>
-          <h4>Tutorial & Tips</h4>
-          <p>Step-by-step tutorial lengkap, tips praktis, dan panduan implementasi untuk berbagai kebutuhan teknis.</p>
-        </div>
-      </div>
-    </section>
-    
-    <section class="about-section">
-      <h2>🏆 Nilai-Nilai Kami</h2>
-      
-      <div class="success-box">
-        <h4>🎯 Kualitas Content</h4>
-        <p>Setiap artikel melalui riset mendalam dan testing praktis untuk memastikan informasi yang akurat dan up-to-date.</p>
-      </div>
-      
-      <div class="info-box">
-        <h4>🤝 Community First</h4>
-        <p>Kami mendengarkan feedback community dan secara aktif merespons kebutuhan developer Indonesia.</p>
-      </div>
-      
-      <div class="highlight-box">
-        <h4>📈 Continuous Learning</h4>
-        <p>Teknologi terus berkembang, dan kami berkomitmen untuk selalu update dengan tren dan best practices terbaru.</p>
-      </div>
-    </section>
-    
-    <section class="about-section">
-      <h2>📈 Perjalanan Kami</h2>
-      <div class="timeline">
-        <div class="timeline-item">
-          <div class="timeline-content left">
-            <h4>Peluncuran Blog Vinnesia</h4>
-            <p>Memulai dengan artikel-artikel dasar seputar web development dan SEO untuk komunitas Indonesia.</p>
+        <div class="section-content">
+          <p>Blog Vinnesia adalah platform digital yang didedikasikan untuk menyediakan konten berkualitas tinggi seputar teknologi web, SEO, digital marketing, dan pengembangan web untuk komunitas developer dan marketer Indonesia.</p>
+          
+          <p>Didirikan dengan visi untuk menjadi sumber informasi terpercaya, kami berkomitmen menyajikan artikel, tutorial, dan tools yang praktis dan dapat diimplementasikan langsung dalam pekerjaan sehari-hari.</p>
+          
+          <div class="highlight-box">
+            <h4>Misi Kami</h4>
+            <p><strong>"Memberdayakan komunitas tech Indonesia dengan pengetahuan yang dapat diaplikasikan langsung untuk meningkatkan skill dan produktivitas."</strong></p>
           </div>
-          <div class="timeline-year">2023</div>
         </div>
-        
-        <div class="timeline-item">
-          <div class="timeline-content right">
-            <h4>Ekspansi Konten</h4>
-            <p>Menambah kategori tools & generator, serta meningkatkan kualitas dan frekuensi publikasi artikel.</p>
+      </section>
+      
+      <!-- Statistics Section -->
+      <section class="section">
+        <div class="section-header">
+          <h2>Statistik Blog</h2>
+        </div>
+        <div class="section-content">
+          <div class="grid-4">
+            <div class="stat-card">
+              <div class="stat-number">175+</div>
+              <div class="stat-label">Artikel Berkualitas</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-number">50K+</div>
+              <div class="stat-label">Pembaca Bulanan</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-number">35+</div>
+              <div class="stat-label">Tools & Generator</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-number">98%</div>
+              <div class="stat-label">Satisfaction Rate</div>
+            </div>
           </div>
-          <div class="timeline-year">2024</div>
         </div>
-        
-        <div class="timeline-item">
-          <div class="timeline-content left">
-            <h4>Community Growth</h4>
-            <p>Mencapai 50K+ pembaca bulanan dan menjadi referensi utama developer Indonesia.</p>
+      </section>
+      
+      <!-- Services Section -->
+      <section class="section">
+        <div class="section-header">
+          <h2>Apa yang Kami Tawarkan</h2>
+        </div>
+        <div class="section-content">
+          <h3>Kategori Konten Utama</h3>
+          <div class="grid-2">
+            <div class="card">
+              <h4>SEO & Digital Marketing</h4>
+              <p>Strategi SEO terkini, tips optimasi website, dan panduan digital marketing untuk meningkatkan visibility online Anda.</p>
+            </div>
+            
+            <div class="card">
+              <h4>Web Development</h4>
+              <p>Tutorial coding, framework terbaru, best practices development, dan teknologi web modern untuk developer.</p>
+            </div>
+            
+            <div class="card">
+              <h4>Tools & Generator</h4>
+              <p>Koleksi tools online gratis untuk mempercepat workflow, dari color picker hingga code generator.</p>
+            </div>
+            
+            <div class="card">
+              <h4>Tutorial & Tips</h4>
+              <p>Step-by-step tutorial lengkap, tips praktis, dan panduan implementasi untuk berbagai kebutuhan teknis.</p>
+            </div>
           </div>
-          <div class="timeline-year">2025</div>
+        </div>
+      </section>
+      
+      <!-- Values Section -->
+      <section class="section">
+        <div class="section-header">
+          <h2>Nilai-Nilai Kami</h2>
+        </div>
+        <div class="section-content">
+          <div class="grid-3">
+            <div class="highlight-box">
+              <h4>Kualitas Content</h4>
+              <p>Setiap artikel melalui riset mendalam dan testing praktis untuk memastikan informasi yang akurat dan up-to-date.</p>
+            </div>
+            
+            <div class="highlight-box">
+              <h4>Community First</h4>
+              <p>Kami mendengarkan feedback community dan secara aktif merespons kebutuhan developer Indonesia.</p>
+            </div>
+            
+            <div class="highlight-box">
+              <h4>Continuous Learning</h4>
+              <p>Teknologi terus berkembang, dan kami berkomitmen untuk selalu update dengan tren dan best practices terbaru.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+      <!-- Timeline Section -->
+      <section class="section">
+        <div class="section-header">
+          <h2>Perjalanan Kami</h2>
+        </div>
+        <div class="section-content">
+          <div class="timeline">
+            <div class="timeline-item">
+              <div class="timeline-content left">
+                <h4>Peluncuran Blog Vinnesia</h4>
+                <p>Memulai dengan artikel-artikel dasar seputar web development dan SEO untuk komunitas Indonesia.</p>
+              </div>
+              <div class="timeline-year">2023</div>
+            </div>
+            
+            <div class="timeline-item">
+              <div class="timeline-content right">
+                <h4>Ekspansi Konten</h4>
+                <p>Menambah kategori tools & generator, serta meningkatkan kualitas dan frekuensi publikasi artikel.</p>
+              </div>
+              <div class="timeline-year">2024</div>
+            </div>
+            
+            <div class="timeline-item">
+              <div class="timeline-content left">
+                <h4>Community Growth</h4>
+                <p>Mencapai 50K+ pembaca bulanan dan menjadi referensi utama developer Indonesia.</p>
+              </div>
+              <div class="timeline-year">2025</div>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+      <!-- Team Section -->
+      <section class="section">
+        <div class="section-header">
+          <h2>Tim Kami</h2>
+        </div>
+        <div class="section-content">
+          <div class="grid-3">
+            <div class="team-card">
+              <div class="team-avatar">V</div>
+              <h4>Tim Vinnesia</h4>
+              <p><strong>Founder & Content Creator</strong></p>
+              <p>Berpengalaman dalam web development dan digital marketing. Passionate dalam sharing knowledge untuk komunitas tech Indonesia.</p>
+            </div>
+            
+            <div class="team-card">
+              <div class="team-avatar">C</div>
+              <h4>Content Contributors</h4>
+              <p><strong>Writer & Researcher</strong></p>
+              <p>Tim penulis berpengalaman yang melakukan riset mendalam untuk setiap artikel dan tutorial yang dipublikasikan.</p>
+            </div>
+            
+            <div class="team-card">
+              <div class="team-avatar">T</div>
+              <h4>Tech Team</h4>
+              <p><strong>Developer & Maintainer</strong></p>
+              <p>Tim teknis yang bertanggung jawab mengembangkan tools, menjaga performa situs, dan implementasi fitur baru.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+      <!-- Why Choose Us Section -->
+      <section class="section">
+        <div class="section-header">
+          <h2>Mengapa Memilih Blog Vinnesia?</h2>
+        </div>
+        <div class="section-content">
+          <div class="grid-2">
+            <div>
+              <h3>Keunggulan Kami:</h3>
+              <ul>
+                <li><strong>Konten Original:</strong> Semua artikel ditulis berdasarkan pengalaman dan riset langsung</li>
+                <li><strong>Praktis & Implementable:</strong> Fokus pada solusi yang bisa diterapkan langsung</li>
+                <li><strong>Up-to-Date:</strong> Mengikuti perkembangan teknologi dan algoritma terbaru</li>
+                <li><strong>Bahasa Indonesia:</strong> Konten dalam bahasa yang mudah dipahami developer lokal</li>
+                <li><strong>Free Tools:</strong> Menyediakan tools gratis untuk mendukung produktivitas</li>
+                <li><strong>Community Support:</strong> Aktif merespons pertanyaan dan diskusi</li>
+              </ul>
+            </div>
+            
+            <div>
+              <h3>Target Audience:</h3>
+              <ul>
+                <li>Web Developer (beginner hingga advanced)</li>
+                <li>Digital Marketer dan SEO Specialist</li>
+                <li>Blogger dan Content Creator</li>
+                <li>Startup Founder dan Tech Entrepreneur</li>
+                <li>Mahasiswa IT dan Self-Learner</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+      <!-- Ecosystem Section -->
+      <section class="section">
+        <div class="section-header">
+          <h2>Ekosistem Vinnesia</h2>
+        </div>
+        <div class="section-content">
+          <p>Blog Vinnesia adalah bagian dari ekosistem Vinnesia yang lebih besar:</p>
+          
+          <div class="highlight-box">
+            <h4>Website Utama</h4>
+            <p><strong><a href="https://www.vinnesia.my.id" target="_blank" style="color:#1a1a1a">www.vinnesia.my.id</a></strong> - Platform utama dengan berbagai layanan dan informasi lengkap tentang Vinnesia.</p>
+          </div>
+          
+          <h3>Rencana Masa Depan:</h3>
+          <ul>
+            <li>Mobile App untuk akses konten yang lebih mudah</li>
+            <li>Video Tutorial dan Webinar Series</li>
+            <li>Community Forum untuk diskusi teknis</li>
+            <li>Certification Program untuk skill validation</li>
+            <li>Partnership dengan perusahaan tech Indonesia</li>
+          </ul>
+        </div>
+      </section>
+      
+      <!-- CTA Section -->
+      <div class="cta-section">
+        <h3>Bergabunglah dengan Komunitas Kami!</h3>
+        <p>Dapatkan update artikel terbaru, tips eksklusif, dan akses early access ke tools baru</p>
+        <div class="cta-buttons">
+          <a href="../kontak" class="cta-btn">Hubungi Kami</a>
+          <a href="../" class="cta-btn">Subscribe Newsletter</a>
+          <a href="https://www.vinnesia.my.id" class="cta-btn" target="_blank">Kunjungi Website Utama</a>
         </div>
       </div>
-    </section>
-    
-    <section class="about-section">
-      <h2>👥 Tim Kami</h2>
-      <div class="team-grid">
-        <div class="team-card">
-          <div class="team-avatar">V</div>
-          <h4>Tim Vinnesia</h4>
-          <p><strong>Founder & Content Creator</strong></p>
-          <p>Berpengalaman dalam web development dan digital marketing. Passionate dalam sharing knowledge untuk komunitas tech Indonesia.</p>
-        </div>
-        
-        <div class="team-card">
-          <div class="team-avatar">C</div>
-          <h4>Content Contributors</h4>
-          <p><strong>Writer & Researcher</strong></p>
-          <p>Tim penulis berpengalaman yang melakukan riset mendalam untuk setiap artikel dan tutorial yang dipublikasikan.</p>
-        </div>
-        
-        <div class="team-card">
-          <div class="team-avatar">T</div>
-          <h4>Tech Team</h4>
-          <p><strong>Developer & Maintainer</strong></p>
-          <p>Tim teknis yang bertanggung jawab mengembangkan tools, menjaga performa situs, dan implementasi fitur baru.</p>
-        </div>
-      </div>
-    </section>
-    
-    <section class="about-section">
-      <h2>🌟 Mengapa Memilih Blog Vinnesia?</h2>
       
-      <h3>✅ Keunggulan Kami:</h3>
-      <ul>
-        <li><strong>Konten Original:</strong> Semua artikel ditulis berdasarkan pengalaman dan riset langsung</li>
-        <li><strong>Praktis & Implementable:</strong> Fokus pada solusi yang bisa diterapkan langsung</li>
-        <li><strong>Up-to-Date:</strong> Mengikuti perkembangan teknologi dan algoritma terbaru</li>
-        <li><strong>Bahasa Indonesia:</strong> Konten dalam bahasa yang mudah dipahami developer lokal</li>
-        <li><strong>Free Tools:</strong> Menyediakan tools gratis untuk mendukung produktivitas</li>
-        <li><strong>Community Support:</strong> Aktif merespons pertanyaan dan diskusi</li>
-      </ul>
-      
-      <h3>🎯 Target Audience:</h3>
-      <ul>
-        <li>Web Developer (beginner hingga advanced)</li>
-        <li>Digital Marketer dan SEO Specialist</li>
-        <li>Blogger dan Content Creator</li>
-        <li>Startup Founder dan Tech Entrepreneur</li>
-        <li>Mahasiswa IT dan Self-Learner</li>
-      </ul>
-    </section>
-    
-    <section class="about-section">
-      <h2>🔗 Ekosistem Vinnesia</h2>
-      <p>Blog Vinnesia adalah bagian dari ekosistem Vinnesia yang lebih besar:</p>
-      
-      <div class="info-box">
-        <h4>🌐 Website Utama</h4>
-        <p><strong><a href="https://www.vinnesia.my.id" target="_blank" style="color:#0d6efd">www.vinnesia.my.id</a></strong> - Platform utama dengan berbagai layanan dan informasi lengkap tentang Vinnesia.</p>
-      </div>
-      
-      <h3>🚀 Rencana Masa Depan:</h3>
-      <ul>
-        <li>📱 Mobile App untuk akses konten yang lebih mudah</li>
-        <li>🎥 Video Tutorial dan Webinar Series</li>
-        <li>👥 Community Forum untuk diskusi teknis</li>
-        <li>🏆 Certification Program untuk skill validation</li>
-        <li>🤝 Partnership dengan perusahaan tech Indonesia</li>
-      </ul>
-    </section>
-    
-    <div class="cta-section">
-      <h3>🚀 Bergabunglah dengan Komunitas Kami!</h3>
-      <p>Dapatkan update artikel terbaru, tips eksklusif, dan akses early access ke tools baru</p>
-      <div class="cta-buttons">
-        <a href="../kontak" class="cta-btn">💬 Hubungi Kami</a>
-        <a href="/#newsletter" class="cta-btn">📧 Subscribe Newsletter</a>
-        <a href="https://www.vinnesia.my.id" class="cta-btn" target="_blank">🌐 Kunjungi Website Utama</a>
-      </div>
     </div>
   </main>
   
   <footer>
-    <p>&copy; 2025 Blog Vinnesia. All rights reserved.</p>
-    <p>Bagian dari <a href="https://www.vinnesia.my.id" target="_blank" style="color:#0d6efd">Vinnesia Ecosystem</a></p>
-    <p><a href="../privasi" style="color:#0d6efd">Kebijakan Privasi</a> | <a href="../syarat" style="color:#0d6efd">Syarat & Ketentuan</a> | <a href="../kontak" style="color:#0d6efd">Kontak</a></p>
+    <div class="container">
+      <p>&copy; 2025 Blog Vinnesia. All rights reserved.</p>
+      <p>Bagian dari <a href="https://www.vinnesia.my.id" target="_blank">Vinnesia Ecosystem</a></p>
+      <p><a href="../privasi">Kebijakan Privasi</a> | <a href="../syarat">Syarat & Ketentuan</a> | <a href="../kontak">Kontak</a></p>
+    </div>
   </footer>
 </body>
 </html>
