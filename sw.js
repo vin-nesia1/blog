@@ -1,7 +1,7 @@
 // Service Worker untuk Blog Vinnesia
 // Version: 1.0.0
 
-const CACHE_NAME = 'vinnesia-blog-v1.0.0';
+const CACHE_NAME = 'vinnesia-blog-v1.0.1';
 const STATIC_CACHE = 'vinnesia-static-v1';
 const DYNAMIC_CACHE = 'vinnesia-dynamic-v1';
 
