@@ -1,9 +1,10 @@
 // Service Worker untuk Blog Vinnesia
-// Version: Auto (pakai timestamp)
+// Version: v1.0.0 (ubah versi ini tiap kali update besar)
 
-const CACHE_NAME = `vinnesia-blog-${Date.now()}`;
-const STATIC_CACHE = `vinnesia-static-${Date.now()}`;
-const DYNAMIC_CACHE = `vinnesia-dynamic-${Date.now()}`;
+const CACHE_VERSION = "v1.0.0";
+const CACHE_NAME = `vinnesia-blog-${CACHE_VERSION}`;
+const STATIC_CACHE = `vinnesia-static-${CACHE_VERSION}`;
+const DYNAMIC_CACHE = `vinnesia-dynamic-${CACHE_VERSION}`;
 
 // Files to cache on install
 const STATIC_FILES = [
@@ -17,17 +18,14 @@ const STATIC_FILES = [
 // Install event - cache static files
 self.addEventListener('install', (event) => {
   console.log('Service Worker: Installing...', CACHE_NAME);
-  
+
   event.waitUntil(
     caches.open(STATIC_CACHE)
       .then((cache) => {
         console.log('Service Worker: Caching static files');
         return cache.addAll(STATIC_FILES);
       })
-      .then(() => {
-        console.log('Service Worker: Static files cached successfully');
-        return self.skipWaiting();
-      })
+      .then(() => self.skipWaiting())
       .catch((error) => {
         console.error('Service Worker: Failed to cache static files', error);
       })
@@ -37,84 +35,67 @@ self.addEventListener('install', (event) => {
 // Activate event - clean up old caches
 self.addEventListener('activate', (event) => {
   console.log('Service Worker: Activating...', CACHE_NAME);
-  
+
   event.waitUntil(
     caches.keys()
       .then((cacheNames) => {
         return Promise.all(
-          cacheNames
-            .filter((cacheName) => {
-              // Hapus cache lama (hanya simpan versi terbaru)
-              return cacheName !== STATIC_CACHE && 
-                     cacheName !== DYNAMIC_CACHE &&
-                     cacheName.startsWith('vinnesia-');
-            })
-            .map((cacheName) => {
+          cacheNames.map((cacheName) => {
+            if (!cacheName.includes(CACHE_VERSION) && cacheName.startsWith('vinnesia-')) {
               console.log('Service Worker: Deleting old cache:', cacheName);
               return caches.delete(cacheName);
-            })
+            }
+          })
         );
       })
-      .then(() => {
-        console.log('Service Worker: Activated successfully');
-        return self.clients.claim();
-      })
+      .then(() => self.clients.claim())
   );
 });
 
-// Fetch event - serve from cache, fallback to network
+// Fetch event - network-first for HTML, cache-first for assets
 self.addEventListener('fetch', (event) => {
   const { request } = event;
   const url = new URL(request.url);
-  
+
   if (request.method !== 'GET') return;
   if (url.origin !== location.origin) return;
-  
+
+  // Network-first untuk HTML (biar update langsung muncul)
+  if (request.headers.get('accept')?.includes('text/html')) {
+    event.respondWith(
+      fetch(request)
+        .then((response) => {
+          const resClone = response.clone();
+          caches.open(STATIC_CACHE).then((cache) => cache.put(request, resClone));
+          return response;
+        })
+        .catch(() => caches.match(request).then((cached) => cached || caches.match('/')))
+    );
+    return;
+  }
+
+  // Cache-first untuk asset (css/js/gambar/font)
   event.respondWith(
     caches.match(request)
       .then((cachedResponse) => {
-        if (cachedResponse) {
-          console.log('Service Worker: Serving from cache:', request.url);
-          return cachedResponse;
-        }
-        
-        console.log('Service Worker: Fetching from network:', request.url);
+        if (cachedResponse) return cachedResponse;
+
         return fetch(request)
           .then((networkResponse) => {
             if (!networkResponse || networkResponse.status !== 200 || networkResponse.type !== 'basic') {
               return networkResponse;
             }
-            
+
             const responseClone = networkResponse.clone();
             const cacheToUse = isStaticAsset(request.url) ? STATIC_CACHE : DYNAMIC_CACHE;
-            
-            caches.open(cacheToUse)
-              .then((cache) => {
-                console.log('Service Worker: Caching new resource:', request.url);
-                cache.put(request, responseClone);
-              });
-            
+
+            caches.open(cacheToUse).then((cache) => cache.put(request, responseClone));
+
             return networkResponse;
           })
           .catch((error) => {
             console.error('Service Worker: Network fetch failed:', error);
-            
-            if (request.headers.get('accept').includes('text/html')) {
-              return caches.match('/')
-                .then((fallback) => {
-                  if (fallback) return fallback;
-                  return new Response(
-                    '<h1>Offline</h1><p>Halaman tidak tersedia saat offline. Silakan coba lagi nanti.</p>',
-                    { 
-                      headers: { 'Content-Type': 'text/html' },
-                      status: 503,
-                      statusText: 'Service Unavailable'
-                    }
-                  );
-                });
-            }
-            
-            throw error;
+            return caches.match(request);
           });
       })
   );
@@ -124,7 +105,7 @@ self.addEventListener('fetch', (event) => {
 function isStaticAsset(url) {
   const staticExtensions = ['.png', '.jpg', '.jpeg', '.gif', '.svg', '.ico', '.css', '.js', '.woff', '.woff2', '.ttf'];
   const urlPath = new URL(url).pathname.toLowerCase();
-  
+
   return staticExtensions.some(ext => urlPath.endsWith(ext)) ||
          urlPath.includes('/favicon') ||
          urlPath.includes('/logo') ||
@@ -135,16 +116,14 @@ function isStaticAsset(url) {
 self.addEventListener('sync', (event) => {
   console.log('Service Worker: Background sync triggered:', event.tag);
   if (event.tag === 'background-sync') {
-    event.waitUntil(
-      console.log('Service Worker: Performing background sync')
-    );
+    event.waitUntil(Promise.resolve(console.log('Service Worker: Performing background sync')));
   }
 });
 
 // Push notification
 self.addEventListener('push', (event) => {
   console.log('Service Worker: Push notification received');
-  
+
   const options = {
     body: event.data ? event.data.text() : 'Update tersedia dari Blog Vinnesia',
     icon: '/logo.png',
@@ -156,10 +135,8 @@ self.addEventListener('push', (event) => {
       { action: 'close', title: 'Tutup', icon: '/favicon.ico' }
     ]
   };
-  
-  event.waitUntil(
-    self.registration.showNotification('Blog Vinnesia', options)
-  );
+
+  event.waitUntil(self.registration.showNotification('Blog Vinnesia', options));
 });
 
 // Notification click
@@ -167,9 +144,7 @@ self.addEventListener('notificationclick', (event) => {
   console.log('Service Worker: Notification clicked');
   event.notification.close();
   if (event.action === 'open') {
-    event.waitUntil(
-      clients.openWindow(event.notification.data.url || '/')
-    );
+    event.waitUntil(clients.openWindow(event.notification.data.url || '/'));
   }
 });
 
@@ -186,13 +161,13 @@ self.addEventListener('unhandledrejection', (event) => {
 // Message handling
 self.addEventListener('message', (event) => {
   console.log('Service Worker: Message received:', event.data);
-  
+
   if (event.data?.type === 'SKIP_WAITING') self.skipWaiting();
-  
+
   if (event.data?.type === 'GET_VERSION') {
     event.ports[0].postMessage({ version: CACHE_NAME });
   }
-  
+
   if (event.data?.type === 'CLEAR_CACHE') {
     event.waitUntil(
       caches.keys().then((cacheNames) => {
