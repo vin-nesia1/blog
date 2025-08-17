@@ -13,200 +13,569 @@
   <meta property="og:url" content="https://blog.vinnesia.my.id/kontak">
   <meta property="og:image" content="https://blog.vinnesia.my.id/og-image.jpg">
   <link rel="canonical" href="https://blog.vinnesia.my.id/kontak">
-  <link rel="icon" href="/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="../favicon.ico" type="image/x-icon">
   <title>Hubungi Kami - Blog Vinnesia</title>
   <style>
-    *,*::before,*::after{box-sizing:border-box}
-    html{font-size:16px;scroll-behavior:smooth}
-    body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen,Ubuntu,Cantarell,sans-serif;margin:0;padding:0;background:#fff;color:#1a1a1a;line-height:1.6}
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
     
-    header{background:#212529;color:#fff;padding:2rem 1rem;text-align:center}
-    .logo{display:block;width:60px;height:60px;margin:0 auto 1rem;border-radius:50%;overflow:hidden}
-    .logo img{width:100%;height:100%;object-fit:cover}
-    header h1{margin:0 0 0.5rem 0;font-size:2.5rem;font-weight:700}
-    header p{margin:0;font-size:1.1rem;color:#e9ecef}
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      line-height: 1.6;
+      color: #2c2c2c;
+      background-color: #ffffff;
+    }
     
-    nav{background:#fff;border-bottom:1px solid #dee2e6;padding:1rem 0}
-    .nav-container{max-width:1200px;margin:0 auto;padding:0 1rem}
-    .nav-list{list-style:none;margin:0;padding:0;display:flex;gap:2rem;justify-content:center;flex-wrap:wrap}
-    .nav-list a{text-decoration:none;color:#495057;font-weight:500;padding:0.5rem 1rem;border-radius:4px;transition:all 0.2s}
-    .nav-list a:hover{background:#e9ecef;color:#212529}
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
     
-    main{max-width:900px;margin:0 auto;padding:3rem 1rem}
+    /* Header */
+    header {
+      background: #1a1a1a;
+      color: #ffffff;
+      padding: 60px 0;
+      text-align: center;
+    }
     
-    .contact-section{background:#fff;border:1px solid #dee2e6;border-radius:8px;padding:2rem;margin-bottom:2rem;box-shadow:0 2px 8px rgba(0,0,0,0.05)}
+    .logo {
+      width: 60px;
+      height: 60px;
+      margin: 0 auto 20px;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 2px solid #ffffff;
+    }
     
-    .contact-section h2{color:#212529;font-size:1.75rem;margin:0 0 1.5rem 0;border-bottom:3px solid #0d6efd;padding-bottom:0.5rem}
+    .logo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
     
-    .contact-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:2rem}
+    header h1 {
+      font-size: 3rem;
+      font-weight: 300;
+      margin-bottom: 15px;
+      letter-spacing: -1px;
+    }
     
-    .contact-card{background:#f8f9fa;padding:1.5rem;border-radius:6px;border-left:4px solid #0d6efd}
-    .contact-card h3{color:#212529;margin:0 0 1rem 0;font-size:1.25rem}
-    .contact-card p{color:#6c757d;margin:0.5rem 0;font-size:0.95rem}
-    .contact-card a{color:#0d6efd;text-decoration:none;font-weight:500}
-    .contact-card a:hover{text-decoration:underline}
+    header p {
+      font-size: 1.2rem;
+      color: #cccccc;
+      font-weight: 300;
+    }
     
-    .contact-form{background:#fff;border:1px solid #dee2e6;border-radius:8px;padding:2rem;margin-top:2rem}
-    .form-group{margin-bottom:1.5rem}
-    .form-group label{display:block;margin-bottom:0.5rem;font-weight:600;color:#212529}
-    .form-group input,.form-group textarea,.form-group select{width:100%;padding:0.75rem;border:1px solid #ced4da;border-radius:4px;font-size:1rem;transition:border-color 0.2s}
-    .form-group input:focus,.form-group textarea:focus,.form-group select:focus{outline:none;border-color:#0d6efd;box-shadow:0 0 0 2px rgba(13,110,253,0.25)}
-    .form-group textarea{resize:vertical;min-height:120px}
+    /* Navigation */
+    nav {
+      background: #ffffff;
+      border-bottom: 1px solid #e5e5e5;
+      padding: 0;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
     
-    .btn{background:#0d6efd;color:#fff;border:none;padding:0.75rem 2rem;border-radius:4px;font-size:1rem;font-weight:500;cursor:pointer;transition:background 0.2s}
-    .btn:hover{background:#0b5ed7}
+    .nav-container {
+      display: flex;
+      justify-content: center;
+      padding: 0 20px;
+    }
     
-    .info-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1.5rem;margin-top:2rem}
-    .info-card{background:#fff;border:1px solid #dee2e6;border-radius:6px;padding:1.5rem;text-align:center}
-    .info-card .icon{font-size:2rem;margin-bottom:1rem;color:#0d6efd}
-    .info-card h4{color:#212529;margin:0 0 0.5rem 0;font-size:1.1rem}
-    .info-card p{color:#6c757d;margin:0;font-size:0.9rem}
+    .nav-list {
+      display: flex;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
     
-    footer{background:#f8f9fa;padding:2rem 1rem;margin-top:3rem;border-top:1px solid #dee2e6;text-align:center;color:#6c757d}
+    .nav-list a {
+      display: block;
+      padding: 20px 25px;
+      text-decoration: none;
+      color: #2c2c2c;
+      font-weight: 500;
+      transition: all 0.3s ease;
+    }
     
+    .nav-list a:hover,
+    .nav-list a[style] {
+      color: #000000;
+      background: #f8f8f8;
+    }
+    
+    /* Main Content */
+    main {
+      padding: 50px 0;
+    }
+    
+    /* Contact Sections */
+    .contact-section {
+      background: #ffffff;
+      border: 1px solid #e5e5e5;
+      border-radius: 8px;
+      margin-bottom: 30px;
+      overflow: hidden;
+    }
+    
+    .section-header {
+      background: #f8f8f8;
+      padding: 25px 30px;
+      border-bottom: 1px solid #e5e5e5;
+    }
+    
+    .section-header h2 {
+      font-size: 1.6rem;
+      font-weight: 600;
+      color: #1a1a1a;
+      margin: 0;
+    }
+    
+    .section-content {
+      padding: 30px;
+    }
+    
+    /* Contact Grid */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 25px;
+    }
+    
+    .contact-card {
+      background: #f8f8f8;
+      border: 1px solid #e5e5e5;
+      border-radius: 8px;
+      padding: 25px;
+      border-left: 4px solid #1a1a1a;
+      transition: all 0.3s ease;
+    }
+    
+    .contact-card:hover {
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      transform: translateY(-2px);
+    }
+    
+    .contact-card h3 {
+      color: #1a1a1a;
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin: 0 0 15px 0;
+    }
+    
+    .contact-card p {
+      color: #4a4a4a;
+      font-size: 0.95rem;
+      margin: 10px 0;
+      line-height: 1.6;
+    }
+    
+    .contact-card a {
+      color: #1a1a1a;
+      text-decoration: none;
+      font-weight: 600;
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.3s ease;
+    }
+    
+    .contact-card a:hover {
+      border-bottom-color: #1a1a1a;
+    }
+    
+    /* Contact Form */
+    .contact-form {
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    
+    .form-group {
+      margin-bottom: 25px;
+    }
+    
+    .form-group label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 600;
+      color: #1a1a1a;
+      font-size: 1rem;
+    }
+    
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+      width: 100%;
+      padding: 15px;
+      border: 1px solid #d0d0d0;
+      border-radius: 6px;
+      font-size: 1rem;
+      font-family: inherit;
+      background: #ffffff;
+      color: #2c2c2c;
+      transition: all 0.3s ease;
+    }
+    
+    .form-group input:focus,
+    .form-group textarea:focus,
+    .form-group select:focus {
+      outline: none;
+      border-color: #1a1a1a;
+      box-shadow: 0 0 0 3px rgba(26, 26, 26, 0.1);
+    }
+    
+    .form-group textarea {
+      resize: vertical;
+      min-height: 120px;
+    }
+    
+    .btn {
+      background: #1a1a1a;
+      color: #ffffff;
+      border: none;
+      padding: 15px 40px;
+      border-radius: 6px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: inline-block;
+    }
+    
+    .btn:hover {
+      background: #2c2c2c;
+      transform: translateY(-1px);
+    }
+    
+    /* Info Grid */
+    .info-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 25px;
+    }
+    
+    .info-card {
+      background: #ffffff;
+      border: 1px solid #e5e5e5;
+      border-radius: 8px;
+      padding: 30px 20px;
+      text-align: center;
+      transition: all 0.3s ease;
+    }
+    
+    .info-card:hover {
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      transform: translateY(-2px);
+    }
+    
+    .info-card .icon {
+      font-size: 2.5rem;
+      margin-bottom: 15px;
+      color: #666666;
+    }
+    
+    .info-card h4 {
+      color: #1a1a1a;
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin: 0 0 10px 0;
+    }
+    
+    .info-card p {
+      color: #4a4a4a;
+      font-size: 0.9rem;
+      margin: 0;
+      line-height: 1.5;
+    }
+    
+    .info-card a {
+      color: #1a1a1a;
+      text-decoration: none;
+      font-weight: 600;
+    }
+    
+    .info-card a:hover {
+      text-decoration: underline;
+    }
+    
+    /* FAQ Section */
+    .faq-content {
+      max-width: 700px;
+      margin: 0 auto;
+    }
+    
+    .faq-item {
+      margin-bottom: 25px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid #f0f0f0;
+    }
+    
+    .faq-item:last-child {
+      border-bottom: none;
+    }
+    
+    .faq-item h4 {
+      color: #1a1a1a;
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin: 0 0 8px 0;
+    }
+    
+    .faq-item p {
+      color: #4a4a4a;
+      margin: 0;
+      line-height: 1.6;
+    }
+    
+    /* Footer */
+    footer {
+      background: #f8f8f8;
+      padding: 40px 0;
+      text-align: center;
+      color: #666666;
+      border-top: 1px solid #e5e5e5;
+      margin-top: 50px;
+    }
+    
+    footer p {
+      margin: 10px 0;
+    }
+    
+    footer a {
+      color: #1a1a1a;
+      text-decoration: none;
+      font-weight: 500;
+    }
+    
+    footer a:hover {
+      text-decoration: underline;
+    }
+    
+    /* Two Column Layout for larger screens */
+    @media (min-width: 1200px) {
+      .two-column {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 40px;
+        align-items: start;
+      }
+    }
+    
+    /* Responsive Design */
     @media (max-width: 768px) {
-      header h1{font-size:2rem}
-      main{padding:2rem 1rem}
-      .contact-grid,.info-grid{grid-template-columns:1fr}
-      .nav-list{gap:1rem;justify-content:flex-start}
+      header h1 {
+        font-size: 2.5rem;
+      }
+      
+      .container {
+        padding: 0 15px;
+      }
+      
+      .section-content,
+      .section-header {
+        padding: 20px;
+      }
+      
+      .contact-grid,
+      .info-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .nav-list {
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+      
+      .nav-list a {
+        padding: 15px 20px;
+      }
+      
+      .contact-card {
+        padding: 20px;
+      }
+      
+      .info-card {
+        padding: 25px 15px;
+      }
+      
+      main {
+        padding: 30px 0;
+      }
     }
   </style>
 </head>
 <body>
   <header>
-    <div class="logo">
-      <img src="/logo.png" alt="Logo Blog Vinnesia" width="60" height="60">
+    <div class="container">
+      <div class="logo">
+        <img src="../logo.png" alt="Logo Blog Vinnesia" width="60" height="60">
+      </div>
+      <h1>Hubungi Kami</h1>
+      <p>Kami siap membantu dan mendengar masukan Anda</p>
     </div>
-    <h1>Hubungi Kami</h1>
-    <p>Kami siap membantu dan mendengar masukan Anda</p>
   </header>
   
   <nav>
     <div class="nav-container">
       <ul class="nav-list">
-        <li><a href="/">Beranda</a></li>
-        <li><a href="/seo">SEO</a></li>
-        <li><a href="/tutorial">Tutorial</a></li>
-        <li><a href="/tentang">Tentang</a></li>
-        <li><a href="/kontak" style="background:#e9ecef;color:#212529">Kontak</a></li>
-        <li><a href="/tools">Tools</a></li>
+        <li><a href="../">Beranda</a></li>
+        <li><a href="../seo">SEO</a></li>
+        <li><a href="../tutorial">Tutorial</a></li>
+        <li><a href="../tentang">Tentang</a></li>
+        <li><a href="../kontak" style="background:#f8f8f8;color:#000000">Kontak</a></li>
+        <li><a href="../tools">Tools</a></li>
       </ul>
     </div>
   </nav>
   
   <main>
-    <section class="contact-section">
-      <h2>📧 Kontak Email</h2>
-      <div class="contact-grid">
-        <div class="contact-card">
-          <h3>💼 Administrasi & Umum</h3>
-          <p>Untuk pertanyaan umum, kerjasama, dan administrasi</p>
-          <p><strong>Email:</strong> <a href="mailto:admin@vinnesia.my.id">admin@vinnesia.my.id</a></p>
+    <div class="container">
+      
+      <!-- Email Contacts Section -->
+      <section class="contact-section">
+        <div class="section-header">
+          <h2>Kontak Email</h2>
         </div>
-        
-        <div class="contact-card">
-          <h3>🛠️ Support Teknis</h3>
-          <p>Bantuan teknis, laporan bug, dan masalah website</p>
-          <p><strong>Email:</strong> <a href="mailto:support@vinnesia.my.id">support@vinnesia.my.id</a></p>
+        <div class="section-content">
+          <div class="contact-grid">
+            <div class="contact-card">
+              <h3>Administrasi & Umum</h3>
+              <p>Untuk pertanyaan umum, kerjasama, dan administrasi</p>
+              <p><strong>Email:</strong> <a href="mailto:admin@vinnesia.my.id">admin@vinnesia.my.id</a></p>
+            </div>
+            
+            <div class="contact-card">
+              <h3>Support Teknis</h3>
+              <p>Bantuan teknis, laporan bug, dan masalah website</p>
+              <p><strong>Email:</strong> <a href="mailto:support@vinnesia.my.id">support@vinnesia.my.id</a></p>
+            </div>
+            
+            <div class="contact-card">
+              <h3>Privasi & Legal</h3>
+              <p>Pertanyaan seputar privasi, data, dan aspek legal</p>
+              <p><strong>Email:</strong> <a href="mailto:privacy@vinnesia.my.id">privacy@vinnesia.my.id</a></p>
+            </div>
+            
+            <div class="contact-card">
+              <h3>Personal Contact</h3>
+              <p>Kontak langsung dengan tim Vinnesia</p>
+              <p><strong>Email:</strong> <a href="mailto:vin.nesia.id@gmail.com">vin.nesia.id@gmail.com</a></p>
+            </div>
+          </div>
         </div>
-        
-        <div class="contact-card">
-          <h3>🔒 Privasi & Legal</h3>
-          <p>Pertanyaan seputar privasi, data, dan aspek legal</p>
-          <p><strong>Email:</strong> <a href="mailto:privacy@vinnesia.my.id">privacy@vinnesia.my.id</a></p>
+      </section>
+      
+      <!-- Contact Form Section -->
+      <section class="contact-section">
+        <div class="section-header">
+          <h2>Kirim Pesan</h2>
         </div>
-        
-        <div class="contact-card">
-          <h3>👤 Personal Contact</h3>
-          <p>Kontak langsung dengan tim Vinnesia</p>
-          <p><strong>Email:</strong> <a href="mailto:vin.nesia.id@gmail.com">vin.nesia.id@gmail.com</a></p>
+        <div class="section-content">
+          <form class="contact-form" action="../" method="POST">
+            <div class="form-group">
+              <label for="name">Nama Lengkap</label>
+              <input type="text" id="name" name="name" required>
+            </div>
+            
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input type="email" id="email" name="email" required>
+            </div>
+            
+            <div class="form-group">
+              <label for="subject">Kategori</label>
+              <select id="subject" name="subject" required>
+                <option value="">Pilih kategori...</option>
+                <option value="general">Pertanyaan Umum</option>
+                <option value="collaboration">Kerjasama & Partnership</option>
+                <option value="technical">Support Teknis</option>
+                <option value="content">Kontribusi Konten</option>
+                <option value="advertising">Iklan & Sponsorship</option>
+                <option value="feedback">Saran & Masukan</option>
+                <option value="other">Lainnya</option>
+              </select>
+            </div>
+            
+            <div class="form-group">
+              <label for="message">Pesan</label>
+              <textarea id="message" name="message" placeholder="Tulis pesan Anda di sini..." required></textarea>
+            </div>
+            
+            <button type="submit" class="btn">Kirim Pesan</button>
+          </form>
         </div>
-      </div>
-    </section>
-    
-    <section class="contact-section">
-      <h2>📝 Kirim Pesan</h2>
-      <form class="contact-form" action="#" method="POST">
-        <div class="form-group">
-          <label for="name">Nama Lengkap</label>
-          <input type="text" id="name" name="name" required>
+      </section>
+      
+      <!-- Additional Info Section -->
+      <section class="contact-section">
+        <div class="section-header">
+          <h2>Informasi Tambahan</h2>
         </div>
-        
-        <div class="form-group">
-          <label for="email">Email</label>
-          <input type="email" id="email" name="email" required>
+        <div class="section-content">
+          <div class="info-grid">
+            <div class="info-card">
+              <div class="icon">🏠</div>
+              <h4>Website Utama</h4>
+              <p><a href="https://www.vinnesia.my.id" target="_blank">www.vinnesia.my.id</a></p>
+            </div>
+            
+            <div class="info-card">
+              <div class="icon">⏰</div>
+              <h4>Response Time</h4>
+              <p>1-2 hari kerja<br>(Senin - Jumat)</p>
+            </div>
+            
+            <div class="info-card">
+              <div class="icon">🌍</div>
+              <h4>Lokasi</h4>
+              <p>Indonesia<br>GMT+7 (WIB)</p>
+            </div>
+            
+            <div class="info-card">
+              <div class="icon">💡</div>
+              <h4>Open for</h4>
+              <p>Partnership<br>Content Collaboration</p>
+            </div>
+          </div>
         </div>
-        
-        <div class="form-group">
-          <label for="subject">Kategori</label>
-          <select id="subject" name="subject" required>
-            <option value="">Pilih kategori...</option>
-            <option value="general">Pertanyaan Umum</option>
-            <option value="collaboration">Kerjasama & Partnership</option>
-            <option value="technical">Support Teknis</option>
-            <option value="content">Kontribusi Konten</option>
-            <option value="advertising">Iklan & Sponsorship</option>
-            <option value="feedback">Saran & Masukan</option>
-            <option value="other">Lainnya</option>
-          </select>
+      </section>
+      
+      <!-- FAQ Section -->
+      <section class="contact-section">
+        <div class="section-header">
+          <h2>FAQ Singkat</h2>
         </div>
-        
-        <div class="form-group">
-          <label for="message">Pesan</label>
-          <textarea id="message" name="message" placeholder="Tulis pesan Anda di sini..." required></textarea>
+        <div class="section-content">
+          <div class="faq-content">
+            <div class="faq-item">
+              <h4>Q: Bagaimana cara berkontribusi artikel?</h4>
+              <p>A: Kirim email ke admin@vinnesia.my.id dengan contoh tulisan dan topik yang ingin Anda bahas.</p>
+            </div>
+            
+            <div class="faq-item">
+              <h4>Q: Apakah menerima guest post?</h4>
+              <p>A: Ya, kami terbuka untuk guest post berkualitas. Hubungi kami melalui email untuk guidelines lengkap.</p>
+            </div>
+            
+            <div class="faq-item">
+              <h4>Q: Bagaimana dengan kerjasama advertising?</h4>
+              <p>A: Kami akan segera membuka program advertising. Pantau terus website atau hubungi kami untuk info terbaru.</p>
+            </div>
+          </div>
         </div>
-        
-        <button type="submit" class="btn">Kirim Pesan</button>
-      </form>
-    </section>
-    
-    <section class="contact-section">
-      <h2>🌐 Informasi Tambahan</h2>
-      <div class="info-grid">
-        <div class="info-card">
-          <div class="icon">🏠</div>
-          <h4>Website Utama</h4>
-          <p><a href="https://www.vinnesia.my.id" target="_blank">www.vinnesia.my.id</a></p>
-        </div>
-        
-        <div class="info-card">
-          <div class="icon">⏰</div>
-          <h4>Response Time</h4>
-          <p>1-2 hari kerja<br>(Senin - Jumat)</p>
-        </div>
-        
-        <div class="info-card">
-          <div class="icon">🌍</div>
-          <h4>Lokasi</h4>
-          <p>Indonesia<br>GMT+7 (WIB)</p>
-        </div>
-        
-        <div class="info-card">
-          <div class="icon">💡</div>
-          <h4>Open for</h4>
-          <p>Partnership<br>Content Collaboration</p>
-        </div>
-      </div>
-    </section>
-    
-    <section class="contact-section">
-      <h2>❓ FAQ Singkat</h2>
-      <div style="text-align:left">
-        <h4>Q: Bagaimana cara berkontribusi artikel?</h4>
-        <p>A: Kirim email ke admin@vinnesia.my.id dengan contoh tulisan dan topik yang ingin Anda bahas.</p>
-        
-        <h4>Q: Apakah menerima guest post?</h4>
-        <p>A: Ya, kami terbuka untuk guest post berkualitas. Hubungi kami melalui email untuk guidelines lengkap.</p>
-        
-        <h4>Q: Bagaimana dengan kerjasama advertising?</h4>
-        <p>A: Kami akan segera membuka program advertising. Pantau terus website atau hubungi kami untuk info terbaru.</p>
-      </div>
-    </section>
+      </section>
+      
+    </div>
   </main>
   
   <footer>
-    <p>&copy; 2025 Blog Vinnesia. All rights reserved.</p>
-    <p><a href="/privasi" style="color:#0d6efd">Kebijakan Privasi</a> | <a href="/syarat" style="color:#0d6efd">Syarat & Ketentuan</a></p>
+    <div class="container">
+      <p>&copy; 2025 Blog Vinnesia. All rights reserved.</p>
+      <p><a href="../privasi">Kebijakan Privasi</a> | <a href="../syarat">Syarat & Ketentuan</a></p>
+    </div>
   </footer>
 </body>
 </html>
