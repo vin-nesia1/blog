@@ -3,133 +3,432 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Blog Vinnesia - Artikel seputar teknologi, website, SEO, dan tutorial.">
-  <title>Blog Vinnesia</title>
+  <meta name="description" content="Blog Vinnesia - Sumber terpercaya artikel teknologi, SEO, web development, dan tutorial lengkap untuk developer Indonesia.">
+  <meta name="keywords" content="teknologi, website, SEO, tutorial, web development, blog indonesia, vinnesia, HTML, CSS, JavaScript">
+  <meta name="author" content="Tim Vinnesia">
+  <meta name="robots" content="index, follow">
+  <meta property="og:title" content="Blog Vinnesia - Teknologi & Tutorial Terpercaya">
+  <meta property="og:description" content="Artikel berkualitas seputar teknologi, SEO, dan tutorial web development untuk developer Indonesia.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://blog.vinnesia.my.id">
+  <meta property="og:image" content="https://blog.vinnesia.my.id/og-image.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Blog Vinnesia - Teknologi & Tutorial Terpercaya">
+  <meta name="twitter:description" content="Artikel berkualitas seputar teknologi, SEO, dan tutorial web development.">
+  <link rel="canonical" href="https://blog.vinnesia.my.id">
+  <link rel="icon" href="/favicon.ico" type="image/x-icon">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <title>Blog Vinnesia - Teknologi, SEO & Tutorial Terpercaya</title>
   <style>
-    body {
-      font-family: "Segoe UI", Tahoma, sans-serif;
-      margin: 0;
-      padding: 0;
-      background: #f9fafb;
-      color: #333;
+    /* Critical CSS - Above the fold */
+    *,*::before,*::after{box-sizing:border-box}
+    html{font-size:16px;scroll-behavior:smooth}
+    body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen,Ubuntu,Cantarell,sans-serif;margin:0;padding:0;background:#fff;color:#1a1a1a;line-height:1.6;font-size:1rem}
+    
+    /* Skip to main content for accessibility */
+    .skip-link{position:absolute;top:-40px;left:6px;background:#000;color:#fff;padding:8px;text-decoration:none;border-radius:4px;z-index:1000}
+    .skip-link:focus{top:6px}
+    
+    /* Header */
+    header{background:#f8f9fa;padding:2rem 1rem;text-align:center;border-bottom:1px solid #e9ecef}
+    header h1{margin:0 0 0.5rem 0;font-size:2.5rem;font-weight:700;color:#212529}
+    header p{margin:0;font-size:1.125rem;color:#6c757d;max-width:600px;margin-left:auto;margin-right:auto}
+    
+    /* Navigation */
+    nav{background:#fff;border-bottom:1px solid #dee2e6;position:sticky;top:0;z-index:100}
+    .nav-container{max-width:1200px;margin:0 auto;padding:0 1rem}
+    .nav-list{list-style:none;margin:0;padding:1rem 0;display:flex;gap:2rem;justify-content:center;flex-wrap:wrap}
+    .nav-list a{text-decoration:none;color:#495057;font-weight:500;padding:0.5rem 1rem;border-radius:4px;transition:background-color 0.2s,color 0.2s}
+    .nav-list a:hover,.nav-list a:focus{background:#e9ecef;color:#212529;outline:2px solid transparent}
+    
+    /* Main layout */
+    main{max-width:1200px;margin:0 auto;padding:2rem 1rem;display:grid;grid-template-columns:2fr 1fr;gap:2rem}
+    
+    /* Articles */
+    .articles{display:flex;flex-direction:column;gap:2rem}
+    
+    /* Post cards */
+    .post{background:#fff;border:1px solid #dee2e6;border-radius:8px;padding:1.5rem;transition:box-shadow 0.2s}
+    .post:hover{box-shadow:0 4px 12px rgba(0,0,0,0.1)}
+    .post-meta{font-size:0.875rem;color:#6c757d;margin-bottom:1rem}
+    .post-category{background:#e9ecef;color:#495057;padding:0.25rem 0.75rem;border-radius:12px;font-size:0.75rem;font-weight:500;margin-right:1rem}
+    .post h2{margin:0 0 1rem 0;font-size:1.5rem;font-weight:600;line-height:1.3}
+    .post h2 a{text-decoration:none;color:#212529}
+    .post h2 a:hover,.post h2 a:focus{color:#0d6efd;outline:2px solid transparent}
+    .post-excerpt{color:#6c757d;margin-bottom:1rem}
+    .read-more{color:#0d6efd;text-decoration:none;font-weight:500;display:inline-flex;align-items:center;gap:0.5rem}
+    .read-more:hover,.read-more:focus{text-decoration:underline;outline:2px solid transparent}
+    
+    /* Sidebar */
+    .sidebar{display:flex;flex-direction:column;gap:2rem}
+    .widget{background:#fff;border:1px solid #dee2e6;border-radius:8px;padding:1.5rem}
+    .widget h3{margin:0 0 1rem 0;font-size:1.25rem;color:#212529}
+    .widget ul{list-style:none;padding:0;margin:0}
+    .widget li{padding:0.5rem 0;border-bottom:1px solid #f8f9fa}
+    .widget li:last-child{border-bottom:none}
+    .widget a{text-decoration:none;color:#495057;transition:color 0.2s}
+    .widget a:hover,.widget a:focus{color:#0d6efd;outline:2px solid transparent}
+    
+    /* Search */
+    .search-form{display:flex;margin-bottom:2rem}
+    .search-input{flex:1;padding:0.75rem;border:1px solid #ced4da;border-radius:4px 0 0 4px;font-size:1rem}
+    .search-input:focus{outline:2px solid #0d6efd;outline-offset:-2px;border-color:#0d6efd}
+    .search-btn{background:#0d6efd;color:#fff;border:none;padding:0.75rem 1.5rem;border-radius:0 4px 4px 0;cursor:pointer;font-size:1rem}
+    .search-btn:hover{background:#0b5ed7}
+    .search-btn:focus{outline:2px solid #fff;outline-offset:-2px}
+    
+    /* Newsletter */
+    .newsletter-form{display:flex;gap:0.5rem;margin-top:1rem}
+    .newsletter-input{flex:1;padding:0.5rem;border:1px solid #ced4da;border-radius:4px;font-size:0.875rem}
+    .newsletter-input:focus{outline:2px solid #0d6efd;outline-offset:-2px;border-color:#0d6efd}
+    .newsletter-btn{background:#0d6efd;color:#fff;border:none;padding:0.5rem 1rem;border-radius:4px;cursor:pointer;font-size:0.875rem}
+    .newsletter-btn:hover{background:#0b5ed7}
+    .newsletter-btn:focus{outline:2px solid #fff;outline-offset:-2px}
+    
+    /* Footer */
+    footer{background:#f8f9fa;padding:2rem 1rem;margin-top:3rem;border-top:1px solid #dee2e6;text-align:center}
+    .footer-content{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:2rem;margin-bottom:2rem;text-align:left}
+    .footer-section h4{margin:0 0 1rem 0;color:#212529}
+    .footer-section p,.footer-section a{color:#6c757d;text-decoration:none;line-height:1.6}
+    .footer-section a:hover,.footer-section a:focus{color:#0d6efd;outline:2px solid transparent}
+    .footer-bottom{border-top:1px solid #dee2e6;padding-top:1rem;color:#6c757d;font-size:0.875rem}
+    
+    /* Responsive design */
+    @media (max-width: 768px) {
+      header h1{font-size:2rem}
+      main{grid-template-columns:1fr;gap:1.5rem;padding:1rem}
+      .nav-list{justify-content:flex-start;gap:1rem}
+      .post{padding:1rem}
+      .widget{padding:1rem}
+      .search-form{flex-direction:column;gap:0.5rem}
+      .search-input{border-radius:4px}
+      .search-btn{border-radius:4px}
+      .newsletter-form{flex-direction:column}
+      .newsletter-input,.newsletter-btn{border-radius:4px}
     }
-
-    header {
-      background: #111827;
-      color: white;
-      padding: 20px;
-      text-align: center;
-    }
-
-    header h1 {
-      margin: 0;
-      font-size: 2rem;
-    }
-
-    header p {
-      margin: 5px 0 0;
-      font-size: 1rem;
-      color: #9ca3af;
-    }
-
-    main {
-      display: grid;
-      grid-template-columns: 3fr 1fr;
-      gap: 20px;
-      padding: 20px;
-      max-width: 1200px;
-      margin: auto;
-    }
-
-    .post {
-      background: white;
-      padding: 20px;
-      border-radius: 12px;
-      margin-bottom: 20px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-      transition: transform 0.2s;
-    }
-
-    .post:hover {
-      transform: translateY(-3px);
-    }
-
-    .post h2 {
-      margin-top: 0;
-      font-size: 1.5rem;
-    }
-
-    .post a {
-      text-decoration: none;
-      color: #2563eb;
-    }
-
-    .post a:hover {
-      text-decoration: underline;
-    }
-
-    .sidebar {
-      background: white;
-      padding: 20px;
-      border-radius: 12px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-      height: fit-content;
-    }
-
-    footer {
-      text-align: center;
-      padding: 20px;
-      background: #111827;
-      color: white;
-      margin-top: 20px;
+    
+    /* Performance optimizations */
+    img{max-width:100%;height:auto}
+    .lazy{opacity:0;transition:opacity 0.3s}
+    .lazy.loaded{opacity:1}
+    
+    /* Print styles */
+    @media print{
+      nav,footer,.sidebar{display:none}
+      main{grid-template-columns:1fr}
+      .post{border:none;box-shadow:none;break-inside:avoid}
     }
   </style>
 </head>
 <body>
+  <!-- Skip to main content -->
+  <a href="#main" class="skip-link">Lewati ke konten utama</a>
+  
+  <!-- Header -->
   <header>
     <h1>Blog Vinnesia</h1>
-    <p>Artikel seputar teknologi, website, SEO, dan tutorial</p>
+    <p>Sumber terpercaya untuk artikel teknologi, SEO, dan tutorial web development</p>
   </header>
-
-  <main>
-    <!-- Daftar Artikel -->
-    <section>
-      <article class="post">
-        <h2><a href="#">Cara Membuat QR Code Gratis Online</a></h2>
-        <p><small>Dipublikasikan: 17 Agustus 2025</small></p>
-        <p>QR Code kini banyak digunakan untuk bisnis, website, hingga pembayaran digital. Berikut cara membuat QR Code gratis dengan mudah...</p>
-        <a href="#">Baca Selengkapnya →</a>
+  
+  <!-- Navigation -->
+  <nav role="navigation" aria-label="Menu utama">
+    <div class="nav-container">
+      <ul class="nav-list">
+        <li><a href="#" aria-current="page">Beranda</a></li>
+        <li><a href="#artikel">Artikel</a></li>
+        <li><a href="#tutorial">Tutorial</a></li>
+        <li><a href="#tentang">Tentang</a></li>
+        <li><a href="#kontak">Kontak</a></li>
+      </ul>
+    </div>
+  </nav>
+  
+  <!-- Main content -->
+  <main id="main" role="main">
+    <!-- Articles section -->
+    <section class="articles" aria-labelledby="artikel-heading">
+      <h2 id="artikel-heading" class="visually-hidden">Daftar Artikel</h2>
+      
+      <!-- Search -->
+      <form class="search-form" role="search" aria-label="Pencarian artikel">
+        <label for="search-input" class="visually-hidden">Cari artikel</label>
+        <input 
+          type="search" 
+          id="search-input" 
+          class="search-input" 
+          placeholder="Cari artikel, tutorial, atau topik..."
+          aria-describedby="search-help"
+        >
+        <div id="search-help" class="visually-hidden">Masukkan kata kunci untuk mencari artikel</div>
+        <button type="submit" class="search-btn" aria-label="Tombol pencarian">
+          Cari
+        </button>
+      </form>
+      
+      <!-- Article 1 -->
+      <article class="post" itemscope itemtype="https://schema.org/BlogPosting">
+        <div class="post-meta">
+          <span class="post-category">Tutorial</span>
+          <time datetime="2025-08-17" itemprop="datePublished">17 Agustus 2025</time>
+          <span aria-label="2847 kali dilihat">👁️ 2,847 views</span>
+        </div>
+        <h2 itemprop="headline">
+          <a href="#artikel-qr-code" itemprop="url">Cara Membuat QR Code Gratis Online dengan Kustomisasi Penuh</a>
+        </h2>
+        <p class="post-excerpt" itemprop="description">
+          QR Code telah menjadi bagian penting dalam strategi digital marketing. Pelajari cara membuat QR Code yang menarik dan fungsional untuk berbagai keperluan bisnis Anda dengan panduan lengkap step-by-step.
+        </p>
+        <a href="#artikel-qr-code" class="read-more" aria-describedby="read-more-1">
+          Baca Selengkapnya →
+        </a>
+        <div id="read-more-1" class="visually-hidden">Artikel tentang cara membuat QR Code</div>
       </article>
-
-      <article class="post">
-        <h2><a href="#">Tips SEO untuk Website Statis</a></h2>
-        <p><small>Dipublikasikan: 15 Agustus 2025</small></p>
-        <p>Website statis bisa bersaing di Google jika dioptimasi dengan benar. Berikut strategi SEO yang bisa langsung kamu terapkan...</p>
-        <a href="#">Baca Selengkapnya →</a>
+      
+      <!-- Article 2 -->
+      <article class="post" itemscope itemtype="https://schema.org/BlogPosting">
+        <div class="post-meta">
+          <span class="post-category">SEO</span>
+          <time datetime="2025-08-15" itemprop="datePublished">15 Agustus 2025</time>
+          <span aria-label="3521 kali dilihat">👁️ 3,521 views</span>
+        </div>
+        <h2 itemprop="headline">
+          <a href="#artikel-seo-statis" itemprop="url">Tips SEO untuk Website Statis: Optimasi Tanpa Backend</a>
+        </h2>
+        <p class="post-excerpt" itemprop="description">
+          Website statis dapat bersaing dengan website dinamis di hasil pencarian Google jika dioptimasi dengan strategi yang tepat. Berikut panduan lengkap optimasi SEO untuk website statis.
+        </p>
+        <a href="#artikel-seo-statis" class="read-more" aria-describedby="read-more-2">
+          Baca Selengkapnya →
+        </a>
+        <div id="read-more-2" class="visually-hidden">Artikel tentang SEO untuk website statis</div>
+      </article>
+      
+      <!-- Article 3 -->
+      <article class="post" itemscope itemtype="https://schema.org/BlogPosting">
+        <div class="post-meta">
+          <span class="post-category">Performance</span>
+          <time datetime="2025-08-13" itemprop="datePublished">13 Agustus 2025</time>
+          <span aria-label="1892 kali dilihat">👁️ 1,892 views</span>
+        </div>
+        <h2 itemprop="headline">
+          <a href="#artikel-core-web-vitals" itemprop="url">Mengoptimalkan Core Web Vitals untuk Performa Website</a>
+        </h2>
+        <p class="post-excerpt" itemprop="description">
+          Core Web Vitals adalah faktor ranking penting di Google. Pelajari cara mengukur dan meningkatkan skor LCP, FID, dan CLS website Anda dengan teknik proven.
+        </p>
+        <a href="#artikel-core-web-vitals" class="read-more" aria-describedby="read-more-3">
+          Baca Selengkapnya →
+        </a>
+        <div id="read-more-3" class="visually-hidden">Artikel tentang Core Web Vitals</div>
+      </article>
+      
+      <!-- Article 4 -->
+      <article class="post" itemscope itemtype="https://schema.org/BlogPosting">
+        <div class="post-meta">
+          <span class="post-category">Development</span>
+          <time datetime="2025-08-11" itemprop="datePublished">11 Agustus 2025</time>
+          <span aria-label="2156 kali dilihat">👁️ 2,156 views</span>
+        </div>
+        <h2 itemprop="headline">
+          <a href="#artikel-nodejs-api" itemprop="url">Membangun API RESTful dengan Node.js dan Express</a>
+        </h2>
+        <p class="post-excerpt" itemprop="description">
+          Tutorial step-by-step membuat API backend yang scalable dan secure menggunakan Node.js, Express, dan MongoDB untuk aplikasi web modern.
+        </p>
+        <a href="#artikel-nodejs-api" class="read-more" aria-describedby="read-more-4">
+          Baca Selengkapnya →
+        </a>
+        <div id="read-more-4" class="visually-hidden">Artikel tentang Node.js API</div>
+      </article>
+      
+      <!-- Article 5 -->
+      <article class="post" itemscope itemtype="https://schema.org/BlogPosting">
+        <div class="post-meta">
+          <span class="post-category">CSS</span>
+          <time datetime="2025-08-09" itemprop="datePublished">9 Agustus 2025</time>
+          <span aria-label="1654 kali dilihat">👁️ 1,654 views</span>
+        </div>
+        <h2 itemprop="headline">
+          <a href="#artikel-css-grid" itemprop="url">Menguasai CSS Grid Layout untuk Design Responsif</a>
+        </h2>
+        <p class="post-excerpt" itemprop="description">
+          CSS Grid adalah tool powerful untuk membuat layout website modern. Pelajari konsep dasar hingga teknik advanced untuk design responsif yang fleksibel.
+        </p>
+        <a href="#artikel-css-grid" class="read-more" aria-describedby="read-more-5">
+          Baca Selengkapnya →
+        </a>
+        <div id="read-more-5" class="visually-hidden">Artikel tentang CSS Grid</div>
       </article>
     </section>
-
+    
     <!-- Sidebar -->
-    <aside class="sidebar">
-      <h3>Kategori</h3>
-      <ul>
-        <li><a href="#">SEO</a></li>
-        <li><a href="#">Tutorial</a></li>
-        <li><a href="#">Website</a></li>
-        <li><a href="#">Teknologi</a></li>
-      </ul>
-
-      <h3>Artikel Populer</h3>
-      <ul>
-        <li><a href="#">Panduan Optimasi Kecepatan Website</a></li>
-        <li><a href="#">Cara Membuat Domain Gratis</a></li>
-        <li><a href="#">Strategi Backlink 2025</a></li>
-      </ul>
+    <aside class="sidebar" role="complementary" aria-label="Konten tambahan">
+      
+      <!-- Newsletter -->
+      <section class="widget" aria-labelledby="newsletter-heading">
+        <h3 id="newsletter-heading">Newsletter</h3>
+        <p>Dapatkan artikel terbaru langsung di email Anda setiap minggu.</p>
+        <form class="newsletter-form" aria-labelledby="newsletter-heading">
+          <label for="newsletter-email" class="visually-hidden">Alamat email</label>
+          <input 
+            type="email" 
+            id="newsletter-email" 
+            class="newsletter-input" 
+            placeholder="Email Anda"
+            required
+            aria-describedby="newsletter-help"
+          >
+          <div id="newsletter-help" class="visually-hidden">Masukkan email untuk berlangganan newsletter</div>
+          <button type="submit" class="newsletter-btn">
+            Langganan
+          </button>
+        </form>
+      </section>
+      
+      <!-- Categories -->
+      <section class="widget" aria-labelledby="categories-heading">
+        <h3 id="categories-heading">Kategori</h3>
+        <ul>
+          <li><a href="#seo">SEO & Digital Marketing (45)</a></li>
+          <li><a href="#development">Web Development (32)</a></li>
+          <li><a href="#tutorial">Tutorial & Tips (28)</a></li>
+          <li><a href="#teknologi">Teknologi Terkini (21)</a></li>
+          <li><a href="#tools">Tools & Resources (18)</a></li>
+        </ul>
+      </section>
+      
+      <!-- Popular Posts -->
+      <section class="widget" aria-labelledby="popular-heading">
+        <h3 id="popular-heading">Artikel Populer</h3>
+        <ul>
+          <li><a href="#populer-1">Panduan Optimasi Kecepatan Website (15K views)</a></li>
+          <li><a href="#populer-2">Cara Membuat Domain Gratis Berkualitas (12K views)</a></li>
+          <li><a href="#populer-3">Strategi Backlink Berkualitas 2025 (9K views)</a></li>
+          <li><a href="#populer-4">Framework CSS Terbaik untuk Pemula (8K views)</a></li>
+          <li><a href="#populer-5">Google Analytics 4: Panduan Lengkap (7K views)</a></li>
+        </ul>
+      </section>
+      
+      <!-- Archive -->
+      <section class="widget" aria-labelledby="archive-heading">
+        <h3 id="archive-heading">Arsip</h3>
+        <ul>
+          <li><a href="#agustus-2025">Agustus 2025 (8)</a></li>
+          <li><a href="#juli-2025">Juli 2025 (12)</a></li>
+          <li><a href="#juni-2025">Juni 2025 (15)</a></li>
+          <li><a href="#mei-2025">Mei 2025 (10)</a></li>
+          <li><a href="#april-2025">April 2025 (14)</a></li>
+        </ul>
+      </section>
+      
     </aside>
   </main>
-
-  <footer>
-    <p>© 2025 Blog Vinnesia | <a href="https://vinnesia.my.id" style="color:#3b82f6;">Kembali ke Vinnesia</a></p>
+  
+  <!-- Footer -->
+  <footer role="contentinfo">
+    <div class="footer-content">
+      <section class="footer-section">
+        <h4>Blog Vinnesia</h4>
+        <p>Platform terpercaya untuk belajar teknologi web, SEO, dan digital marketing. Bergabunglah dengan ribuan developer dan marketer Indonesia.</p>
+      </section>
+      
+      <section class="footer-section">
+        <h4>Kategori Utama</h4>
+        <p><a href="#development">Web Development</a></p>
+        <p><a href="#seo-marketing">SEO & Marketing</a></p>
+        <p><a href="#tutorials">Tutorial & Tips</a></p>
+        <p><a href="#resources">Tools & Resources</a></p>
+      </section>
+      
+      <section class="footer-section">
+        <h4>Dukungan</h4>
+        <p><a href="#bantuan">Pusat Bantuan</a></p>
+        <p><a href="#kontak">Hubungi Kami</a></p>
+        <p><a href="#syarat">Syarat & Ketentuan</a></p>
+        <p><a href="#privasi">Kebijakan Privasi</a></p>
+      </section>
+      
+      <section class="footer-section">
+        <h4>Koneksi</h4>
+        <p><a href="https://vinnesia.my.id" rel="external">Vinnesia Official</a></p>
+        <p><a href="#github" rel="external">GitHub Repository</a></p>
+        <p><a href="#forum">Community Forum</a></p>
+        <p><a href="#kontributor">Program Kontributor</a></p>
+      </section>
+    </div>
+    
+    <div class="footer-bottom">
+      <p>&copy; 2025 Blog Vinnesia. Semua hak cipta dilindungi. Dibuat dengan ❤️ di Indonesia</p>
+    </div>
   </footer>
+
+  <!-- Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Blog",
+    "name": "Blog Vinnesia",
+    "description": "Sumber terpercaya untuk artikel teknologi, SEO, dan tutorial web development",
+    "url": "https://blog.vinnesia.my.id",
+    "publisher": {
+      "@type": "Organization",
+      "name": "Vinnesia",
+      "url": "https://vinnesia.my.id"
+    },
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https://blog.vinnesia.my.id"
+    }
+  }
+  </script>
+
+  <!-- Minimal JavaScript for functionality -->
+  <script>
+    // Search functionality
+    document.querySelector('.search-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const query = document.getElementById('search-input').value.trim();
+      if (query) {
+        // In real implementation, this would redirect to search results
+        console.log('Searching for:', query);
+        alert('Hasil pencarian untuk: "' + query + '" akan ditampilkan.');
+      }
+    });
+
+    // Newsletter subscription
+    document.querySelector('.newsletter-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const email = document.getElementById('newsletter-email').value.trim();
+      if (email) {
+        console.log('Newsletter subscription:', email);
+        alert('Terima kasih! Email konfirmasi akan dikirim ke ' + email);
+        document.getElementById('newsletter-email').value = '';
+      }
+    });
+
+    // Service Worker registration for caching
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', function() {
+        navigator.serviceWorker.register('/sw.js').catch(function(error) {
+          console.log('ServiceWorker registration failed:', error);
+        });
+      });
+    }
+  </script>
+
+  <!-- Hidden styles for screen readers -->
+  <style>
+    .visually-hidden {
+      position: absolute !important;
+      width: 1px !important;
+      height: 1px !important;
+      padding: 0 !important;
+      margin: -1px !important;
+      overflow: hidden !important;
+      clip: rect(0, 0, 0, 0) !important;
+      white-space: nowrap !important;
+      border: 0 !important;
+    }
+  </style>
 </body>
 </html>
