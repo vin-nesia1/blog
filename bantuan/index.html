@@ -12,401 +12,830 @@
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://blog.vinnesia.my.id/bantuan">
   <link rel="canonical" href="https://blog.vinnesia.my.id/bantuan">
-  <link rel="icon" href="/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="../favicon.ico" type="image/x-icon">
   <title>Pusat Bantuan - Blog Vinnesia</title>
   <style>
-    *,*::before,*::after{box-sizing:border-box}
-    html{font-size:16px;scroll-behavior:smooth}
-    body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen,Ubuntu,Cantarell,sans-serif;margin:0;padding:0;background:#f8f9fa;color:#1a1a1a;line-height:1.6}
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
     
-    header{background:linear-gradient(135deg,#0d6efd 0%,#6610f2 100%);color:#fff;padding:3rem 1rem;text-align:center;position:relative}
-    .logo{display:block;width:70px;height:70px;margin:0 auto 1rem;border-radius:50%;overflow:hidden;box-shadow:0 4px 20px rgba(0,0,0,0.3)}
-    .logo img{width:100%;height:100%;object-fit:cover}
-    header h1{margin:0 0 0.5rem 0;font-size:2.75rem;font-weight:700}
-    header p{margin:0;font-size:1.2rem;opacity:0.9}
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      line-height: 1.6;
+      color: #2c2c2c;
+      background-color: #f8f9fa;
+    }
     
-    nav{background:#fff;border-bottom:1px solid #dee2e6;padding:1rem 0;position:sticky;top:0;z-index:100}
-    .nav-container{max-width:1200px;margin:0 auto;padding:0 1rem}
-    .nav-list{list-style:none;margin:0;padding:0;display:flex;gap:2rem;justify-content:center;flex-wrap:wrap}
-    .nav-list a{text-decoration:none;color:#495057;font-weight:500;padding:0.5rem 1rem;border-radius:4px;transition:all 0.2s}
-    .nav-list a:hover{background:#e9ecef;color:#212529}
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
     
-    main{max-width:1100px;margin:0 auto;padding:2rem 1rem}
+    /* Header */
+    header {
+      background: #1a1a1a;
+      color: #ffffff;
+      padding: 80px 0;
+      text-align: center;
+    }
     
-    .search-section{background:#fff;border-radius:12px;padding:2rem;margin-bottom:2rem;box-shadow:0 4px 16px rgba(0,0,0,0.1);text-align:center}
-    .search-box{max-width:500px;margin:0 auto;position:relative}
-    .search-input{width:100%;padding:1rem 1rem 1rem 3rem;border:2px solid #e9ecef;border-radius:25px;font-size:1rem;transition:border-color 0.3s}
-    .search-input:focus{outline:none;border-color:#0d6efd}
-    .search-icon{position:absolute;left:1rem;top:50%;transform:translateY(-50%);color:#6c757d;font-size:1.2rem}
+    .logo {
+      width: 70px;
+      height: 70px;
+      margin: 0 auto 25px;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 3px solid #ffffff;
+    }
     
-    .help-categories{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:2rem;margin-bottom:3rem}
-    .category-card{background:#fff;border-radius:12px;padding:2rem;box-shadow:0 4px 16px rgba(0,0,0,0.08);transition:all 0.3s;cursor:pointer}
-    .category-card:hover{transform:translateY(-4px);box-shadow:0 8px 25px rgba(0,0,0,0.15)}
-    .category-icon{font-size:3rem;margin-bottom:1rem;text-align:center}
-    .category-card h3{color:#212529;font-size:1.4rem;margin:0 0 0.75rem 0;text-align:center}
-    .category-card p{color:#6c757d;margin:0;text-align:center;font-size:0.95rem}
+    .logo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
     
-    .faq-section{background:#fff;border-radius:12px;padding:2.5rem;box-shadow:0 4px 16px rgba(0,0,0,0.08);margin-bottom:2rem}
-    .faq-section h2{color:#212529;font-size:2rem;margin:0 0 2rem 0;text-align:center;position:relative}
-    .faq-section h2::after{content:'';position:absolute;bottom:-10px;left:50%;transform:translateX(-50%);width:60px;height:3px;background:#0d6efd;border-radius:2px}
+    header h1 {
+      font-size: 3.5rem;
+      font-weight: 300;
+      margin-bottom: 15px;
+      letter-spacing: -1px;
+    }
     
-    .faq-item{border-bottom:1px solid #e9ecef;padding:1.5rem 0}
-    .faq-item:last-child{border-bottom:none}
-    .faq-question{font-weight:600;color:#212529;font-size:1.1rem;margin:0 0 1rem 0;cursor:pointer;display:flex;justify-content:space-between;align-items:center;padding:0.5rem 0}
-    .faq-question:hover{color:#0d6efd}
-    .faq-toggle{color:#6c757d;transition:transform 0.3s}
-    .faq-toggle.active{transform:rotate(180deg)}
-    .faq-answer{color:#495057;margin:0;line-height:1.7;padding-left:1rem;border-left:3px solid #e9ecef}
-    .faq-answer.hidden{display:none}
+    header p {
+      font-size: 1.3rem;
+      color: #cccccc;
+      font-weight: 300;
+    }
     
-    .contact-help{background:linear-gradient(135deg,#28a745 0%,#20c997 100%);color:#fff;padding:3rem;border-radius:12px;text-align:center;margin-top:2rem}
-    .contact-help h3{font-size:1.8rem;margin:0 0 1rem 0}
-    .contact-help p{margin:0 0 2rem 0;opacity:0.9;font-size:1.1rem}
-    .help-buttons{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
-    .help-btn{background:rgba(255,255,255,0.2);color:#fff;text-decoration:none;padding:0.75rem 1.5rem;border-radius:8px;font-weight:500;transition:all 0.3s;backdrop-filter:blur(10px)}
-    .help-btn:hover{background:rgba(255,255,255,0.3);transform:translateY(-2px)}
+    /* Navigation */
+    nav {
+      background: #ffffff;
+      border-bottom: 1px solid #e5e5e5;
+      padding: 0;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
     
-    .popular-articles{background:#fff;border-radius:12px;padding:2.5rem;box-shadow:0 4px 16px rgba(0,0,0,0.08);margin-bottom:2rem}
-    .popular-articles h2{color:#212529;margin:0 0 2rem 0;text-align:center}
-    .article-list{list-style:none;padding:0;margin:0}
-    .article-item{padding:1rem 0;border-bottom:1px solid #f8f9fa;transition:background 0.2s}
-    .article-item:hover{background:#f8f9fa}
-    .article-item:last-child{border-bottom:none}
-    .article-link{text-decoration:none;color:#495057;font-weight:500}
-    .article-link:hover{color:#0d6efd}
-    .article-meta{color:#6c757d;font-size:0.9rem;margin-top:0.25rem}
+    .nav-container {
+      display: flex;
+      justify-content: center;
+      padding: 0 20px;
+    }
     
-    footer{background:#fff;padding:2rem 1rem;margin-top:3rem;border-top:1px solid #dee2e6;text-align:center;color:#6c757d}
+    .nav-list {
+      display: flex;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
     
+    .nav-list a {
+      display: block;
+      padding: 20px 25px;
+      text-decoration: none;
+      color: #2c2c2c;
+      font-weight: 500;
+      transition: all 0.3s ease;
+    }
+    
+    .nav-list a:hover {
+      color: #000000;
+      background: #f8f8f8;
+    }
+    
+    /* Main Content */
+    main {
+      padding: 50px 0;
+    }
+    
+    /* Search Section */
+    .search-section {
+      background: #ffffff;
+      border: 1px solid #e5e5e5;
+      border-radius: 8px;
+      padding: 40px;
+      margin-bottom: 40px;
+      text-align: center;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    }
+    
+    .search-section h2 {
+      font-size: 2rem;
+      font-weight: 600;
+      color: #1a1a1a;
+      margin-bottom: 15px;
+    }
+    
+    .search-section p {
+      color: #4a4a4a;
+      font-size: 1.1rem;
+      margin-bottom: 30px;
+    }
+    
+    .search-box {
+      max-width: 500px;
+      margin: 0 auto;
+      position: relative;
+    }
+    
+    .search-input {
+      width: 100%;
+      padding: 15px 20px 15px 50px;
+      border: 2px solid #e5e5e5;
+      border-radius: 25px;
+      font-size: 1rem;
+      background: #ffffff;
+      transition: border-color 0.3s ease;
+    }
+    
+    .search-input:focus {
+      outline: none;
+      border-color: #1a1a1a;
+      box-shadow: 0 0 0 3px rgba(26, 26, 26, 0.1);
+    }
+    
+    .search-icon {
+      position: absolute;
+      left: 18px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #666666;
+      font-size: 1.2rem;
+    }
+    
+    /* Help Categories */
+    .help-categories {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 25px;
+      margin-bottom: 50px;
+    }
+    
+    .category-card {
+      background: #ffffff;
+      border: 1px solid #e5e5e5;
+      border-radius: 8px;
+      padding: 30px;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    }
+    
+    .category-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+    }
+    
+    .category-icon {
+      font-size: 3rem;
+      margin-bottom: 20px;
+      color: #666666;
+    }
+    
+    .category-card h3 {
+      color: #1a1a1a;
+      font-size: 1.4rem;
+      font-weight: 600;
+      margin: 0 0 15px 0;
+    }
+    
+    .category-card p {
+      color: #4a4a4a;
+      margin: 0;
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+    
+    /* FAQ Sections */
+    .faq-section {
+      background: #ffffff;
+      border: 1px solid #e5e5e5;
+      border-radius: 8px;
+      margin-bottom: 30px;
+      overflow: hidden;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    }
+    
+    .section-header {
+      background: #f8f8f8;
+      padding: 30px;
+      border-bottom: 1px solid #e5e5e5;
+    }
+    
+    .section-header h2 {
+      color: #1a1a1a;
+      font-size: 1.8rem;
+      font-weight: 600;
+      margin: 0;
+    }
+    
+    .section-content {
+      padding: 0;
+    }
+    
+    .faq-item {
+      border-bottom: 1px solid #f0f0f0;
+      transition: background-color 0.2s ease;
+    }
+    
+    .faq-item:last-child {
+      border-bottom: none;
+    }
+    
+    .faq-item:hover {
+      background: #fafafa;
+    }
+    
+    .faq-question {
+      font-weight: 600;
+      color: #1a1a1a;
+      font-size: 1.1rem;
+      margin: 0;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 25px 30px;
+      transition: color 0.3s ease;
+    }
+    
+    .faq-question:hover {
+      color: #2c2c2c;
+    }
+    
+    .faq-toggle {
+      color: #666666;
+      transition: transform 0.3s ease;
+      font-size: 0.9rem;
+    }
+    
+    .faq-toggle.active {
+      transform: rotate(180deg);
+    }
+    
+    .faq-answer {
+      color: #4a4a4a;
+      margin: 0;
+      line-height: 1.7;
+      padding: 0 30px 25px 30px;
+      border-left: 3px solid #f0f0f0;
+      margin-left: 30px;
+      margin-right: 30px;
+      font-size: 1rem;
+    }
+    
+    .faq-answer.hidden {
+      display: none;
+    }
+    
+    .faq-answer a {
+      color: #1a1a1a;
+      text-decoration: underline;
+      font-weight: 500;
+    }
+    
+    /* Popular Articles */
+    .popular-articles {
+      background: #ffffff;
+      border: 1px solid #e5e5e5;
+      border-radius: 8px;
+      margin-bottom: 40px;
+      overflow: hidden;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    }
+    
+    .popular-articles .section-header {
+      background: #f8f8f8;
+      padding: 30px;
+      border-bottom: 1px solid #e5e5e5;
+    }
+    
+    .popular-articles h2 {
+      color: #1a1a1a;
+      font-size: 1.8rem;
+      font-weight: 600;
+      margin: 0;
+    }
+    
+    .article-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    
+    .article-item {
+      padding: 20px 30px;
+      border-bottom: 1px solid #f0f0f0;
+      transition: background-color 0.2s ease;
+    }
+    
+    .article-item:hover {
+      background: #fafafa;
+    }
+    
+    .article-item:last-child {
+      border-bottom: none;
+    }
+    
+    .article-link {
+      text-decoration: none;
+      color: #1a1a1a;
+      font-weight: 600;
+      font-size: 1.1rem;
+      display: block;
+      margin-bottom: 5px;
+      transition: color 0.3s ease;
+    }
+    
+    .article-link:hover {
+      color: #2c2c2c;
+      text-decoration: underline;
+    }
+    
+    .article-meta {
+      color: #666666;
+      font-size: 0.9rem;
+    }
+    
+    /* Contact Help */
+    .contact-help {
+      background: #1a1a1a;
+      color: #ffffff;
+      padding: 50px;
+      border-radius: 8px;
+      text-align: center;
+      margin-top: 40px;
+    }
+    
+    .contact-help h3 {
+      font-size: 2rem;
+      font-weight: 600;
+      margin: 0 0 15px 0;
+    }
+    
+    .contact-help p {
+      margin: 0 0 30px 0;
+      color: #cccccc;
+      font-size: 1.1rem;
+    }
+    
+    .help-buttons {
+      display: flex;
+      gap: 15px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    
+    .help-btn {
+      background: rgba(255, 255, 255, 0.1);
+      color: #ffffff;
+      text-decoration: none;
+      padding: 12px 25px;
+      border-radius: 6px;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+    
+    .help-btn:hover {
+      background: rgba(255, 255, 255, 0.2);
+      transform: translateY(-1px);
+    }
+    
+    /* Footer */
+    footer {
+      background: #ffffff;
+      padding: 40px 0;
+      margin-top: 50px;
+      border-top: 1px solid #e5e5e5;
+      text-align: center;
+      color: #666666;
+    }
+    
+    footer p {
+      margin: 10px 0;
+    }
+    
+    footer a {
+      color: #1a1a1a;
+      text-decoration: none;
+      font-weight: 500;
+    }
+    
+    footer a:hover {
+      text-decoration: underline;
+    }
+    
+    /* Responsive Design */
     @media (max-width: 768px) {
-      header h1{font-size:2rem}
-      main{padding:1rem}
-      .help-categories{grid-template-columns:1fr}
-      .help-buttons{flex-direction:column;align-items:center}
-      .nav-list{gap:1rem;justify-content:flex-start}
+      header h1 {
+        font-size: 2.5rem;
+      }
+      
+      .container {
+        padding: 0 15px;
+      }
+      
+      main {
+        padding: 30px 0;
+      }
+      
+      .help-categories {
+        grid-template-columns: 1fr;
+      }
+      
+      .help-buttons {
+        flex-direction: column;
+        align-items: center;
+      }
+      
+      .help-btn {
+        width: 200px;
+      }
+      
+      .nav-list {
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+      
+      .nav-list a {
+        padding: 15px 20px;
+      }
+      
+      .search-section,
+      .contact-help {
+        padding: 30px 20px;
+      }
+      
+      .faq-question,
+      .faq-answer {
+        padding: 20px;
+      }
+      
+      .faq-answer {
+        margin-left: 20px;
+        margin-right: 20px;
+      }
+      
+      .article-item {
+        padding: 15px 20px;
+      }
     }
   </style>
 </head>
 <body>
   <header>
-    <div class="logo">
-      <img src="/logo.png" alt="Logo Blog Vinnesia" width="70" height="70">
+    <div class="container">
+      <div class="logo">
+        <img src="../logo.png" alt="Logo Blog Vinnesia" width="70" height="70">
+      </div>
+      <h1>Pusat Bantuan</h1>
+      <p>Temukan jawaban untuk semua pertanyaan Anda</p>
     </div>
-    <h1>Pusat Bantuan</h1>
-    <p>Temukan jawaban untuk semua pertanyaan Anda</p>
   </header>
   
   <nav>
     <div class="nav-container">
       <ul class="nav-list">
-        <li><a href="/">Beranda</a></li>
-        <li><a href="/seo">SEO</a></li>
-        <li><a href="/tutorial">Tutorial</a></li>
-        <li><a href="/tentang">Tentang</a></li>
-        <li><a href="/kontak">Kontak</a></li>
-        <li><a href="/tools">Tools</a></li>
+        <li><a href="../">Beranda</a></li>
+        <li><a href="../seo">SEO</a></li>
+        <li><a href="../tutorial">Tutorial</a></li>
+        <li><a href="../tentang">Tentang</a></li>
+        <li><a href="../kontak">Kontak</a></li>
+        <li><a href="../tools">Tools</a></li>
       </ul>
     </div>
   </nav>
   
   <main>
-    <!-- Search Section -->
-    <section class="search-section">
-      <h2>🔍 Cari Bantuan</h2>
-      <p>Ketik kata kunci untuk menemukan jawaban cepat</p>
-      <div class="search-box">
-        <span class="search-icon">🔍</span>
-        <input type="text" class="search-input" placeholder="Cari topik, tutorial, atau masalah...">
-      </div>
-    </section>
-    
-    <!-- Help Categories -->
-    <section class="help-categories">
-      <div class="category-card" onclick="scrollToSection('getting-started')">
-        <div class="category-icon">🚀</div>
-        <h3>Memulai</h3>
-        <p>Panduan untuk pengguna baru dan cara menggunakan blog</p>
-      </div>
+    <div class="container">
       
-      <div class="category-card" onclick="scrollToSection('content-help')">
-        <div class="category-icon">📖</div>
-        <h3>Konten & Artikel</h3>
-        <p>Pertanyaan seputar artikel, tutorial, dan konten</p>
-      </div>
+      <!-- Search Section -->
+      <section class="search-section">
+        <h2>Cari Bantuan</h2>
+        <p>Ketik kata kunci untuk menemukan jawaban cepat</p>
+        <div class="search-box">
+          <span class="search-icon">🔍</span>
+          <input type="text" class="search-input" placeholder="Cari topik, tutorial, atau masalah...">
+        </div>
+      </section>
       
-      <div class="category-card" onclick="scrollToSection('tools-help')">
-        <div class="category-icon">🛠️</div>
-        <h3>Tools & Generator</h3>
-        <p>Bantuan menggunakan tools online dan generator</p>
-      </div>
+      <!-- Help Categories -->
+      <section class="help-categories">
+        <div class="category-card" onclick="scrollToSection('getting-started')">
+          <div class="category-icon">🚀</div>
+          <h3>Memulai</h3>
+          <p>Panduan untuk pengguna baru dan cara menggunakan blog</p>
+        </div>
+        
+        <div class="category-card" onclick="scrollToSection('content-help')">
+          <div class="category-icon">📖</div>
+          <h3>Konten & Artikel</h3>
+          <p>Pertanyaan seputar artikel, tutorial, dan konten</p>
+        </div>
+        
+        <div class="category-card" onclick="scrollToSection('tools-help')">
+          <div class="category-icon">🛠️</div>
+          <h3>Tools & Generator</h3>
+          <p>Bantuan menggunakan tools online dan generator</p>
+        </div>
+        
+        <div class="category-card" onclick="scrollToSection('technical-help')">
+          <div class="category-icon">⚙️</div>
+          <h3>Masalah Teknis</h3>
+          <p>Troubleshooting dan solusi masalah teknis</p>
+        </div>
+        
+        <div class="category-card" onclick="scrollToSection('account-help')">
+          <div class="category-icon">👤</div>
+          <h3>Akun & Profil</h3>
+          <p>Pengaturan akun, newsletter, dan preferensi</p>
+        </div>
+        
+        <div class="category-card" onclick="scrollToSection('contribution-help')">
+          <div class="category-icon">✍️</div>
+          <h3>Kontribusi</h3>
+          <p>Cara berkontribusi konten dan menjadi kontributor</p>
+        </div>
+      </section>
       
-      <div class="category-card" onclick="scrollToSection('technical-help')">
-        <div class="category-icon">⚙️</div>
-        <h3>Masalah Teknis</h3>
-        <p>Troubleshooting dan solusi masalah teknis</p>
-      </div>
+      <!-- FAQ Sections -->
+      <section class="faq-section" id="getting-started">
+        <div class="section-header">
+          <h2>Memulai dengan Blog Vinnesia</h2>
+        </div>
+        <div class="section-content">
+          <div class="faq-item">
+            <div class="faq-question" onclick="toggleFaq(this)">
+              Apa itu Blog Vinnesia?
+              <span class="faq-toggle">▼</span>
+            </div>
+            <div class="faq-answer">
+              Blog Vinnesia adalah platform digital yang menyediakan artikel berkualitas tinggi seputar teknologi web, SEO, digital marketing, dan pengembangan web. Kami fokus pada konten praktis yang dapat diimplementasikan langsung dalam pekerjaan sehari-hari.
+            </div>
+          </div>
+          
+          <div class="faq-item">
+            <div class="faq-question" onclick="toggleFaq(this)">
+              Apakah semua konten gratis?
+              <span class="faq-toggle">▼</span>
+            </div>
+            <div class="faq-answer">
+              Ya, semua artikel, tutorial, dan tools di Blog Vinnesia dapat diakses secara gratis. Kami berkomitmen untuk menyediakan pengetahuan yang dapat diakses oleh semua orang dalam komunitas tech Indonesia.
+            </div>
+          </div>
+          
+          <div class="faq-item">
+            <div class="faq-question" onclick="toggleFaq(this)">
+              Bagaimana cara mendapat update artikel terbaru?
+              <span class="faq-toggle">▼</span>
+            </div>
+            <div class="faq-answer">
+              Anda dapat berlangganan newsletter kami melalui form yang tersedia di website, mengikuti RSS feed, atau bookmark halaman utama untuk mengecek artikel terbaru secara berkala.
+            </div>
+          </div>
+        </div>
+      </section>
       
-      <div class="category-card" onclick="scrollToSection('account-help')">
-        <div class="category-icon">👤</div>
-        <h3>Akun & Profil</h3>
-        <p>Pengaturan akun, newsletter, dan preferensi</p>
-      </div>
+      <section class="faq-section" id="content-help">
+        <div class="section-header">
+          <h2>Konten & Artikel</h2>
+        </div>
+        <div class="section-content">
+          <div class="faq-item">
+            <div class="faq-question" onclick="toggleFaq(this)">
+              Seberapa sering artikel baru dipublikasikan?
+              <span class="faq-toggle">▼</span>
+            </div>
+            <div class="faq-answer">
+              Kami mempublikasikan 2-3 artikel baru setiap minggu. Setiap artikel melalui riset mendalam dan testing praktis untuk memastikan kualitas dan keakuratan informasi.
+            </div>
+          </div>
+          
+          <div class="faq-item">
+            <div class="faq-question" onclick="toggleFaq(this)">
+              Bisakah saya request topik artikel tertentu?
+              <span class="faq-toggle">▼</span>
+            </div>
+            <div class="faq-answer">
+              Tentu! Kami sangat menghargai feedback dan request dari pembaca. Silakan kirim request topik melalui email admin@vinnesia.my.id atau form kontak di website.
+            </div>
+          </div>
+          
+          <div class="faq-item">
+            <div class="faq-question" onclick="toggleFaq(this)">
+              Apakah boleh mengutip atau membagikan artikel?
+              <span class="faq-toggle">▼</span>
+            </div>
+            <div class="faq-answer">
+              Ya, Anda boleh mengutip sebagian artikel dengan memberikan credit dan backlink ke Blog Vinnesia. Untuk penggunaan komersial atau kutipan panjang, mohon hubungi kami terlebih dahulu.
+            </div>
+          </div>
+        </div>
+      </section>
       
-      <div class="category-card" onclick="scrollToSection('contribution-help')">
-        <div class="category-icon">✍️</div>
-        <h3>Kontribusi</h3>
-        <p>Cara berkontribusi konten dan menjadi kontributor</p>
-      </div>
-    </section>
-    
-    <!-- FAQ Sections -->
-    <section class="faq-section" id="getting-started">
-      <h2>🚀 Memulai dengan Blog Vinnesia</h2>
+      <section class="faq-section" id="tools-help">
+        <div class="section-header">
+          <h2>Tools & Generator</h2>
+        </div>
+        <div class="section-content">
+          <div class="faq-item">
+            <div class="faq-question" onclick="toggleFaq(this)">
+              Tools apa saja yang tersedia?
+              <span class="faq-toggle">▼</span>
+            </div>
+            <div class="faq-answer">
+              Kami menyediakan 35+ tools gratis termasuk color palette generator, CSS generator, QR code generator, image optimizer, dan berbagai tools untuk mempercepat workflow development.
+            </div>
+          </div>
+          
+          <div class="faq-item">
+            <div class="faq-question" onclick="toggleFaq(this)">
+              Apakah tools membutuhkan registrasi?
+              <span class="faq-toggle">▼</span>
+            </div>
+            <div class="faq-answer">
+              Tidak, semua tools dapat digunakan langsung tanpa registrasi. Kami percaya pada kemudahan akses untuk semua pengguna.
+            </div>
+          </div>
+          
+          <div class="faq-item">
+            <div class="faq-question" onclick="toggleFaq(this)">
+              Tool tidak berfungsi atau bermasalah, bagaimana?
+              <span class="faq-toggle">▼</span>
+            </div>
+            <div class="faq-answer">
+              Silakan laporkan masalah tersebut ke support@vinnesia.my.id dengan menyertakan detail browser, device, dan screenshot jika memungkinkan. Tim kami akan segera memperbaikinya.
+            </div>
+          </div>
+        </div>
+      </section>
       
-      <div class="faq-item">
-        <div class="faq-question" onclick="toggleFaq(this)">
-          Apa itu Blog Vinnesia?
-          <span class="faq-toggle">▼</span>
+      <section class="faq-section" id="technical-help">
+        <div class="section-header">
+          <h2>Masalah Teknis</h2>
         </div>
-        <div class="faq-answer">
-          Blog Vinnesia adalah platform digital yang menyediakan artikel berkualitas tinggi seputar teknologi web, SEO, digital marketing, dan pengembangan web. Kami fokus pada konten praktis yang dapat diimplementasikan langsung dalam pekerjaan sehari-hari.
+        <div class="section-content">
+          <div class="faq-item">
+            <div class="faq-question" onclick="toggleFaq(this)">
+              Website lambat atau tidak bisa diakses
+              <span class="faq-toggle">▼</span>
+            </div>
+            <div class="faq-answer">
+              Coba refresh halaman, clear cache browser, atau akses menggunakan browser berbeda. Jika masalah berlanjut, kemungkinan ada maintenance server. Hubungi support@vinnesia.my.id untuk laporan detail.
+            </div>
+          </div>
+          
+          <div class="faq-item">
+            <div class="faq-question" onclick="toggleFaq(this)">
+              Tutorial tidak bekerja di sistem saya
+              <span class="faq-toggle">▼</span>
+            </div>
+            <div class="faq-answer">
+              Pastikan Anda mengikuti setiap langkah dengan teliti dan cek versi software/library yang digunakan. Jika masih bermasalah, sertakan detail sistem dan error message saat menghubungi support.
+            </div>
+          </div>
+          
+          <div class="faq-item">
+            <div class="faq-question" onclick="toggleFaq(this)">
+              Kode dari tutorial menyebabkan error
+              <span class="faq-toggle">▼</span>
+            </div>
+            <div class="faq-answer">
+              Selalu backup data sebelum menerapkan kode tutorial. Cek kembali sintaks dan pastikan environment development Anda sesuai. Untuk bantuan debugging, kirim detail error ke support@vinnesia.my.id.
+            </div>
+          </div>
         </div>
-      </div>
+      </section>
       
-      <div class="faq-item">
-        <div class="faq-question" onclick="toggleFaq(this)">
-          Apakah semua konten gratis?
-          <span class="faq-toggle">▼</span>
+      <section class="faq-section" id="account-help">
+        <div class="section-header">
+          <h2>Akun & Preferensi</h2>
         </div>
-        <div class="faq-answer">
-          Ya, semua artikel, tutorial, dan tools di Blog Vinnesia dapat diakses secara gratis. Kami berkomitmen untuk menyediakan pengetahuan yang dapat diakses oleh semua orang dalam komunitas tech Indonesia.
+        <div class="section-content">
+          <div class="faq-item">
+            <div class="faq-question" onclick="toggleFaq(this)">
+              Bagaimana cara berlangganan newsletter?
+              <span class="faq-toggle">▼</span>
+            </div>
+            <div class="faq-answer">
+              Cari form newsletter di halaman utama website atau halaman artikel. Masukkan email Anda dan klik subscribe. Anda akan mendapat email konfirmasi untuk mengaktifkan langganan.
+            </div>
+          </div>
+          
+          <div class="faq-item">
+            <div class="faq-question" onclick="toggleFaq(this)">
+              Bagaimana cara berhenti berlangganan?
+              <span class="faq-toggle">▼</span>
+            </div>
+            <div class="faq-answer">
+              Klik link "unsubscribe" di bagian bawah email newsletter yang Anda terima, atau kirim email ke admin@vinnesia.my.id dengan subject "Unsubscribe Newsletter".
+            </div>
+          </div>
+          
+          <div class="faq-item">
+            <div class="faq-question" onclick="toggleFaq(this)">
+              Data pribadi saya aman?
+              <span class="faq-toggle">▼</span>
+            </div>
+            <div class="faq-answer">
+              Ya, kami sangat menjaga privasi data pengguna sesuai dengan <a href="../privasi">Kebijakan Privasi</a> kami. Data tidak dibagikan kepada pihak ketiga tanpa persetujuan.
+            </div>
+          </div>
         </div>
-      </div>
+      </section>
       
-      <div class="faq-item">
-        <div class="faq-question" onclick="toggleFaq(this)">
-          Bagaimana cara mendapat update artikel terbaru?
-          <span class="faq-toggle">▼</span>
+      <section class="faq-section" id="contribution-help">
+        <div class="section-header">
+          <h2>Kontribusi & Kerjasama</h2>
         </div>
-        <div class="faq-answer">
-          Anda dapat berlangganan newsletter kami melalui form yang tersedia di website, mengikuti RSS feed, atau bookmark halaman utama untuk mengecek artikel terbaru secara berkala.
+        <div class="section-content">
+          <div class="faq-item">
+            <div class="faq-question" onclick="toggleFaq(this)">
+              Bagaimana cara menjadi kontributor?
+              <span class="faq-toggle">▼</span>
+            </div>
+            <div class="faq-answer">
+              Kirim email ke admin@vinnesia.my.id dengan contoh tulisan, portfolio, dan topik yang ingin Anda bahas. Kami akan review dan menghubungi Anda jika sesuai dengan kriteria.
+            </div>
+          </div>
+          
+          <div class="faq-item">
+            <div class="faq-question" onclick="toggleFaq(this)">
+              Apakah menerima guest post?
+              <span class="faq-toggle">▼</span>
+            </div>
+            <div class="faq-answer">
+              Ya, kami terbuka untuk guest post berkualitas tinggi. Artikel harus original, informatif, dan sesuai dengan niche teknologi/web development. Hubungi kami untuk guidelines lengkap.
+            </div>
+          </div>
+          
+          <div class="faq-item">
+            <div class="faq-question" onclick="toggleFaq(this)">
+              Bagaimana dengan kerjasama sponsorship?
+              <span class="faq-toggle">▼</span>
+            </div>
+            <div class="faq-answer">
+              Kami terbuka untuk kerjasama yang saling menguntungkan dengan brand atau perusahaan yang relevan dengan audience kami. Hubungi admin@vinnesia.my.id untuk diskusi lebih lanjut.
+            </div>
+          </div>
         </div>
-      </div>
-    </section>
-    
-    <section class="faq-section" id="content-help">
-      <h2>📖 Konten & Artikel</h2>
+      </section>
       
-      <div class="faq-item">
-        <div class="faq-question" onclick="toggleFaq(this)">
-          Seberapa sering artikel baru dipublikasikan?
-          <span class="faq-toggle">▼</span>
+      <!-- Popular Articles -->
+      <section class="popular-articles">
+        <div class="section-header">
+          <h2>Artikel Populer di Pusat Bantuan</h2>
         </div>
-        <div class="faq-answer">
-          Kami mempublikasikan 2-3 artikel baru setiap minggu. Setiap artikel melalui riset mendalam dan testing praktis untuk memastikan kualitas dan keakuratan informasi.
-        </div>
-      </div>
+        <ul class="article-list">
+          <li class="article-item">
+            <a href="../" class="article-link">Panduan Lengkap SEO untuk Pemula</a>
+            <div class="article-meta">Dibaca 15,234 kali • Tutorial</div>
+          </li>
+          <li class="article-item">
+            <a href="../" class="article-link">Cara Menggunakan Tools Color Palette Generator</a>
+            <div class="article-meta">Dibaca 12,567 kali • Tools</div>
+          </li>
+          <li class="article-item">
+            <a href="../" class="article-link">Troubleshooting Common Web Development Issues</a>
+            <div class="article-meta">Dibaca 9,876 kali • Development</div>
+          </li>
+          <li class="article-item">
+            <a href="../" class="article-link">Optimasi Website untuk Core Web Vitals</a>
+            <div class="article-meta">Dibaca 8,432 kali • Performance</div>
+          </li>
+          <li class="article-item">
+            <a href="../" class="article-link">Best Practices untuk Responsive Design</a>
+            <div class="article-meta">Dibaca 7,123 kali • Design</div>
+          </li>
+        </ul>
+      </section>
       
-      <div class="faq-item">
-        <div class="faq-question" onclick="toggleFaq(this)">
-          Bisakah saya request topik artikel tertentu?
-          <span class="faq-toggle">▼</span>
+      <!-- Contact Help -->
+      <section class="contact-help">
+        <h3>Masih Butuh Bantuan?</h3>
+        <p>Tim support kami siap membantu Anda 24/7. Jangan ragu untuk menghubungi kami!</p>
+        <div class="help-buttons">
+          <a href="mailto:support@vinnesia.my.id" class="help-btn">Email Support</a>
+          <a href="../kontak" class="help-btn">Formulir Kontak</a>
+          <a href="../forum" class="help-btn">Community Forum</a>
+          <a href="https://www.vinnesia.my.id" class="help-btn" target="_blank">Website Utama</a>
         </div>
-        <div class="faq-answer">
-          Tentu! Kami sangat menghargai feedback dan request dari pembaca. Silakan kirim request topik melalui email admin@vinnesia.my.id atau form kontak di website.
-        </div>
-      </div>
+      </section>
       
-      <div class="faq-item">
-        <div class="faq-question" onclick="toggleFaq(this)">
-          Apakah boleh mengutip atau membagikan artikel?
-          <span class="faq-toggle">▼</span>
-        </div>
-        <div class="faq-answer">
-          Ya, Anda boleh mengutip sebagian artikel dengan memberikan credit dan backlink ke Blog Vinnesia. Untuk penggunaan komersial atau kutipan panjang, mohon hubungi kami terlebih dahulu.
-        </div>
-      </div>
-    </section>
-    
-    <section class="faq-section" id="tools-help">
-      <h2>🛠️ Tools & Generator</h2>
-      
-      <div class="faq-item">
-        <div class="faq-question" onclick="toggleFaq(this)">
-          Tools apa saja yang tersedia?
-          <span class="faq-toggle">▼</span>
-        </div>
-        <div class="faq-answer">
-          Kami menyediakan 35+ tools gratis termasuk color palette generator, CSS generator, QR code generator, image optimizer, dan berbagai tools untuk mempercepat workflow development.
-        </div>
-      </div>
-      
-      <div class="faq-item">
-        <div class="faq-question" onclick="toggleFaq(this)">
-          Apakah tools membutuhkan registrasi?
-          <span class="faq-toggle">▼</span>
-        </div>
-        <div class="faq-answer">
-          Tidak, semua tools dapat digunakan langsung tanpa registrasi. Kami percaya pada kemudahan akses untuk semua pengguna.
-        </div>
-      </div>
-      
-      <div class="faq-item">
-        <div class="faq-question" onclick="toggleFaq(this)">
-          Tool tidak berfungsi atau bermasalah, bagaimana?
-          <span class="faq-toggle">▼</span>
-        </div>
-        <div class="faq-answer">
-          Silakan laporkan masalah tersebut ke support@vinnesia.my.id dengan menyertakan detail browser, device, dan screenshot jika memungkinkan. Tim kami akan segera memperbaikinya.
-        </div>
-      </div>
-    </section>
-    
-    <section class="faq-section" id="technical-help">
-      <h2>⚙️ Masalah Teknis</h2>
-      
-      <div class="faq-item">
-        <div class="faq-question" onclick="toggleFaq(this)">
-          Website lambat atau tidak bisa diakses
-          <span class="faq-toggle">▼</span>
-        </div>
-        <div class="faq-answer">
-          Coba refresh halaman, clear cache browser, atau akses menggunakan browser berbeda. Jika masalah berlanjut, kemungkinan ada maintenance server. Hubungi support@vinnesia.my.id untuk laporan detail.
-        </div>
-      </div>
-      
-      <div class="faq-item">
-        <div class="faq-question" onclick="toggleFaq(this)">
-          Tutorial tidak bekerja di sistem saya
-          <span class="faq-toggle">▼</span>
-        </div>
-        <div class="faq-answer">
-          Pastikan Anda mengikuti setiap langkah dengan teliti dan cek versi software/library yang digunakan. Jika masih bermasalah, sertakan detail sistem dan error message saat menghubungi support.
-        </div>
-      </div>
-      
-      <div class="faq-item">
-        <div class="faq-question" onclick="toggleFaq(this)">
-          Kode dari tutorial menyebabkan error
-          <span class="faq-toggle">▼</span>
-        </div>
-        <div class="faq-answer">
-          Selalu backup data sebelum menerapkan kode tutorial. Cek kembali sintaks dan pastikan environment development Anda sesuai. Untuk bantuan debugging, kirim detail error ke support@vinnesia.my.id.
-        </div>
-      </div>
-    </section>
-    
-    <section class="faq-section" id="account-help">
-      <h2>👤 Akun & Preferensi</h2>
-      
-      <div class="faq-item">
-        <div class="faq-question" onclick="toggleFaq(this)">
-          Bagaimana cara berlangganan newsletter?
-          <span class="faq-toggle">▼</span>
-        </div>
-        <div class="faq-answer">
-          Cari form newsletter di halaman utama website atau halaman artikel. Masukkan email Anda dan klik subscribe. Anda akan mendapat email konfirmasi untuk mengaktifkan langganan.
-        </div>
-      </div>
-      
-      <div class="faq-item">
-        <div class="faq-question" onclick="toggleFaq(this)">
-          Bagaimana cara berhenti berlangganan?
-          <span class="faq-toggle">▼</span>
-        </div>
-        <div class="faq-answer">
-          Klik link "unsubscribe" di bagian bawah email newsletter yang Anda terima, atau kirim email ke admin@vinnesia.my.id dengan subject "Unsubscribe Newsletter".
-        </div>
-      </div>
-      
-      <div class="faq-item">
-        <div class="faq-question" onclick="toggleFaq(this)">
-          Data pribadi saya aman?
-          <span class="faq-toggle">▼</span>
-        </div>
-        <div class="faq-answer">
-          Ya, kami sangat menjaga privasi data pengguna sesuai dengan <a href="/privasi" style="color:#0d6efd">Kebijakan Privasi</a> kami. Data tidak dibagikan kepada pihak ketiga tanpa persetujuan.
-        </div>
-      </div>
-    </section>
-    
-    <section class="faq-section" id="contribution-help">
-      <h2>✍️ Kontribusi & Kerjasama</h2>
-      
-      <div class="faq-item">
-        <div class="faq-question" onclick="toggleFaq(this)">
-          Bagaimana cara menjadi kontributor?
-          <span class="faq-toggle">▼</span>
-        </div>
-        <div class="faq-answer">
-          Kirim email ke admin@vinnesia.my.id dengan contoh tulisan, portfolio, dan topik yang ingin Anda bahas. Kami akan review dan menghubungi Anda jika sesuai dengan kriteria.
-        </div>
-      </div>
-      
-      <div class="faq-item">
-        <div class="faq-question" onclick="toggleFaq(this)">
-          Apakah menerima guest post?
-          <span class="faq-toggle">▼</span>
-        </div>
-        <div class="faq-answer">
-          Ya, kami terbuka untuk guest post berkualitas tinggi. Artikel harus original, informatif, dan sesuai dengan niche teknologi/web development. Hubungi kami untuk guidelines lengkap.
-        </div>
-      </div>
-      
-      <div class="faq-item">
-        <div class="faq-question" onclick="toggleFaq(this)">
-          Bagaimana dengan kerjasama sponsorship?
-          <span class="faq-toggle">▼</span>
-        </div>
-        <div class="faq-answer">
-          Kami terbuka untuk kerjasama yang saling menguntungkan dengan brand atau perusahaan yang relevan dengan audience kami. Hubungi admin@vinnesia.my.id untuk diskusi lebih lanjut.
-        </div>
-      </div>
-    </section>
-    
-    <!-- Popular Articles -->
-    <section class="popular-articles">
-      <h2>📚 Artikel Populer di Pusat Bantuan</h2>
-      <ul class="article-list">
-        <li class="article-item">
-          <a href="#" class="article-link">Panduan Lengkap SEO untuk Pemula</a>
-          <div class="article-meta">Dibaca 15,234 kali • Tutorial</div>
-        </li>
-        <li class="article-item">
-          <a href="#" class="article-link">Cara Menggunakan Tools Color Palette Generator</a>
-          <div class="article-meta">Dibaca 12,567 kali • Tools</div>
-        </li>
-        <li class="article-item">
-          <a href="#" class="article-link">Troubleshooting Common Web Development Issues</a>
-          <div class="article-meta">Dibaca 9,876 kali • Development</div>
-        </li>
-        <li class="article-item">
-          <a href="#" class="article-link">Optimasi Website untuk Core Web Vitals</a>
-          <div class="article-meta">Dibaca 8,432 kali • Performance</div>
-        </li>
-        <li class="article-item">
-          <a href="#" class="article-link">Best Practices untuk Responsive Design</a>
-          <div class="article-meta">Dibaca 7,123 kali • Design</div>
-        </li>
-      </ul>
-    </section>
-    
-    <!-- Contact Help -->
-    <section class="contact-help">
-      <h3>🤝 Masih Butuh Bantuan?</h3>
-      <p>Tim support kami siap membantu Anda 24/7. Jangan ragu untuk menghubungi kami!</p>
-      <div class="help-buttons">
-        <a href="mailto:support@vinnesia.my.id" class="help-btn">📧 Email Support</a>
-        <a href="../kontak" class="help-btn">📞 Formulir Kontak</a>
-        <a href="../forum" class="help-btn">💬 Community Forum</a>
-        <a href="https://www.vinnesia.my.id" class="help-btn" target="_blank">🌐 Website Utama</a>
-      </div>
-    </section>
+    </div>
   </main>
   
   <footer>
-    <p>&copy; 2025 Blog Vinnesia. All rights reserved.</p>
-    <p><a href="../privasi" style="color:#0d6efd">Kebijakan Privasi</a> | <a href="../syarat" style="color:#0d6efd">Syarat & Ketentuan</a> | <a href="../kontak" style="color:#0d6efd">Kontak</a></p>
+    <div class="container">
+      <p>&copy; 2025 Blog Vinnesia. All rights reserved.</p>
+      <p><a href="../privasi">Kebijakan Privasi</a> | <a href="../syarat">Syarat & Ketentuan</a> | <a href="../kontak">Kontak</a></p>
+    </div>
   </footer>
   
   <script>
