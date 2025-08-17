@@ -1,0 +1,244 @@
+// Service Worker untuk Blog Vinnesia
+// Version: 1.0.0
+
+const CACHE_NAME = 'vinnesia-blog-v1.0.0';
+const STATIC_CACHE = 'vinnesia-static-v1';
+const DYNAMIC_CACHE = 'vinnesia-dynamic-v1';
+
+// Files to cache on install
+const STATIC_FILES = [
+  '/',
+  '/favicon.ico',
+  '/apple-touch-icon.png',
+  '/logo.png',
+  '/og-image.jpg'
+];
+
+// Install event - cache static files
+self.addEventListener('install', (event) => {
+  console.log('Service Worker: Installing...');
+  
+  event.waitUntil(
+    caches.open(STATIC_CACHE)
+      .then((cache) => {
+        console.log('Service Worker: Caching static files');
+        return cache.addAll(STATIC_FILES);
+      })
+      .then(() => {
+        console.log('Service Worker: Static files cached successfully');
+        return self.skipWaiting();
+      })
+      .catch((error) => {
+        console.error('Service Worker: Failed to cache static files', error);
+      })
+  );
+});
+
+// Activate event - clean up old caches
+self.addEventListener('activate', (event) => {
+  console.log('Service Worker: Activating...');
+  
+  event.waitUntil(
+    caches.keys()
+      .then((cacheNames) => {
+        return Promise.all(
+          cacheNames
+            .filter((cacheName) => {
+              // Remove old caches that don't match current version
+              return cacheName !== STATIC_CACHE && 
+                     cacheName !== DYNAMIC_CACHE &&
+                     cacheName.startsWith('vinnesia-');
+            })
+            .map((cacheName) => {
+              console.log('Service Worker: Deleting old cache:', cacheName);
+              return caches.delete(cacheName);
+            })
+        );
+      })
+      .then(() => {
+        console.log('Service Worker: Activated successfully');
+        return self.clients.claim();
+      })
+  );
+});
+
+// Fetch event - serve from cache, fallback to network
+self.addEventListener('fetch', (event) => {
+  const { request } = event;
+  const url = new URL(request.url);
+  
+  // Skip non-GET requests
+  if (request.method !== 'GET') {
+    return;
+  }
+  
+  // Skip cross-origin requests (except for same domain)
+  if (url.origin !== location.origin) {
+    return;
+  }
+  
+  event.respondWith(
+    caches.match(request)
+      .then((cachedResponse) => {
+        // Return cached version if available
+        if (cachedResponse) {
+          console.log('Service Worker: Serving from cache:', request.url);
+          return cachedResponse;
+        }
+        
+        // Otherwise fetch from network
+        console.log('Service Worker: Fetching from network:', request.url);
+        return fetch(request)
+          .then((networkResponse) => {
+            // Don't cache if not a success response
+            if (!networkResponse || networkResponse.status !== 200 || networkResponse.type !== 'basic') {
+              return networkResponse;
+            }
+            
+            // Determine which cache to use
+            const responseClone = networkResponse.clone();
+            const cacheToUse = isStaticAsset(request.url) ? STATIC_CACHE : DYNAMIC_CACHE;
+            
+            // Cache the response
+            caches.open(cacheToUse)
+              .then((cache) => {
+                console.log('Service Worker: Caching new resource:', request.url);
+                cache.put(request, responseClone);
+              });
+            
+            return networkResponse;
+          })
+          .catch((error) => {
+            console.error('Service Worker: Network fetch failed:', error);
+            
+            // Return offline fallback for HTML pages
+            if (request.headers.get('accept').includes('text/html')) {
+              return caches.match('/')
+                .then((fallback) => {
+                  if (fallback) {
+                    return fallback;
+                  }
+                  return new Response(
+                    '<h1>Offline</h1><p>Halaman tidak tersedia saat offline. Silakan coba lagi nanti.</p>',
+                    { 
+                      headers: { 'Content-Type': 'text/html' },
+                      status: 503,
+                      statusText: 'Service Unavailable'
+                    }
+                  );
+                });
+            }
+            
+            throw error;
+          });
+      })
+  );
+});
+
+// Helper function to determine if a URL is a static asset
+function isStaticAsset(url) {
+  const staticExtensions = ['.png', '.jpg', '.jpeg', '.gif', '.svg', '.ico', '.css', '.js', '.woff', '.woff2', '.ttf'];
+  const urlPath = new URL(url).pathname.toLowerCase();
+  
+  return staticExtensions.some(ext => urlPath.endsWith(ext)) ||
+         urlPath.includes('/favicon') ||
+         urlPath.includes('/logo') ||
+         urlPath.includes('/apple-touch-icon');
+}
+
+// Background sync for offline actions (if needed)
+self.addEventListener('sync', (event) => {
+  console.log('Service Worker: Background sync triggered:', event.tag);
+  
+  if (event.tag === 'background-sync') {
+    event.waitUntil(
+      // Handle background sync tasks here
+      console.log('Service Worker: Performing background sync')
+    );
+  }
+});
+
+// Push notification handling (if needed)
+self.addEventListener('push', (event) => {
+  console.log('Service Worker: Push notification received');
+  
+  const options = {
+    body: event.data ? event.data.text() : 'Update tersedia dari Blog Vinnesia',
+    icon: '/logo.png',
+    badge: '/favicon.ico',
+    vibrate: [200, 100, 200],
+    data: {
+      url: '/'
+    },
+    actions: [
+      {
+        action: 'open',
+        title: 'Buka Blog',
+        icon: '/logo.png'
+      },
+      {
+        action: 'close',
+        title: 'Tutup',
+        icon: '/favicon.ico'
+      }
+    ]
+  };
+  
+  event.waitUntil(
+    self.registration.showNotification('Blog Vinnesia', options)
+  );
+});
+
+// Notification click handling
+self.addEventListener('notificationclick', (event) => {
+  console.log('Service Worker: Notification clicked');
+  
+  event.notification.close();
+  
+  if (event.action === 'open') {
+    event.waitUntil(
+      clients.openWindow(event.notification.data.url || '/')
+    );
+  }
+});
+
+// Error handling
+self.addEventListener('error', (event) => {
+  console.error('Service Worker: Error occurred:', event.error);
+});
+
+// Unhandled promise rejection
+self.addEventListener('unhandledrejection', (event) => {
+  console.error('Service Worker: Unhandled promise rejection:', event.reason);
+});
+
+// Message handling from main thread
+self.addEventListener('message', (event) => {
+  console.log('Service Worker: Message received:', event.data);
+  
+  if (event.data && event.data.type === 'SKIP_WAITING') {
+    self.skipWaiting();
+  }
+  
+  if (event.data && event.data.type === 'GET_VERSION') {
+    event.ports[0].postMessage({ version: CACHE_NAME });
+  }
+  
+  if (event.data && event.data.type === 'CLEAR_CACHE') {
+    event.waitUntil(
+      caches.keys().then((cacheNames) => {
+        return Promise.all(
+          cacheNames.map((cacheName) => {
+            if (cacheName.startsWith('vinnesia-')) {
+              return caches.delete(cacheName);
+            }
+          })
+        );
+      }).then(() => {
+        event.ports[0].postMessage({ success: true });
+      })
+    );
+  }
+});
+
+console.log('Service Worker: Script loaded successfully');
