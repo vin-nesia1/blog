@@ -12,233 +12,563 @@
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://blog.vinnesia.my.id/syarat">
   <link rel="canonical" href="https://blog.vinnesia.my.id/syarat">
-  <link rel="icon" href="/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="../favicon.ico" type="image/x-icon">
   <title>Syarat & Ketentuan - Blog Vinnesia</title>
   <style>
-    *,*::before,*::after{box-sizing:border-box}
-    html{font-size:16px;scroll-behavior:smooth}
-    body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen,Ubuntu,Cantarell,sans-serif;margin:0;padding:0;background:#fff;color:#1a1a1a;line-height:1.7}
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
     
-    header{background:#212529;color:#fff;padding:2rem 1rem;text-align:center}
-    .logo{display:block;width:60px;height:60px;margin:0 auto 1rem;border-radius:50%;overflow:hidden}
-    .logo img{width:100%;height:100%;object-fit:cover}
-    header h1{margin:0 0 0.5rem 0;font-size:2.5rem;font-weight:700}
-    header p{margin:0;font-size:1.1rem;color:#e9ecef}
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      line-height: 1.6;
+      color: #2c2c2c;
+      background-color: #ffffff;
+    }
     
-    nav{background:#fff;border-bottom:1px solid #dee2e6;padding:1rem 0}
-    .nav-container{max-width:1200px;margin:0 auto;padding:0 1rem}
-    .nav-list{list-style:none;margin:0;padding:0;display:flex;gap:2rem;justify-content:center;flex-wrap:wrap}
-    .nav-list a{text-decoration:none;color:#495057;font-weight:500;padding:0.5rem 1rem;border-radius:4px;transition:all 0.2s}
-    .nav-list a:hover{background:#e9ecef;color:#212529}
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
     
-    main{max-width:900px;margin:0 auto;padding:3rem 1rem}
+    /* Header */
+    header {
+      background: #1a1a1a;
+      color: #ffffff;
+      padding: 60px 0;
+      text-align: center;
+    }
     
-    .legal-section{background:#fff;border:1px solid #dee2e6;border-radius:8px;padding:2.5rem;margin-bottom:2rem;box-shadow:0 2px 8px rgba(0,0,0,0.05)}
+    .logo {
+      width: 60px;
+      height: 60px;
+      margin: 0 auto 20px;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 2px solid #ffffff;
+    }
     
-    .legal-section h2{color:#212529;font-size:1.5rem;margin:0 0 1rem 0;border-left:4px solid #0d6efd;padding-left:1rem}
-    .legal-section h3{color:#495057;font-size:1.25rem;margin:1.5rem 0 0.75rem 0}
-    .legal-section h4{color:#6c757d;font-size:1.1rem;margin:1rem 0 0.5rem 0}
+    .logo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
     
-    .legal-section p{margin:0 0 1rem 0;text-align:justify}
-    .legal-section ul,.legal-section ol{margin:0 0 1rem 1.5rem}
-    .legal-section li{margin:0.25rem 0}
+    header h1 {
+      font-size: 3rem;
+      font-weight: 300;
+      margin-bottom: 15px;
+      letter-spacing: -1px;
+    }
     
-    .highlight{background:#e3f2fd;padding:1rem;border-radius:4px;border-left:3px solid #2196f3;margin:1rem 0}
-    .warning{background:#fff3e0;padding:1rem;border-radius:4px;border-left:3px solid #ff9800;margin:1rem 0}
+    header p {
+      font-size: 1.2rem;
+      color: #cccccc;
+      font-weight: 300;
+    }
     
-    .last-updated{background:#f8f9fa;padding:1rem;border-radius:4px;font-size:0.9rem;color:#6c757d;margin-bottom:2rem}
+    /* Navigation */
+    nav {
+      background: #ffffff;
+      border-bottom: 1px solid #e5e5e5;
+      padding: 0;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
     
-    .contact-info{background:#e8f5e8;padding:1.5rem;border-radius:6px;margin-top:2rem;text-align:center}
-    .contact-info h3{color:#155724;margin:0 0 1rem 0}
-    .contact-info p{color:#155724;margin:0.5rem 0}
-    .contact-info a{color:#0d6efd;text-decoration:none;font-weight:500}
-    .contact-info a:hover{text-decoration:underline}
+    .nav-container {
+      display: flex;
+      justify-content: center;
+      padding: 0 20px;
+    }
     
-    footer{background:#f8f9fa;padding:2rem 1rem;margin-top:3rem;border-top:1px solid #dee2e6;text-align:center;color:#6c757d}
+    .nav-list {
+      display: flex;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
     
+    .nav-list a {
+      display: block;
+      padding: 20px 25px;
+      text-decoration: none;
+      color: #2c2c2c;
+      font-weight: 500;
+      transition: all 0.3s ease;
+    }
+    
+    .nav-list a:hover {
+      color: #000000;
+      background: #f8f8f8;
+    }
+    
+    /* Main Content */
+    main {
+      padding: 50px 0;
+    }
+    
+    /* Last Updated Box */
+    .last-updated {
+      background: #f8f8f8;
+      border: 1px solid #e5e5e5;
+      border-radius: 8px;
+      padding: 25px;
+      margin-bottom: 40px;
+      font-size: 0.95rem;
+      color: #666666;
+    }
+    
+    .last-updated strong {
+      color: #1a1a1a;
+    }
+    
+    /* Legal Sections */
+    .legal-section {
+      background: #ffffff;
+      border: 1px solid #e5e5e5;
+      border-radius: 8px;
+      margin-bottom: 30px;
+      overflow: hidden;
+    }
+    
+    .section-header {
+      background: #f8f8f8;
+      padding: 25px 30px;
+      border-bottom: 1px solid #e5e5e5;
+    }
+    
+    .section-header h2 {
+      font-size: 1.6rem;
+      font-weight: 600;
+      color: #1a1a1a;
+      margin: 0;
+    }
+    
+    .section-content {
+      padding: 30px;
+    }
+    
+    .section-content p {
+      margin-bottom: 20px;
+      font-size: 1rem;
+      line-height: 1.7;
+      color: #4a4a4a;
+      text-align: justify;
+    }
+    
+    .section-content h3 {
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: #1a1a1a;
+      margin: 30px 0 15px 0;
+      padding-bottom: 8px;
+      border-bottom: 2px solid #f0f0f0;
+    }
+    
+    .section-content h4 {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: #2c2c2c;
+      margin: 25px 0 12px 0;
+    }
+    
+    .section-content ul,
+    .section-content ol {
+      margin: 20px 0;
+      padding-left: 30px;
+    }
+    
+    .section-content li {
+      margin-bottom: 8px;
+      color: #4a4a4a;
+      line-height: 1.6;
+    }
+    
+    .section-content li strong {
+      color: #1a1a1a;
+    }
+    
+    /* Highlight Boxes */
+    .highlight {
+      background: #f8f8f8;
+      border-left: 4px solid #1a1a1a;
+      padding: 20px;
+      margin: 25px 0;
+      border-radius: 0 6px 6px 0;
+    }
+    
+    .highlight strong {
+      color: #1a1a1a;
+      font-weight: 600;
+    }
+    
+    .highlight p {
+      margin: 0;
+      color: #2c2c2c;
+    }
+    
+    .warning {
+      background: #fffbf0;
+      border-left: 4px solid #666666;
+      padding: 20px;
+      margin: 25px 0;
+      border-radius: 0 6px 6px 0;
+    }
+    
+    .warning strong {
+      color: #1a1a1a;
+      font-weight: 600;
+    }
+    
+    .warning p {
+      margin: 0;
+      color: #2c2c2c;
+    }
+    
+    /* Contact Info */
+    .contact-info {
+      background: #f8f8f8;
+      border: 1px solid #e5e5e5;
+      border-radius: 8px;
+      padding: 40px;
+      text-align: center;
+      margin-top: 40px;
+    }
+    
+    .contact-info h3 {
+      font-size: 1.5rem;
+      color: #1a1a1a;
+      margin: 0 0 20px 0;
+      font-weight: 600;
+    }
+    
+    .contact-info p {
+      color: #4a4a4a;
+      margin: 12px 0;
+      font-size: 1rem;
+    }
+    
+    .contact-info a {
+      color: #1a1a1a;
+      text-decoration: none;
+      font-weight: 600;
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.3s ease;
+    }
+    
+    .contact-info a:hover {
+      border-bottom-color: #1a1a1a;
+    }
+    
+    /* Links in content */
+    .section-content a {
+      color: #1a1a1a;
+      text-decoration: none;
+      font-weight: 600;
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.3s ease;
+    }
+    
+    .section-content a:hover {
+      border-bottom-color: #1a1a1a;
+    }
+    
+    /* Footer */
+    footer {
+      background: #f8f8f8;
+      padding: 40px 0;
+      text-align: center;
+      color: #666666;
+      border-top: 1px solid #e5e5e5;
+      margin-top: 50px;
+    }
+    
+    footer p {
+      margin: 10px 0;
+    }
+    
+    footer a {
+      color: #1a1a1a;
+      text-decoration: none;
+      font-weight: 500;
+    }
+    
+    footer a:hover {
+      text-decoration: underline;
+    }
+    
+    /* Two Column Layout for larger screens */
+    @media (min-width: 1200px) {
+      .two-column {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 40px;
+        align-items: start;
+      }
+    }
+    
+    /* Responsive Design */
     @media (max-width: 768px) {
-      header h1{font-size:2rem}
-      main{padding:2rem 1rem}
-      .legal-section{padding:1.5rem}
-      .nav-list{gap:1rem;justify-content:flex-start}
+      header h1 {
+        font-size: 2.5rem;
+      }
+      
+      .container {
+        padding: 0 15px;
+      }
+      
+      .section-content,
+      .section-header {
+        padding: 20px;
+      }
+      
+      .last-updated,
+      .contact-info {
+        padding: 20px;
+      }
+      
+      .nav-list {
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+      
+      .nav-list a {
+        padding: 15px 20px;
+      }
+      
+      main {
+        padding: 30px 0;
+      }
     }
   </style>
 </head>
 <body>
   <header>
-    <div class="logo">
-      <img src="/logo.png" alt="Logo Blog Vinnesia" width="60" height="60">
+    <div class="container">
+      <div class="logo">
+        <img src="../logo.png" alt="Logo Blog Vinnesia" width="60" height="60">
+      </div>
+      <h1>Syarat & Ketentuan</h1>
+      <p>Terms of Service - Blog Vinnesia</p>
     </div>
-    <h1>Syarat & Ketentuan</h1>
-    <p>Terms of Service - Blog Vinnesia</p>
   </header>
   
   <nav>
     <div class="nav-container">
       <ul class="nav-list">
-        <li><a href="/">Beranda</a></li>
-        <li><a href="/seo">SEO</a></li>
-        <li><a href="/tutorial">Tutorial</a></li>
-        <li><a href="/tentang">Tentang</a></li>
-        <li><a href="/kontak">Kontak</a></li>
-        <li><a href="/tools">Tools</a></li>
+        <li><a href="../">Beranda</a></li>
+        <li><a href="../seo">SEO</a></li>
+        <li><a href="../tutorial">Tutorial</a></li>
+        <li><a href="../tentang">Tentang</a></li>
+        <li><a href="../kontak">Kontak</a></li>
+        <li><a href="../tools">Tools</a></li>
       </ul>
     </div>
   </nav>
   
   <main>
-    <div class="last-updated">
-      <strong>Terakhir diperbarui:</strong> 18 Agustus 2025<br>
-      <strong>Berlaku efektif:</strong> 18 Agustus 2025
-    </div>
-    
-    <section class="legal-section">
-      <h2>1. Penerimaan Ketentuan</h2>
-      <p>Dengan mengakses dan menggunakan Blog Vinnesia (blog.vinnesia.my.id), Anda menyetujui untuk terikat oleh syarat dan ketentuan yang ditetapkan dalam dokumen ini. Jika Anda tidak menyetujui ketentuan ini, mohon untuk tidak menggunakan layanan kami.</p>
-      
-      <div class="highlight">
-        <strong>Penting:</strong> Syarat dan ketentuan ini dapat berubah sewaktu-waktu. Perubahan akan berlaku efektif setelah dipublikasikan di halaman ini.
-      </div>
-    </section>
-    
-    <section class="legal-section">
-      <h2>2. Definisi Layanan</h2>
-      <p>Blog Vinnesia adalah platform digital yang menyediakan:</p>
-      <ul>
-        <li>Artikel dan tutorial teknologi web</li>
-        <li>Panduan SEO dan digital marketing</li>
-        <li>Tools dan generator online</li>
-        <li>Tips dan trik development</li>
-        <li>Konten edukasi teknologi terkini</li>
-      </ul>
-      
-      <h3>2.1 Cakupan Layanan</h3>
-      <p>Layanan kami mencakup namun tidak terbatas pada konten tertulis, gambar, tools interaktif, dan fitur-fitur pendukung lainnya yang tersedia di platform ini.</p>
-    </section>
-    
-    <section class="legal-section">
-      <h2>3. Hak dan Kewajiban Pengguna</h2>
-      
-      <h3>3.1 Hak Pengguna</h3>
-      <ul>
-        <li>Mengakses semua konten publik secara gratis</li>
-        <li>Menggunakan tools dan generator yang tersedia</li>
-        <li>Memberikan komentar dan feedback</li>
-        <li>Berbagi konten dengan memberikan kredit yang sesuai</li>
-        <li>Mendapat informasi update terbaru</li>
-      </ul>
-      
-      <h3>3.2 Kewajiban Pengguna</h3>
-      <ul>
-        <li>Menggunakan layanan sesuai dengan tujuan yang sah dan legal</li>
-        <li>Tidak melakukan aktivitas yang dapat merusak sistem</li>
-        <li>Menghormati hak kekayaan intelektual</li>
-        <li>Tidak menyebarkan konten yang melanggar hukum</li>
-        <li>Menjaga kerahasiaan informasi akun (jika ada)</li>
-      </ul>
-    </section>
-    
-    <section class="legal-section">
-      <h2>4. Hak Kekayaan Intelektual</h2>
-      
-      <h3>4.1 Konten Original</h3>
-      <p>Semua konten original yang dipublikasikan di Blog Vinnesia, termasuk artikel, tutorial, gambar, dan tools, adalah milik Vinnesia atau kontributor yang bersangkutan dan dilindungi oleh hak cipta.</p>
-      
-      <h3>4.2 Penggunaan Konten</h3>
-      <p>Pengguna diperbolehkan:</p>
-      <ul>
-        <li>Membaca dan mempelajari konten untuk keperluan pribadi</li>
-        <li>Membagikan link artikel ke media sosial atau platform lain</li>
-        <li>Mengutip sebagian konten dengan memberikan credit dan backlink</li>
-      </ul>
-      
-      <div class="warning">
-        <strong>Dilarang:</strong> Menyalin seluruh konten tanpa izin, mengklaim sebagai karya sendiri, atau menggunakan untuk tujuan komersial tanpa persetujuan tertulis.
+    <div class="container">
+      <div class="last-updated">
+        <strong>Terakhir diperbarui:</strong> 18 Agustus 2025<br>
+        <strong>Berlaku efektif:</strong> 18 Agustus 2025
       </div>
       
-      <h3>4.3 Konten User-Generated</h3>
-      <p>Dengan mengirimkan komentar, feedback, atau konten lainnya, Anda memberikan kami hak untuk menggunakan, memodifikasi, dan menampilkan konten tersebut di platform kami.</p>
-    </section>
-    
-    <section class="legal-section">
-      <h2>5. Disclaimer dan Batasan Tanggung Jawab</h2>
+      <section class="legal-section">
+        <div class="section-header">
+          <h2>1. Penerimaan Ketentuan</h2>
+        </div>
+        <div class="section-content">
+          <p>Dengan mengakses dan menggunakan Blog Vinnesia (blog.vinnesia.my.id), Anda menyetujui untuk terikat oleh syarat dan ketentuan yang ditetapkan dalam dokumen ini. Jika Anda tidak menyetujui ketentuan ini, mohon untuk tidak menggunakan layanan kami.</p>
+          
+          <div class="highlight">
+            <strong>Penting:</strong> Syarat dan ketentuan ini dapat berubah sewaktu-waktu. Perubahan akan berlaku efektif setelah dipublikasikan di halaman ini.
+          </div>
+        </div>
+      </section>
       
-      <h3>5.1 Keakuratan Informasi</h3>
-      <p>Kami berusaha menyediakan informasi yang akurat dan terkini, namun tidak dapat menjamin 100% keakuratan semua konten. Pengguna bertanggung jawab untuk memverifikasi informasi sebelum mengimplementasikan.</p>
+      <section class="legal-section">
+        <div class="section-header">
+          <h2>2. Definisi Layanan</h2>
+        </div>
+        <div class="section-content">
+          <p>Blog Vinnesia adalah platform digital yang menyediakan:</p>
+          <ul>
+            <li>Artikel dan tutorial teknologi web</li>
+            <li>Panduan SEO dan digital marketing</li>
+            <li>Tools dan generator online</li>
+            <li>Tips dan trik development</li>
+            <li>Konten edukasi teknologi terkini</li>
+          </ul>
+          
+          <h3>2.1 Cakupan Layanan</h3>
+          <p>Layanan kami mencakup namun tidak terbatas pada konten tertulis, gambar, tools interaktif, dan fitur-fitur pendukung lainnya yang tersedia di platform ini.</p>
+        </div>
+      </section>
       
-      <h3>5.2 Batasan Tanggung Jawab</h3>
-      <p>Blog Vinnesia tidak bertanggung jawab atas:</p>
-      <ul>
-        <li>Kerugian langsung atau tidak langsung dari penggunaan konten</li>
-        <li>Kerusakan sistem akibat implementasi tutorial</li>
-        <li>Kehilangan data atau profit bisnis</li>
-        <li>Gangguan layanan atau downtime</li>
-      </ul>
+      <section class="legal-section">
+        <div class="section-header">
+          <h2>3. Hak dan Kewajiban Pengguna</h2>
+        </div>
+        <div class="section-content">
+          <div class="two-column">
+            <div>
+              <h3>3.1 Hak Pengguna</h3>
+              <ul>
+                <li>Mengakses semua konten publik secara gratis</li>
+                <li>Menggunakan tools dan generator yang tersedia</li>
+                <li>Memberikan komentar dan feedback</li>
+                <li>Berbagi konten dengan memberikan kredit yang sesuai</li>
+                <li>Mendapat informasi update terbaru</li>
+              </ul>
+            </div>
+            
+            <div>
+              <h3>3.2 Kewajiban Pengguna</h3>
+              <ul>
+                <li>Menggunakan layanan sesuai dengan tujuan yang sah dan legal</li>
+                <li>Tidak melakukan aktivitas yang dapat merusak sistem</li>
+                <li>Menghormati hak kekayaan intelektual</li>
+                <li>Tidak menyebarkan konten yang melanggar hukum</li>
+                <li>Menjaga kerahasiaan informasi akun (jika ada)</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
       
-      <div class="warning">
-        <strong>Peringatan:</strong> Selalu backup data dan lakukan testing di environment development sebelum menerapkan tutorial di production.
+      <section class="legal-section">
+        <div class="section-header">
+          <h2>4. Hak Kekayaan Intelektual</h2>
+        </div>
+        <div class="section-content">
+          <h3>4.1 Konten Original</h3>
+          <p>Semua konten original yang dipublikasikan di Blog Vinnesia, termasuk artikel, tutorial, gambar, dan tools, adalah milik Vinnesia atau kontributor yang bersangkutan dan dilindungi oleh hak cipta.</p>
+          
+          <h3>4.2 Penggunaan Konten</h3>
+          <p>Pengguna diperbolehkan:</p>
+          <ul>
+            <li>Membaca dan mempelajari konten untuk keperluan pribadi</li>
+            <li>Membagikan link artikel ke media sosial atau platform lain</li>
+            <li>Mengutip sebagian konten dengan memberikan credit dan backlink</li>
+          </ul>
+          
+          <div class="warning">
+            <strong>Dilarang:</strong> Menyalin seluruh konten tanpa izin, mengklaim sebagai karya sendiri, atau menggunakan untuk tujuan komersial tanpa persetujuan tertulis.
+          </div>
+          
+          <h3>4.3 Konten User-Generated</h3>
+          <p>Dengan mengirimkan komentar, feedback, atau konten lainnya, Anda memberikan kami hak untuk menggunakan, memodifikasi, dan menampilkan konten tersebut di platform kami.</p>
+        </div>
+      </section>
+      
+      <section class="legal-section">
+        <div class="section-header">
+          <h2>5. Disclaimer dan Batasan Tanggung Jawab</h2>
+        </div>
+        <div class="section-content">
+          <h3>5.1 Keakuratan Informasi</h3>
+          <p>Kami berusaha menyediakan informasi yang akurat dan terkini, namun tidak dapat menjamin 100% keakuratan semua konten. Pengguna bertanggung jawab untuk memverifikasi informasi sebelum mengimplementasikan.</p>
+          
+          <h3>5.2 Batasan Tanggung Jawab</h3>
+          <p>Blog Vinnesia tidak bertanggung jawab atas:</p>
+          <ul>
+            <li>Kerugian langsung atau tidak langsung dari penggunaan konten</li>
+            <li>Kerusakan sistem akibat implementasi tutorial</li>
+            <li>Kehilangan data atau profit bisnis</li>
+            <li>Gangguan layanan atau downtime</li>
+          </ul>
+          
+          <div class="warning">
+            <strong>Peringatan:</strong> Selalu backup data dan lakukan testing di environment development sebelum menerapkan tutorial di production.
+          </div>
+        </div>
+      </section>
+      
+      <section class="legal-section">
+        <div class="section-header">
+          <h2>6. Kebijakan Advertising & Monetisasi</h2>
+        </div>
+        <div class="section-content">
+          <h3>6.1 Program Iklan</h3>
+          <p>Blog Vinnesia menggunakan program advertising dari pihak ketiga seperti Google AdSense dan ad networks lainnya untuk mendukung operasional situs.</p>
+          
+          <h3>6.2 Konten Sponsored</h3>
+          <p>Konten yang disponsori atau berbayar akan selalu diberi label yang jelas dan transparan sesuai dengan regulasi yang berlaku.</p>
+          
+          <h3>6.3 Affiliate Marketing</h3>
+          <p>Beberapa link produk atau layanan mungkin merupakan affiliate link. Hal ini tidak mempengaruhi objektivitas review atau rekomendasi kami.</p>
+        </div>
+      </section>
+      
+      <section class="legal-section">
+        <div class="section-header">
+          <h2>7. Privasi dan Data</h2>
+        </div>
+        <div class="section-content">
+          <p>Pengumpulan, penggunaan, dan perlindungan data pengguna diatur dalam <a href="../privasi">Kebijakan Privasi</a> kami yang terpisah dan merupakan bagian integral dari syarat dan ketentuan ini.</p>
+          
+          <h3>7.1 Cookies</h3>
+          <p>Situs ini menggunakan cookies untuk meningkatkan pengalaman pengguna, analytics, dan keperluan advertising sesuai dengan kebijakan privasi.</p>
+        </div>
+      </section>
+      
+      <section class="legal-section">
+        <div class="section-header">
+          <h2>8. Penangguhan dan Penghentian</h2>
+        </div>
+        <div class="section-content">
+          <h3>8.1 Penangguhan Akses</h3>
+          <p>Kami berhak menangguhkan atau membatasi akses pengguna yang melanggar ketentuan ini tanpa pemberitahuan sebelumnya.</p>
+          
+          <h3>8.2 Penghentian Layanan</h3>
+          <p>Kami berhak menghentikan atau memodifikasi layanan kapan saja dengan memberikan pemberitahuan yang wajar kepada pengguna.</p>
+        </div>
+      </section>
+      
+      <section class="legal-section">
+        <div class="section-header">
+          <h2>9. Hukum yang Berlaku</h2>
+        </div>
+        <div class="section-content">
+          <p>Syarat dan ketentuan ini tunduk pada hukum Republik Indonesia. Setiap sengketa yang timbul akan diselesaikan melalui mediasi atau melalui pengadilan yang berwenang di Indonesia.</p>
+        </div>
+      </section>
+      
+      <section class="legal-section">
+        <div class="section-header">
+          <h2>10. Perubahan Ketentuan</h2>
+        </div>
+        <div class="section-content">
+          <p>Kami berhak mengubah syarat dan ketentuan ini sewaktu-waktu. Perubahan material akan dikomunikasikan melalui:</p>
+          <ul>
+            <li>Pemberitahuan di halaman utama situs</li>
+            <li>Email notification (jika tersedia)</li>
+            <li>Update di halaman ini dengan tanggal revisi terbaru</li>
+          </ul>
+          
+          <p>Penggunaan berkelanjutan setelah perubahan dianggap sebagai persetujuan terhadap ketentuan yang baru.</p>
+        </div>
+      </section>
+      
+      <div class="contact-info">
+        <h3>Ada Pertanyaan?</h3>
+        <p>Jika Anda memiliki pertanyaan terkait syarat dan ketentuan ini, silakan hubungi kami:</p>
+        <p><strong>Email:</strong> <a href="mailto:admin@vinnesia.my.id">admin@vinnesia.my.id</a></p>
+        <p><strong>Website:</strong> <a href="https://www.vinnesia.my.id" target="_blank">www.vinnesia.my.id</a></p>
       </div>
-    </section>
-    
-    <section class="legal-section">
-      <h2>6. Kebijakan Advertising & Monetisasi</h2>
-      
-      <h3>6.1 Program Iklan</h3>
-      <p>Blog Vinnesia menggunakan program advertising dari pihak ketiga seperti Google AdSense dan ad networks lainnya untuk mendukung operasional situs.</p>
-      
-      <h3>6.2 Konten Sponsored</h3>
-      <p>Konten yang disponsori atau berbayar akan selalu diberi label yang jelas dan transparan sesuai dengan regulasi yang berlaku.</p>
-      
-      <h3>6.3 Affiliate Marketing</h3>
-      <p>Beberapa link produk atau layanan mungkin merupakan affiliate link. Hal ini tidak mempengaruhi objektivitas review atau rekomendasi kami.</p>
-    </section>
-    
-    <section class="legal-section">
-      <h2>7. Privasi dan Data</h2>
-      <p>Pengumpulan, penggunaan, dan perlindungan data pengguna diatur dalam <a href="/privasi" style="color:#0d6efd">Kebijakan Privasi</a> kami yang terpisah dan merupakan bagian integral dari syarat dan ketentuan ini.</p>
-      
-      <h3>7.1 Cookies</h3>
-      <p>Situs ini menggunakan cookies untuk meningkatkan pengalaman pengguna, analytics, dan keperluan advertising sesuai dengan kebijakan privasi.</p>
-    </section>
-    
-    <section class="legal-section">
-      <h2>8. Penangguhan dan Penghentian</h2>
-      
-      <h3>8.1 Penangguhan Akses</h3>
-      <p>Kami berhak menangguhkan atau membatasi akses pengguna yang melanggar ketentuan ini tanpa pemberitahuan sebelumnya.</p>
-      
-      <h3>8.2 Penghentian Layanan</h3>
-      <p>Kami berhak menghentikan atau memodifikasi layanan kapan saja dengan memberikan pemberitahuan yang wajar kepada pengguna.</p>
-    </section>
-    
-    <section class="legal-section">
-      <h2>9. Hukum yang Berlaku</h2>
-      <p>Syarat dan ketentuan ini tunduk pada hukum Republik Indonesia. Setiap sengketa yang timbul akan diselesaikan melalui mediasi atau melalui pengadilan yang berwenang di Indonesia.</p>
-    </section>
-    
-    <section class="legal-section">
-      <h2>10. Perubahan Ketentuan</h2>
-      <p>Kami berhak mengubah syarat dan ketentuan ini sewaktu-waktu. Perubahan material akan dikomunikasikan melalui:</p>
-      <ul>
-        <li>Pemberitahuan di halaman utama situs</li>
-        <li>Email notification (jika tersedia)</li>
-        <li>Update di halaman ini dengan tanggal revisi terbaru</li>
-      </ul>
-      
-      <p>Penggunaan berkelanjutan setelah perubahan dianggap sebagai persetujuan terhadap ketentuan yang baru.</p>
-    </section>
-    
-    <div class="contact-info">
-      <h3>📞 Ada Pertanyaan?</h3>
-      <p>Jika Anda memiliki pertanyaan terkait syarat dan ketentuan ini, silakan hubungi kami:</p>
-      <p><strong>Email:</strong> <a href="mailto:admin@vinnesia.my.id">admin@vinnesia.my.id</a></p>
-      <p><strong>Website:</strong> <a href="https://www.vinnesia.my.id" target="_blank">www.vinnesia.my.id</a></p>
     </div>
   </main>
   
   <footer>
-    <p>&copy; 2025 Blog Vinnesia. All rights reserved.</p>
-    <p><a href="/privasi" style="color:#0d6efd">Kebijakan Privasi</a> | <a href="/kontak" style="color:#0d6efd">Hubungi Kami</a></p>
+    <div class="container">
+      <p>&copy; 2025 Blog Vinnesia. All rights reserved.</p>
+      <p><a href="../privasi">Kebijakan Privasi</a> | <a href="../kontak">Hubungi Kami</a></p>
+    </div>
   </footer>
 </body>
 </html>
