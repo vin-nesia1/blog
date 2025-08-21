@@ -826,119 +826,353 @@
 
   <!-- JavaScript -->
   <script>
-    // Pagination functionality
-    class BlogPagination {
-      constructor() {
-        this.articlesPerPage = 10;
-        this.currentPage = 1;
-        this.articles = document.querySelectorAll('.post');
-        this.totalArticles = this.articles.length;
-        this.totalPages = Math.ceil(this.totalArticles / this.articlesPerPage);
-        
-        this.init();
+    // URL state management functions
+function updateURL(page) {
+  const url = new URL(window.location);
+  if (page === 1) {
+    url.searchParams.delete('page');
+  } else {
+    url.searchParams.set('page', page);
+  }
+  window.history.replaceState({}, '', url);
+}
+
+function getPageFromURL() {
+  const urlParams = new URLSearchParams(window.location.search);
+  const page = parseInt(urlParams.get('page')) || 1;
+  return Math.max(1, page);
+}
+
+// Pagination functionality
+class BlogPagination {
+  constructor() {
+    this.articlesPerPage = 10;
+    this.currentPage = 1;
+    this.articles = document.querySelectorAll('.post');
+    this.totalArticles = this.articles.length;
+    this.totalPages = Math.ceil(this.totalArticles / this.articlesPerPage);
+    
+    // Store reference globally for popstate handler
+    window.blogPagination = this;
+    
+    this.init();
+  }
+  
+  init() {
+    this.updatePaginationInfo();
+    this.updatePaginationControls();
+    this.showPage(1);
+    this.bindEvents();
+  }
+  
+  showPage(page) {
+    // Validate page number
+    page = Math.max(1, Math.min(page, this.totalPages));
+    
+    // Hide all articles first
+    this.articles.forEach(article => {
+      article.classList.add('hidden');
+    });
+    
+    // Calculate start and end indices
+    const startIndex = (page - 1) * this.articlesPerPage;
+    const endIndex = Math.min(startIndex + this.articlesPerPage, this.totalArticles);
+    
+    // Show articles for current page
+    for (let i = startIndex; i < endIndex; i++) {
+      if (this.articles[i]) {
+        this.articles[i].classList.remove('hidden');
       }
+    }
+    
+    this.currentPage = page;
+    this.updatePaginationInfo();
+    this.updatePaginationControls();
+    
+    // Scroll to top of articles section smoothly
+    const articlesSection = document.querySelector('.articles');
+    if (articlesSection) {
+      articlesSection.scrollIntoView({ 
+        behavior: 'smooth',
+        block: 'start' 
+      });
+    }
+    
+    // Track pagination event
+    this.trackPaginationEvent(page);
+  }
+  
+  updatePaginationInfo() {
+    const startItem = (this.currentPage - 1) * this.articlesPerPage + 1;
+    const endItem = Math.min(this.currentPage * this.articlesPerPage, this.totalArticles);
+    
+    const startEl = document.getElementById('showing-start');
+    const endEl = document.getElementById('showing-end');
+    const totalEl = document.getElementById('total-articles');
+    
+    if (startEl) startEl.textContent = startItem;
+    if (endEl) endEl.textContent = endItem;
+    if (totalEl) totalEl.textContent = this.totalArticles;
+  }
+  
+  updatePaginationControls() {
+    // Update prev/next buttons
+    const prevBtn = document.getElementById('prev-btn');
+    const nextBtn = document.getElementById('next-btn');
+    
+    if (prevBtn) {
+      prevBtn.classList.toggle('disabled', this.currentPage === 1);
+    }
+    if (nextBtn) {
+      nextBtn.classList.toggle('disabled', this.currentPage === this.totalPages);
+    }
+    
+    // Generate page numbers dynamically
+    this.generatePageNumbers();
+  }
+  
+  generatePageNumbers() {
+    const pagination = document.querySelector('.pagination');
+    const prevBtn = document.getElementById('prev-btn');
+    const nextBtn = document.getElementById('next-btn');
+    
+    if (!pagination || !nextBtn) return;
+    
+    // Remove existing page numbers and ellipsis
+    const existingElements = pagination.querySelectorAll('.page-num, .pagination-ellipsis');
+    existingElements.forEach(el => el.remove());
+    
+    // Calculate which pages to show
+    let startPage, endPage;
+    const maxVisiblePages = 3;
+    
+    if (this.totalPages <= maxVisiblePages) {
+      startPage = 1;
+      endPage = this.totalPages;
+    } else {
+      const halfVisible = Math.floor(maxVisiblePages / 2);
+      startPage = Math.max(1, this.currentPage - halfVisible);
+      endPage = Math.min(this.totalPages, this.currentPage + halfVisible);
       
-      init() {
-        this.updatePaginationInfo();
-        this.updatePaginationControls();
-        this.showPage(1);
-        this.bindEvents();
-      }
-      
-      showPage(page) {
-        // Hide all articles first
-        this.articles.forEach(article => {
-          article.classList.add('hidden');
-        });
-        
-        // Calculate start and end indices
-        const startIndex = (page - 1) * this.articlesPerPage;
-        const endIndex = Math.min(startIndex + this.articlesPerPage, this.totalArticles);
-        
-        // Show articles for current page
-        for (let i = startIndex; i < endIndex; i++) {
-          if (this.articles[i]) {
-            this.articles[i].classList.remove('hidden');
-          }
+      // Adjust if we're near the beginning or end
+      if (endPage - startPage < maxVisiblePages - 1) {
+        if (startPage === 1) {
+          endPage = Math.min(this.totalPages, startPage + maxVisiblePages - 1);
+        } else if (endPage === this.totalPages) {
+          startPage = Math.max(1, endPage - maxVisiblePages + 1);
         }
-        
-        this.currentPage = page;
-        this.updatePaginationInfo();
-        this.updatePaginationControls();
-        
-        // Scroll to top of articles section
-        document.querySelector('.articles').scrollIntoView({ 
-          behavior: 'smooth',
-          block: 'start' 
-        });
+      }
+    }
+    
+    // Add first page and ellipsis if needed
+    if (startPage > 1) {
+      this.createPageButton(1, pagination, nextBtn);
+      
+      if (startPage > 2) {
+        this.createEllipsis(pagination, nextBtn);
+      }
+    }
+    
+    // Add page numbers
+    for (let i = startPage; i <= endPage; i++) {
+      this.createPageButton(i, pagination, nextBtn);
+    }
+    
+    // Add ellipsis and last page if needed
+    if (endPage < this.totalPages) {
+      if (endPage < this.totalPages - 1) {
+        this.createEllipsis(pagination, nextBtn);
       }
       
-      updatePaginationInfo() {
-        const startItem = (this.currentPage - 1) * this.articlesPerPage + 1;
-        const endItem = Math.min(this.currentPage * this.articlesPerPage, this.totalArticles);
-        
-        document.getElementById('showing-start').textContent = startItem;
-        document.getElementById('showing-end').textContent = endItem;
-        document.getElementById('total-articles').textContent = this.totalArticles;
-      }
+      this.createPageButton(this.totalPages, pagination, nextBtn);
+    }
+  }
+  
+  createPageButton(pageNum, pagination, nextBtn) {
+    const pageBtn = document.createElement('a');
+    pageBtn.href = '#';
+    pageBtn.className = `page-num ${pageNum === this.currentPage ? 'current' : ''}`;
+    pageBtn.dataset.page = pageNum;
+    pageBtn.textContent = pageNum;
+    pageBtn.setAttribute('aria-label', `Halaman ${pageNum}`);
+    pageBtn.setAttribute('role', 'button');
+    
+    if (pageNum === this.currentPage) {
+      pageBtn.setAttribute('aria-current', 'page');
+    }
+    
+    pagination.insertBefore(pageBtn, nextBtn);
+  }
+  
+  createEllipsis(pagination, nextBtn) {
+    const ellipsis = document.createElement('span');
+    ellipsis.textContent = '...';
+    ellipsis.className = 'pagination-ellipsis';
+    ellipsis.setAttribute('aria-hidden', 'true');
+    pagination.insertBefore(ellipsis, nextBtn);
+  }
+  
+  bindEvents() {
+    const pagination = document.querySelector('.pagination');
+    if (!pagination) return;
+    
+    // Click events
+    pagination.addEventListener('click', (e) => {
+      e.preventDefault();
       
-      updatePaginationControls() {
-        // Update page numbers
-        const pageNumbers = document.querySelectorAll('.page-num');
-        pageNumbers.forEach(btn => {
-          const page = parseInt(btn.dataset.page);
-          btn.classList.toggle('current', page === this.currentPage);
-        });
-        
-        // Update prev/next buttons
-        const prevBtn = document.getElementById('prev-btn');
-        const nextBtn = document.getElementById('next-btn');
-        
-        prevBtn.classList.toggle('disabled', this.currentPage === 1);
-        nextBtn.classList.toggle('disabled', this.currentPage === this.totalPages);
-        
-        // Generate page numbers dynamically if needed
-        this.generatePageNumbers();
-      }
-      
-      generatePageNumbers() {
-        const pagination = document.querySelector('.pagination');
-        const prevBtn = document.getElementById('prev-btn');
-        const nextBtn = document.getElementById('next-btn');
-        
-        // Remove existing page numbers
-        const existingPageNums = document.querySelectorAll('.page-num');
-        existingPageNums.forEach(btn => btn.remove());
-        
-        // Generate new page numbers
-        const startPage = Math.max(1, this.currentPage - 1);
-        const endPage = Math.min(this.totalPages, this.currentPage + 1);
-        
-        for (let i = startPage; i <= endPage; i++) {
-          const pageBtn = document.createElement('a');
-          pageBtn.href = '#';
-          pageBtn.className = `page-num ${i === this.currentPage ? 'current' : ''}`;
-          pageBtn.dataset.page = i;
-          pageBtn.textContent = i;
-          pageBtn.setAttribute('aria-label', `Halaman ${i}`);
-          
-          // Insert before next button
-          pagination.insertBefore(pageBtn, nextBtn);
+      if (e.target.classList.contains('page-num')) {
+        const page = parseInt(e.target.dataset.page);
+        if (!isNaN(page)) {
+          this.showPage(page);
+          updateURL(page);
         }
-        
-        // Add first page and ellipsis if needed
-        if (startPage > 1) {
-          const firstPageBtn = document.createElement('a');
-          firstPageBtn.href = '#';
-          firstPageBtn.className = 'page-num';
-          firstPageBtn.dataset.page = 1;
-          firstPageBtn.textContent = '1';
-          firstPageBtn.setAttribute('aria-label', 'Halaman 1');
-          pagination.insertBefore(firstPageBtn, pagination.querySelector('.page-num'));
-          
-          if (startPage > 2) {
-            const ellipsis = document.createElement('span');
-            ellipsis.textContent = '...';
-            ellipsis.className = 'pagination-ellipsis';
-            pagination.insertBefore(ellipsis, pagination.querySelector('.page-num:nth-child(3)'));
-          }
+      } else if (e.target.id === 'prev-btn' && !e.target.classList.contains('disabled')) {
+        this.showPage(this.currentPage - 1);
+        updateURL(this.currentPage);
+      } else if (e.target.id === 'next-btn' && !e.target.classList.contains('disabled')) {
+        this.showPage(this.currentPage + 1);
+        updateURL(this.currentPage);
+      }
+    });
+    
+    // Keyboard navigation
+    pagination.addEventListener('keydown', (e) => {
+      if (e.target.closest('.pagination')) {
+        if (e.key === 'ArrowLeft' && this.currentPage > 1) {
+          e.preventDefault();
+          this.showPage(this.currentPage - 1);
+          updateURL(this.currentPage);
+        } else if (e.key === 'ArrowRight' && this.currentPage < this.totalPages) {
+          e.preventDefault();
+          this.showPage(this.currentPage + 1);
+          updateURL(this.currentPage);
+        }
+      }
+    });
+  }
+  
+  // Initialize with page from URL
+  initFromURL() {
+    const pageFromURL = getPageFromURL();
+    if (pageFromURL > 1 && pageFromURL <= this.totalPages) {
+      this.showPage(pageFromURL);
+    }
+  }
+  
+  // Analytics tracking for pagination
+  trackPaginationEvent(page) {
+    // Google Analytics 4 example
+    if (typeof gtag !== 'undefined') {
+      gtag('event', 'page_view', {
+        page_title: `Blog Vinnesia - Halaman ${page}`,
+        page_location: window.location.href,
+        custom_parameters: {
+          pagination_page: page,
+          total_pages: this.totalPages
+        }
+      });
+    }
+    
+    // Console log for debugging
+    console.log(`Pagination: Halaman ${page} dari ${this.totalPages} dilihat`);
+  }
+}
+
+// Search functionality
+function initializeSearch() {
+  const searchForm = document.querySelector('.search-form');
+  if (searchForm) {
+    searchForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+      const query = document.getElementById('search-input').value.trim();
+      if (query) {
+        window.location.href = `/search?q=${encodeURIComponent(query)}`;
+      }
+    });
+  }
+}
+
+// Lazy loading for images
+function initializeLazyLoading() {
+  const images = document.querySelectorAll('img[loading="lazy"]');
+  if (images.length > 0) {
+    const imageObserver = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const img = entry.target;
+          img.classList.add('loaded');
+          observer.unobserve(img);
+        }
+      });
+    }, {
+      rootMargin: '50px 0px',
+      threshold: 0.01
+    });
+    
+    images.forEach(img => imageObserver.observe(img));
+  }
+}
+
+// Service Worker registration
+function registerServiceWorker() {
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', function() {
+      navigator.serviceWorker.register('/sw.js')
+        .then(function(registration) {
+          console.log('Service Worker registered successfully:', registration);
+        })
+        .catch(function(registrationError) {
+          console.log('Service Worker registration failed:', registrationError);
+        });
+    });
+  }
+}
+
+// Handle browser back/forward buttons
+function initializePopstateHandler() {
+  window.addEventListener('popstate', function(event) {
+    const pageFromURL = getPageFromURL();
+    const pagination = window.blogPagination;
+    if (pagination && pageFromURL !== pagination.currentPage) {
+      pagination.showPage(pageFromURL);
+    }
+  });
+}
+
+// Performance optimization functions
+function preloadNextPageContent() {
+  const pagination = window.blogPagination;
+  if (!pagination) return;
+  
+  const nextPage = pagination.currentPage + 1;
+  if (nextPage <= pagination.totalPages) {
+    // Create invisible link for prefetching
+    const prefetchLink = document.createElement('link');
+    prefetchLink.rel = 'prefetch';
+    prefetchLink.href = `?page=${nextPage}`;
+    document.head.appendChild(prefetchLink);
+    
+    console.log(`Prefetching content for page ${nextPage}`);
+  }
+}
+
+// Initialize everything when DOM is loaded
+document.addEventListener('DOMContentLoaded', function() {
+  // Initialize pagination
+  const pagination = new BlogPagination();
+  pagination.initFromURL();
+  
+  // Initialize other features
+  initializeSearch();
+  initializeLazyLoading();
+  initializePopstateHandler();
+  
+  // Preload next page after a short delay
+  setTimeout(preloadNextPageContent, 2000);
+});
+
+// Register service worker
+registerServiceWorker();
+    </script>
+  </body>
+</html>
