@@ -63,6 +63,18 @@
     .read-more{color:#0d6efd;text-decoration:none;font-weight:500;display:inline-flex;align-items:center;gap:0.5rem}
     .read-more:hover,.read-more:focus{text-decoration:underline}
     
+    /* Pagination */
+    .pagination{display:flex;justify-content:center;align-items:center;gap:0.5rem;margin:2rem 0;flex-wrap:wrap}
+    .pagination a,.pagination span{display:flex;align-items:center;justify-content:center;min-width:40px;height:40px;padding:0.5rem;text-decoration:none;color:#495057;border:1px solid #dee2e6;border-radius:6px;transition:all 0.2s;font-size:0.9rem;font-weight:500}
+    .pagination a:hover,.pagination a:focus{background:#e9ecef;color:#212529;border-color:#adb5bd}
+    .pagination .current{background:#0d6efd;color:#fff;border-color:#0d6efd}
+    .pagination .disabled{color:#adb5bd;cursor:not-allowed;background:#f8f9fa}
+    .pagination .disabled:hover{background:#f8f9fa;color:#adb5bd}
+    .pagination .prev,.pagination .next{padding:0.5rem 1rem;font-weight:600}
+    .pagination .prev:before{content:'‹';margin-right:0.5rem}
+    .pagination .next:after{content:'›';margin-left:0.5rem}
+    .pagination-info{text-align:center;color:#6c757d;font-size:0.9rem;margin-bottom:1rem}
+    
     /* Sidebar */
     .sidebar{display:flex;flex-direction:column;gap:2rem}
     .widget{background:#fff;border:1px solid #dee2e6;border-radius:8px;padding:1.5rem}
@@ -107,16 +119,22 @@
       .search-input,.search-btn{border-radius:4px}
       .footer-content{grid-template-columns:1fr}
       .footer-section{text-align:center}
+      .pagination{gap:0.25rem}
+      .pagination a,.pagination span{min-width:35px;height:35px;font-size:0.85rem}
+      .pagination .prev,.pagination .next{padding:0.375rem 0.75rem}
     }
     
+    /* Hidden articles - controlled by JavaScript */
+    .post.hidden{display:none}
+    
     /* Lazy loading */
-    img[max-width:100%;height:auto}
+    img{max-width:100%;height:auto}
     .lazy{opacity:0;transition:opacity 0.3s}
     .lazy.loaded{opacity:1}
     
     /* Print styles */
     @media print{
-      nav,footer,.sidebar{display:none}
+      nav,footer,.sidebar,.pagination{display:none}
       main{grid-template-columns:1fr}
       .post{border:none;box-shadow:none}
     }
@@ -168,6 +186,11 @@
         <div id="search-help" class="visually-hidden">Masukkan kata kunci untuk mencari artikel</div>
         <button type="submit" class="search-btn" aria-label="Tombol pencarian">Cari</button>
       </form>
+
+      <!-- Pagination Info -->
+      <div class="pagination-info">
+        Menampilkan <span id="showing-start">1</span>-<span id="showing-end">10</span> dari <span id="total-articles">30</span> artikel
+      </div>
       
       <!-- Article 1 -->
       <article class="post" itemscope itemtype="https://schema.org/BlogPosting">
@@ -339,8 +362,8 @@
         <div id="read-more-10" class="visually-hidden">Tutorial Git workflow</div>
       </article>
 
-      <!-- Article 11 -->
-      <article class="post" itemscope itemtype="https://schema.org/BlogPosting">
+      <!-- Article 11 - Will be hidden on page 1 -->
+      <article class="post hidden" itemscope itemtype="https://schema.org/BlogPosting">
         <div class="post-meta">
           <span class="post-category"><a href="/tips">Tips</a></span>
           <time datetime="2025-07-26" itemprop="datePublished">26 Juli 2025</time>
@@ -355,6 +378,333 @@
         <a href="/artikel/debugging-techniques" class="read-more" aria-describedby="read-more-11">Baca Selengkapnya →</a>
         <div id="read-more-11" class="visually-hidden">Tips debugging untuk developer</div>
       </article>
+
+      <!-- Additional articles for pagination demo -->
+      <article class="post hidden" itemscope itemtype="https://schema.org/BlogPosting">
+        <div class="post-meta">
+          <span class="post-category"><a href="/development">Development</a></span>
+          <time datetime="2025-07-24" itemprop="datePublished">24 Juli 2025</time>
+          <span aria-label="2156 kali dilihat">👁️ 2,156 views</span>
+        </div>
+        <h2 itemprop="headline">
+          <a href="/artikel/react-hooks-advanced" itemprop="url">React Hooks Advanced: useCallback, useMemo, dan Custom Hooks</a>
+        </h2>
+        <p class="post-excerpt" itemprop="description">
+          Pelajari React Hooks tingkat lanjut untuk optimasi performa dan reusable logic di aplikasi React modern.
+        </p>
+        <a href="/artikel/react-hooks-advanced" class="read-more">Baca Selengkapnya →</a>
+      </article>
+
+      <article class="post hidden" itemscope itemtype="https://schema.org/BlogPosting">
+        <div class="post-meta">
+          <span class="post-category"><a href="/seo">SEO</a></span>
+          <time datetime="2025-07-22" itemprop="datePublished">22 Juli 2025</time>
+          <span aria-label="2890 kali dilihat">👁️ 2,890 views</span>
+        </div>
+        <h2 itemprop="headline">
+          <a href="/artikel/local-seo-bisnis" itemprop="url">Local SEO untuk Bisnis: Strategi Ranking di Google My Business</a>
+        </h2>
+        <p class="post-excerpt" itemprop="description">
+          Dominasi pencarian lokal dengan strategi Local SEO, Google My Business, dan review management yang efektif.
+        </p>
+        <a href="/artikel/local-seo-bisnis" class="read-more">Baca Selengkapnya →</a>
+      </article>
+
+      <!-- Add more articles as needed for demonstration -->
+      <article class="post hidden" itemscope itemtype="https://schema.org/BlogPosting">
+        <div class="post-meta">
+          <span class="post-category"><a href="/tools">Tools</a></span>
+          <time datetime="2025-07-20" itemprop="datePublished">20 Juli 2025</time>
+          <span aria-label="3156 kali dilihat">👁️ 3,156 views</span>
+        </div>
+        <h2 itemprop="headline">
+          <a href="/artikel/vscode-extensions" itemprop="url">15 VS Code Extensions Wajib untuk Web Developer 2025</a>
+        </h2>
+        <p class="post-excerpt" itemprop="description">
+          Tingkatkan produktivitas coding dengan VS Code extensions terbaik untuk HTML, CSS, JavaScript, dan React development.
+        </p>
+        <a href="/artikel/vscode-extensions" class="read-more">Baca Selengkapnya →</a>
+      </article>
+
+      <article class="post hidden" itemscope itemtype="https://schema.org/BlogPosting">
+        <div class="post-meta">
+          <span class="post-category"><a href="/tutorial">Tutorial</a></span>
+          <time datetime="2025-07-18" itemprop="datePublished">18 Juli 2025</time>
+          <span aria-label="2456 kali dilihat">👁️ 2,456 views</span>
+        </div>
+        <h2 itemprop="headline">
+          <a href="/artikel/docker-web-development" itemprop="url">Docker untuk Web Development: Container Setup yang Efisien</a>
+        </h2>
+        <p class="post-excerpt" itemprop="description">
+          Pelajari Docker untuk development environment yang konsisten, dari basic container sampai docker-compose.
+        </p>
+        <a href="/artikel/docker-web-development" class="read-more">Baca Selengkapnya →</a>
+      </article>
+
+      <!-- Continue with more articles to reach 30 total -->
+      <article class="post hidden" itemscope itemtype="https://schema.org/BlogPosting">
+        <div class="post-meta">
+          <span class="post-category"><a href="/performance">Performance</a></span>
+          <time datetime="2025-07-16" itemprop="datePublished">16 Juli 2025</time>
+          <span aria-label="1987 kali dilihat">👁️ 1,987 views</span>
+        </div>
+        <h2 itemprop="headline">
+          <a href="/artikel/lazy-loading-images" itemprop="url">Lazy Loading Images: Teknik Optimasi Performa Website</a>
+        </h2>
+        <p class="post-excerpt" itemprop="description">
+          Implementasi lazy loading untuk gambar yang efektif menggunakan Intersection Observer API dan loading attribute.
+        </p>
+        <a href="/artikel/lazy-loading-images" class="read-more">Baca Selengkapnya →</a>
+      </article>
+
+      <article class="post hidden" itemscope itemtype="https://schema.org/BlogPosting">
+        <div class="post-meta">
+          <span class="post-category"><a href="/seo">SEO</a></span>
+          <time datetime="2025-07-14" itemprop="datePublished">14 Juli 2025</time>
+          <span aria-label="2789 kali dilihat">👁️ 2,789 views</span>
+        </div>
+        <h2 itemprop="headline">
+          <a href="/artikel/schema-markup-seo" itemprop="url">Schema Markup untuk SEO: Structured Data yang Efektif</a>
+        </h2>
+        <p class="post-excerpt" itemprop="description">
+          Tingkatkan visibility di SERP dengan schema markup yang tepat. Pelajari JSON-LD dan rich snippets.
+        </p>
+        <a href="/artikel/schema-markup-seo" class="read-more">Baca Selengkapnya →</a>
+      </article>
+
+      <article class="post hidden" itemscope itemtype="https://schema.org/BlogPosting">
+        <div class="post-meta">
+          <span class="post-category"><a href="/development">Development</a></span>
+          <time datetime="2025-07-12" itemprop="datePublished">12 Juli 2025</time>
+          <span aria-label="2234 kali dilihat">👁️ 2,234 views</span>
+        </div>
+        <h2 itemprop="headline">
+          <a href="/artikel/typescript-react-project" itemprop="url">Setup TypeScript dengan React: Project Template Modern</a>
+        </h2>
+        <p class="post-excerpt" itemprop="description">
+          Bangun React project dengan TypeScript, ESLint, Prettier, dan tools development modern lainnya.
+        </p>
+        <a href="/artikel/typescript-react-project" class="read-more">Baca Selengkapnya →</a>
+      </article>
+
+      <article class="post hidden" itemscope itemtype="https://schema.org/BlogPosting">
+        <div class="post-meta">
+          <span class="post-category"><a href="/tools">Tools</a></span>
+          <time datetime="2025-07-10" itemprop="datePublished">10 Juli 2025</time>
+          <span aria-label="3456 kali dilihat">👁️ 3,456 views</span>
+        </div>
+        <h2 itemprop="headline">
+          <a href="/artikel/figma-to-code-workflow" itemprop="url">Figma to Code: Workflow Developer yang Efisien</a>
+        </h2>
+        <p class="post-excerpt" itemprop="description">
+          Optimalkan workflow dari desain Figma ke kode HTML/CSS dengan teknik dan tools yang tepat.
+        </p>
+        <a href="/artikel/figma-to-code-workflow" class="read-more">Baca Selengkapnya →</a>
+      </article>
+
+      <article class="post hidden" itemscope itemtype="https://schema.org/BlogPosting">
+        <div class="post-meta">
+          <span class="post-category"><a href="/tutorial">Tutorial</a></span>
+          <time datetime="2025-07-08" itemprop="datePublished">8 Juli 2025</time>
+          <span aria-label="1876 kali dilihat">👁️ 1,876 views</span>
+        </div>
+        <h2 itemprop="headline">
+          <a href="/artikel/css-grid-flexbox-layout" itemprop="url">CSS Grid vs Flexbox: Kapan Menggunakan Yang Mana?</a>
+        </h2>
+        <p class="post-excerpt" itemprop="description">
+          Panduan lengkap memilih antara CSS Grid dan Flexbox untuk layout website yang optimal dan responsive.
+        </p>
+        <a href="/artikel/css-grid-flexbox-layout" class="read-more">Baca Selengkapnya →</a>
+      </article>
+
+      <article class="post hidden" itemscope itemtype="https://schema.org/BlogPosting">
+        <div class="post-meta">
+          <span class="post-category"><a href="/seo">SEO</a></span>
+          <time datetime="2025-07-06" itemprop="datePublished">6 Juli 2025</time>
+          <span aria-label="2987 kali dilihat">👁️ 2,987 views</span>
+        </div>
+        <h2 itemprop="headline">
+          <a href="/artikel/technical-seo-checklist" itemprop="url">Technical SEO Checklist: 25 Poin Wajib untuk Website</a>
+        </h2>
+        <p class="post-excerpt" itemprop="description">
+          Checklist lengkap technical SEO mulai dari site speed, mobile-friendly, sampai structured data.
+        </p>
+        <a href="/artikel/technical-seo-checklist" class="read-more">Baca Selengkapnya →</a>
+      </article>
+
+      <article class="post hidden" itemscope itemtype="https://schema.org/BlogPosting">
+        <div class="post-meta">
+          <span class="post-category"><a href="/development">Development</a></span>
+          <time datetime="2025-07-04" itemprop="datePublished">4 Juli 2025</time>
+          <span aria-label="2456 kali dilihat">👁️ 2,456 views</span>
+        </div>
+        <h2 itemprop="headline">
+          <a href="/artikel/nextjs-app-router" itemprop="url">Next.js App Router: Panduan Lengkap Migration dan Best Practices</a>
+        </h2>
+        <p class="post-excerpt" itemprop="description">
+          Migrasi ke Next.js App Router dengan server components, streaming, dan fitur-fitur terbaru Next.js 14.
+        </p>
+        <a href="/artikel/nextjs-app-router" class="read-more">Baca Selengkapnya →</a>
+      </article>
+
+      <article class="post hidden" itemscope itemtype="https://schema.org/BlogPosting">
+        <div class="post-meta">
+          <span class="post-category"><a href="/tools">Tools</a></span>
+          <time datetime="2025-07-02" itemprop="datePublished">2 Juli 2025</time>
+          <span aria-label="3234 kali dilihat">👁️ 3,234 views</span>
+        </div>
+        <h2 itemprop="headline">
+          <a href="/artikel/ai-coding-tools-2025" itemprop="url">10 AI Coding Tools Terbaik untuk Developer di 2025</a>
+        </h2>
+        <p class="post-excerpt" itemprop="description">
+          Review AI tools seperti GitHub Copilot, Tabnine, dan CodeT5 yang bisa tingkatkan produktivitas coding Anda.
+        </p>
+        <a href="/artikel/ai-coding-tools-2025" class="read-more">Baca Selengkapnya →</a>
+      </article>
+
+      <article class="post hidden" itemscope itemtype="https://schema.org/BlogPosting">
+        <div class="post-meta">
+          <span class="post-category"><a href="/tutorial">Tutorial</a></span>
+          <time datetime="2025-06-30" itemprop="datePublished">30 Juni 2025</time>
+          <span aria-label="2167 kali dilihat">👁️ 2,167 views</span>
+        </div>
+        <h2 itemprop="headline">
+          <a href="/artikel/progressive-web-app" itemprop="url">Membuat Progressive Web App (PWA) dari Nol</a>
+        </h2>
+        <p class="post-excerpt" itemprop="description">
+          Tutorial lengkap membuat PWA dengan service worker, web manifest, dan offline functionality.
+        </p>
+        <a href="/artikel/progressive-web-app" class="read-more">Baca Selengkapnya →</a>
+      </article>
+
+      <article class="post hidden" itemscope itemtype="https://schema.org/BlogPosting">
+        <div class="post-meta">
+          <span class="post-category"><a href="/performance">Performance</a></span>
+          <time datetime="2025-06-28" itemprop="datePublished">28 Juni 2025</time>
+          <span aria-label="1987 kali dilihat">👁️ 1,987 views</span>
+        </div>
+        <h2 itemprop="headline">
+          <a href="/artikel/web-performance-audit" itemprop="url">Web Performance Audit: Tools dan Metrics yang Penting</a>
+        </h2>
+        <p class="post-excerpt" itemprop="description">
+          Panduan audit performa website menggunakan Lighthouse, WebPageTest, dan tools monitoring lainnya.
+        </p>
+        <a href="/artikel/web-performance-audit" class="read-more">Baca Selengkapnya →</a>
+      </article>
+
+      <article class="post hidden" itemscope itemtype="https://schema.org/BlogPosting">
+        <div class="post-meta">
+          <span class="post-category"><a href="/seo">SEO</a></span>
+          <time datetime="2025-06-26" itemprop="datePublished">26 Juni 2025</time>
+          <span aria-label="2876 kali dilihat">👁️ 2,876 views</span>
+        </div>
+        <h2 itemprop="headline">
+          <a href="/artikel/content-seo-strategy" itemprop="url">Content SEO Strategy: Riset Keyword sampai Content Optimization</a>
+        </h2>
+        <p class="post-excerpt" itemprop="description">
+          Strategi lengkap SEO content mulai dari keyword research, content planning, sampai on-page optimization.
+        </p>
+        <a href="/artikel/content-seo-strategy" class="read-more">Baca Selengkapnya →</a>
+      </article>
+
+      <article class="post hidden" itemscope itemtype="https://schema.org/BlogPosting">
+        <div class="post-meta">
+          <span class="post-category"><a href="/development">Development</a></span>
+          <time datetime="2025-06-24" itemprop="datePublished">24 Juni 2025</time>
+          <span aria-label="2345 kali dilihat">👁️ 2,345 views</span>
+        </div>
+        <h2 itemprop="headline">
+          <a href="/artikel/authentication-nextjs" itemprop="url">Authentication di Next.js dengan NextAuth dan Prisma</a>
+        </h2>
+        <p class="post-excerpt" itemprop="description">
+          Implementasi sistem authentication lengkap dengan social login, session management, dan database integration.
+        </p>
+        <a href="/artikel/authentication-nextjs" class="read-more">Baca Selengkapnya →</a>
+      </article>
+
+      <article class="post hidden" itemscope itemtype="https://schema.org/BlogPosting">
+        <div class="post-meta">
+          <span class="post-category"><a href="/tools">Tools</a></span>
+          <time datetime="2025-06-22" itemprop="datePublished">22 Juni 2025</time>
+          <span aria-label="3456 kali dilihat">👁️ 3,456 views</span>
+        </div>
+        <h2 itemprop="headline">
+          <a href="/artikel/design-system-figma" itemprop="url">Membuat Design System di Figma untuk Developer</a>
+        </h2>
+        <p class="post-excerpt" itemprop="description">
+          Panduan membuat design system yang konsisten di Figma dengan components, variants, dan auto-layout.
+        </p>
+        <a href="/artikel/design-system-figma" class="read-more">Baca Selengkapnya →</a>
+      </article>
+
+      <article class="post hidden" itemscope itemtype="https://schema.org/BlogPosting">
+        <div class="post-meta">
+          <span class="post-category"><a href="/tutorial">Tutorial</a></span>
+          <time datetime="2025-06-20" itemprop="datePublished">20 Juni 2025</time>
+          <span aria-label="2123 kali dilihat">👁️ 2,123 views</span>
+        </div>
+        <h2 itemprop="headline">
+          <a href="/artikel/tailwind-css-tips" itemprop="url">Tailwind CSS Tips: Utility Classes untuk Developer Produktif</a>
+        </h2>
+        <p class="post-excerpt" itemprop="description">
+          Tips dan trik Tailwind CSS untuk workflow yang lebih efisien, dari custom config sampai component patterns.
+        </p>
+        <a href="/artikel/tailwind-css-tips" class="read-more">Baca Selengkapnya →</a>
+      </article>
+
+      <article class="post hidden" itemscope itemtype="https://schema.org/BlogPosting">
+        <div class="post-meta">
+          <span class="post-category"><a href="/seo">SEO</a></span>
+          <time datetime="2025-06-18" itemprop="datePublished">18 Juni 2025</time>
+          <span aria-label="2876 kali dilihat">👁️ 2,876 views</span>
+        </div>
+        <h2 itemprop="headline">
+          <a href="/artikel/link-building-strategy" itemprop="url">Link Building Strategy 2025: White Hat Techniques yang Efektif</a>
+        </h2>
+        <p class="post-excerpt" itemprop="description">
+          Strategi link building yang aman dan efektif untuk meningkatkan domain authority dan ranking website.
+        </p>
+        <a href="/artikel/link-building-strategy" class="read-more">Baca Selengkapnya →</a>
+      </article>
+
+      <article class="post hidden" itemscope itemtype="https://schema.org/BlogPosting">
+        <div class="post-meta">
+          <span class="post-category"><a href="/development">Development</a></span>
+          <time datetime="2025-06-16" itemprop="datePublished">16 Juni 2025</time>
+          <span aria-label="1987 kali dilihat">👁️ 1,987 views</span>
+        </div>
+        <h2 itemprop="headline">
+          <a href="/artikel/testing-react-components" itemprop="url">Testing React Components dengan Jest dan React Testing Library</a>
+        </h2>
+        <p class="post-excerpt" itemprop="description">
+          Panduan lengkap testing React components, dari unit testing sampai integration testing yang efektif.
+        </p>
+        <a href="/artikel/testing-react-components" class="read-more">Baca Selengkapnya →</a>
+      </article>
+
+      <article class="post hidden" itemscope itemtype="https://schema.org/BlogPosting">
+        <div class="post-meta">
+          <span class="post-category"><a href="/tools">Tools</a></span>
+          <time datetime="2025-06-14" itemprop="datePublished">14 Juni 2025</time>
+          <span aria-label="3234 kali dilihat">👁️ 3,234 views</span>
+        </div>
+        <h2 itemprop="headline">
+          <a href="/artikel/chrome-devtools-advanced" itemprop="url">Chrome DevTools Advanced: Tips untuk Web Developer Pro</a>
+        </h2>
+        <p class="post-excerpt" itemprop="description">
+          Manfaatkan Chrome DevTools secara maksimal untuk debugging, performance analysis, dan development workflow.
+        </p>
+        <a href="/artikel/chrome-devtools-advanced" class="read-more">Baca Selengkapnya →</a>
+      </article>
+
+      <!-- Pagination Controls -->
+      <nav class="pagination" role="navigation" aria-label="Navigasi halaman">
+        <a href="#" class="prev disabled" id="prev-btn" aria-label="Halaman sebelumnya">Sebelumnya</a>
+        <a href="#" class="page-num current" data-page="1">1</a>
+        <a href="#" class="page-num" data-page="2">2</a>
+        <a href="#" class="page-num" data-page="3">3</a>
+        <a href="#" class="next" id="next-btn" aria-label="Halaman selanjutnya">Selanjutnya</a>
+      </nav>
     </section>
     
     <!-- Sidebar -->
@@ -476,37 +826,119 @@
 
   <!-- JavaScript -->
   <script>
-    // Search functionality
-    document.querySelector('.search-form').addEventListener('submit', function(e) {
-      e.preventDefault();
-      const query = document.getElementById('search-input').value.trim();
-      if (query) {
-        window.location.href = `/search?q=${encodeURIComponent(query)}`;
+    // Pagination functionality
+    class BlogPagination {
+      constructor() {
+        this.articlesPerPage = 10;
+        this.currentPage = 1;
+        this.articles = document.querySelectorAll('.post');
+        this.totalArticles = this.articles.length;
+        this.totalPages = Math.ceil(this.totalArticles / this.articlesPerPage);
+        
+        this.init();
       }
-    });
-
-    // Lazy loading images
-    document.addEventListener('DOMContentLoaded', function() {
-      const images = document.querySelectorAll('img[loading="lazy"]');
-      const observer = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('loaded');
-            observer.unobserve(entry.target);
+      
+      init() {
+        this.updatePaginationInfo();
+        this.updatePaginationControls();
+        this.showPage(1);
+        this.bindEvents();
+      }
+      
+      showPage(page) {
+        // Hide all articles first
+        this.articles.forEach(article => {
+          article.classList.add('hidden');
+        });
+        
+        // Calculate start and end indices
+        const startIndex = (page - 1) * this.articlesPerPage;
+        const endIndex = Math.min(startIndex + this.articlesPerPage, this.totalArticles);
+        
+        // Show articles for current page
+        for (let i = startIndex; i < endIndex; i++) {
+          if (this.articles[i]) {
+            this.articles[i].classList.remove('hidden');
           }
+        }
+        
+        this.currentPage = page;
+        this.updatePaginationInfo();
+        this.updatePaginationControls();
+        
+        // Scroll to top of articles section
+        document.querySelector('.articles').scrollIntoView({ 
+          behavior: 'smooth',
+          block: 'start' 
         });
-      });
-      images.forEach(img => observer.observe(img));
-    });
-
-    // Service Worker
-    if ('serviceWorker' in navigator) {
-      window.addEventListener('load', function() {
-        navigator.serviceWorker.register('/sw.js').catch(function(error) {
-          console.log('ServiceWorker registration failed:', error);
+      }
+      
+      updatePaginationInfo() {
+        const startItem = (this.currentPage - 1) * this.articlesPerPage + 1;
+        const endItem = Math.min(this.currentPage * this.articlesPerPage, this.totalArticles);
+        
+        document.getElementById('showing-start').textContent = startItem;
+        document.getElementById('showing-end').textContent = endItem;
+        document.getElementById('total-articles').textContent = this.totalArticles;
+      }
+      
+      updatePaginationControls() {
+        // Update page numbers
+        const pageNumbers = document.querySelectorAll('.page-num');
+        pageNumbers.forEach(btn => {
+          const page = parseInt(btn.dataset.page);
+          btn.classList.toggle('current', page === this.currentPage);
         });
-      });
-    }
-  </script>
-</body>
-</html>
+        
+        // Update prev/next buttons
+        const prevBtn = document.getElementById('prev-btn');
+        const nextBtn = document.getElementById('next-btn');
+        
+        prevBtn.classList.toggle('disabled', this.currentPage === 1);
+        nextBtn.classList.toggle('disabled', this.currentPage === this.totalPages);
+        
+        // Generate page numbers dynamically if needed
+        this.generatePageNumbers();
+      }
+      
+      generatePageNumbers() {
+        const pagination = document.querySelector('.pagination');
+        const prevBtn = document.getElementById('prev-btn');
+        const nextBtn = document.getElementById('next-btn');
+        
+        // Remove existing page numbers
+        const existingPageNums = document.querySelectorAll('.page-num');
+        existingPageNums.forEach(btn => btn.remove());
+        
+        // Generate new page numbers
+        const startPage = Math.max(1, this.currentPage - 1);
+        const endPage = Math.min(this.totalPages, this.currentPage + 1);
+        
+        for (let i = startPage; i <= endPage; i++) {
+          const pageBtn = document.createElement('a');
+          pageBtn.href = '#';
+          pageBtn.className = `page-num ${i === this.currentPage ? 'current' : ''}`;
+          pageBtn.dataset.page = i;
+          pageBtn.textContent = i;
+          pageBtn.setAttribute('aria-label', `Halaman ${i}`);
+          
+          // Insert before next button
+          pagination.insertBefore(pageBtn, nextBtn);
+        }
+        
+        // Add first page and ellipsis if needed
+        if (startPage > 1) {
+          const firstPageBtn = document.createElement('a');
+          firstPageBtn.href = '#';
+          firstPageBtn.className = 'page-num';
+          firstPageBtn.dataset.page = 1;
+          firstPageBtn.textContent = '1';
+          firstPageBtn.setAttribute('aria-label', 'Halaman 1');
+          pagination.insertBefore(firstPageBtn, pagination.querySelector('.page-num'));
+          
+          if (startPage > 2) {
+            const ellipsis = document.createElement('span');
+            ellipsis.textContent = '...';
+            ellipsis.className = 'pagination-ellipsis';
+            pagination.insertBefore(ellipsis, pagination.querySelector('.page-num:nth-child(3)'));
+          }
