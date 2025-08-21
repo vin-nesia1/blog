@@ -719,81 +719,136 @@
 
         // Initialize pagination when page loads
         document.addEventListener('DOMContentLoaded', function() {
-            // Get all articles from the DOM
-            allArticles = Array.from(document.querySelectorAll('.article-card'));
-            
-            // Initialize pagination
-            updatePagination();
-            showPage(currentPage);
+            try {
+                // Get all articles from the DOM
+                allArticles = Array.from(document.querySelectorAll('.article-card'));
+                console.log('Total articles found:', allArticles.length);
+                
+                // Check if we have articles
+                if (allArticles.length === 0) {
+                    console.log('No articles found!');
+                    return;
+                }
+                
+                // Initialize pagination
+                updatePagination();
+                showPage(currentPage);
+                
+                console.log('Pagination initialized successfully');
+            } catch (error) {
+                console.error('Error initializing pagination:', error);
+            }
         });
 
         function showPage(page) {
-            const startIndex = (page - 1) * articlesPerPage;
-            const endIndex = startIndex + articlesPerPage;
-            
-            // Hide all articles
-            allArticles.forEach(article => {
-                article.style.display = 'none';
-            });
-            
-            // Show articles for current page
-            for (let i = startIndex; i < endIndex && i < allArticles.length; i++) {
-                allArticles[i].style.display = 'block';
+            try {
+                const startIndex = (page - 1) * articlesPerPage;
+                const endIndex = startIndex + articlesPerPage;
+                
+                console.log(`Showing page ${page}, articles ${startIndex + 1}-${Math.min(endIndex, allArticles.length)}`);
+                
+                // Hide all articles
+                allArticles.forEach((article, index) => {
+                    article.style.display = 'none';
+                });
+                
+                // Show articles for current page
+                for (let i = startIndex; i < endIndex && i < allArticles.length; i++) {
+                    if (allArticles[i]) {
+                        allArticles[i].style.display = 'block';
+                    }
+                }
+                
+                // Update pagination buttons
+                updatePaginationButtons();
+                
+                // Scroll to top of articles (with fallback)
+                const articlesGrid = document.getElementById('articles-grid');
+                if (articlesGrid) {
+                    articlesGrid.scrollIntoView({ 
+                        behavior: 'smooth', 
+                        block: 'start' 
+                    });
+                }
+            } catch (error) {
+                console.error('Error showing page:', error);
             }
-            
-            // Update pagination buttons
-            updatePaginationButtons();
-            
-            // Scroll to top of articles
-            document.getElementById('articles-grid').scrollIntoView({ 
-                behavior: 'smooth', 
-                block: 'start' 
-            });
         }
 
         function updatePagination() {
-            const totalPages = Math.ceil(allArticles.length / articlesPerPage);
-            const pageNumbersContainer = document.getElementById('page-numbers');
-            pageNumbersContainer.innerHTML = '';
-            
-            // Show page numbers
-            for (let i = 1; i <= totalPages; i++) {
-                if (i === 1 || i === totalPages || (i >= currentPage - 2 && i <= currentPage + 2)) {
-                    const pageButton = document.createElement('button');
-                    pageButton.textContent = i;
-                    pageButton.onclick = () => goToPage(i);
-                    
-                    if (i === currentPage) {
-                        pageButton.classList.add('current');
-                    }
-                    
-                    pageNumbersContainer.appendChild(pageButton);
-                } else if (i === currentPage - 3 || i === currentPage + 3) {
-                    const dots = document.createElement('span');
-                    dots.textContent = '...';
-                    pageNumbersContainer.appendChild(dots);
+            try {
+                const totalPages = Math.ceil(allArticles.length / articlesPerPage);
+                const pageNumbersContainer = document.getElementById('page-numbers');
+                
+                if (!pageNumbersContainer) {
+                    console.error('Page numbers container not found!');
+                    return;
                 }
+                
+                pageNumbersContainer.innerHTML = '';
+                
+                console.log(`Total pages: ${totalPages}`);
+                
+                // Show page numbers
+                for (let i = 1; i <= totalPages; i++) {
+                    if (i === 1 || i === totalPages || (i >= currentPage - 2 && i <= currentPage + 2)) {
+                        const pageButton = document.createElement('button');
+                        pageButton.textContent = i;
+                        pageButton.onclick = () => goToPage(i);
+                        
+                        if (i === currentPage) {
+                            pageButton.classList.add('current');
+                        }
+                        
+                        pageNumbersContainer.appendChild(pageButton);
+                    } else if (i === currentPage - 3 || i === currentPage + 3) {
+                        const dots = document.createElement('span');
+                        dots.textContent = '...';
+                        pageNumbersContainer.appendChild(dots);
+                    }
+                }
+            } catch (error) {
+                console.error('Error updating pagination:', error);
             }
         }
 
         function updatePaginationButtons() {
-            const totalPages = Math.ceil(allArticles.length / articlesPerPage);
-            const prevBtn = document.getElementById('prev-btn');
-            const nextBtn = document.getElementById('next-btn');
-            
-            prevBtn.disabled = currentPage === 1;
-            nextBtn.disabled = currentPage === totalPages;
+            try {
+                const totalPages = Math.ceil(allArticles.length / articlesPerPage);
+                const prevBtn = document.getElementById('prev-btn');
+                const nextBtn = document.getElementById('next-btn');
+                
+                if (prevBtn) prevBtn.disabled = currentPage === 1;
+                if (nextBtn) nextBtn.disabled = currentPage === totalPages;
+            } catch (error) {
+                console.error('Error updating pagination buttons:', error);
+            }
         }
 
         function goToPage(page) {
-            const totalPages = Math.ceil(allArticles.length / articlesPerPage);
-            
-            if (page < 1 || page > totalPages) return;
-            
-            currentPage = page;
-            showPage(currentPage);
+            try {
+                const totalPages = Math.ceil(allArticles.length / articlesPerPage);
+                
+                console.log(`Going to page ${page} of ${totalPages}`);
+                
+                if (page < 1 || page > totalPages) {
+                    console.log('Invalid page number');
+                    return;
+                }
+                
+                currentPage = page;
+                showPage(currentPage);
+                updatePagination();
+            } catch (error) {
+                console.error('Error going to page:', error);
+            }
+        }
+
+        // Function to refresh pagination (useful when adding new articles dynamically)
+        function refreshPagination() {
+            allArticles = Array.from(document.querySelectorAll('.article-card'));
+            console.log('Refreshed articles count:', allArticles.length);
             updatePagination();
+            showPage(currentPage);
         }
     </script>
-</body>
-</html>
