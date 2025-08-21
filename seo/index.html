@@ -394,30 +394,6 @@
             .sidebar {
                 padding: 20px;
             }
-.pagination {
-    text-align: center;
-    margin-top: 20px;
-}
-
-.pagination a {
-    margin: 0 5px;
-    cursor: pointer;
-    text-decoration: none;
-    color: blue;
-}
-
-.pagination a.active {
-    font-weight: bold;
-    color: red;
-}
-
-.article.article-card {
-    border: 1px solid #ccc;
-    padding: 15px;
-    margin-bottom: 15px;
-    border-radius: 5px;
-    background: #f9f9f9;
-}
         }
     </style>
 </head>
@@ -469,7 +445,6 @@
                             <a href="/tag/qr-code/" class="tag">QR Code</a>
                             <a href="/tag/tools/" class="tag">Tools</a>
                             <a href="/tag/seo/" class="tag">SEO</a>
-                            <div id="pagination"></div>
                         </div>
                     </article>
                     
@@ -486,7 +461,6 @@
                             <a href="/tag/wifi/" class="tag">WiFi</a>
                             <a href="/tag/qr-code/" class="tag">QR Code</a>
                             <a href="/tag/teknologi/" class="tag">Teknologi</a>
-                            <div id="pagination"></div>
                         </div>
                     </article>
                     
@@ -503,7 +477,6 @@
                             <a href="/tag/strategi-seo/" class="tag">Strategi SEO</a>
                             <a href="/tag/google/" class="tag">Google</a>
                             <a href="/tag/2025/" class="tag">2025</a>
-                            <div id="pagination"></div>
                         </div>
                     </article>
                     
@@ -520,7 +493,6 @@
                             <a href="/tag/keyword-research/" class="tag">Keyword Research</a>
                             <a href="/tag/seo-tools/" class="tag">SEO Tools</a>
                             <a href="/tag/gratis/" class="tag">Gratis</a>
-                            <div id="pagination"></div>
                         </div>
                     </article>
                     
@@ -537,7 +509,6 @@
                             <a href="/tag/on-page-seo/" class="tag">On-Page SEO</a>
                             <a href="/tag/checklist/" class="tag">Checklist</a>
                             <a href="/tag/optimasi/" class="tag">Optimasi</a>
-                            <div id="pagination"></div>
                         </div>
                     </article>
                     
@@ -554,7 +525,6 @@
                             <a href="/tag/link-building/" class="tag">Link Building</a>
                             <a href="/tag/backlink/" class="tag">Backlink</a>
                             <a href="/tag/off-page-seo/" class="tag">Off-Page SEO</a>
-                            <div id="pagination"></div>
                         </div>
                     </article>
                     
@@ -571,7 +541,6 @@
                             <a href="/tag/technical-seo/" class="tag">Technical SEO</a>
                             <a href="/tag/pemula/" class="tag">Pemula</a>
                             <a href="/tag/website-speed/" class="tag">Website Speed</a>
-                            <div id="pagination"></div>
                         </div>
                     </article>
                     
@@ -588,7 +557,6 @@
                             <a href="/tag/content-marketing/" class="tag">Content Marketing</a>
                             <a href="/tag/content-seo/" class="tag">Content SEO</a>
                             <a href="/tag/copywriting/" class="tag">Copywriting</a>
-                            <div id="pagination"></div>
                         </div>
                     </article>
                     
@@ -605,7 +573,6 @@
                             <a href="/tag/local-seo/" class="tag">Local SEO</a>
                             <a href="/tag/google-my-business/" class="tag">Google My Business</a>
                             <a href="/tag/bisnis-lokal/" class="tag">Bisnis Lokal</a>
-                            <div id="pagination"></div>
                         </div>
                     </article>
                     
@@ -624,9 +591,20 @@
                             <a href="/tag/tracking/" class="tag">Tracking</a>
                         </div>
                     </article>
-                    <div id="pagination"></div>
                 </div>
-            
+                
+                <!-- Pagination -->
+                <div class="pagination">
+                    <span class="current">1</span>
+                    <a href="/seo/page/2/">2</a>
+                    <a href="/seo/page/3/">3</a>
+                    <a href="/seo/page/4/">4</a>
+                    <a href="/seo/page/5/">5</a>
+                    <span>...</span>
+                    <a href="/seo/page/10/">10</a>
+                    <a href="/seo/page/2/">Selanjutnya →</a>
+                </div>
+            </main>
             
             <!-- Sidebar -->
             <aside class="sidebar">
@@ -725,55 +703,5 @@
             </div>
         </div>
     </footer>
-    <script>
-const posts = document.querySelectorAll("article.article-card"); // sesuaikan dengan class
-const pagination = document.getElementById("pagination");
-const perPage = 10;
-const totalPages = Math.ceil(posts.length / perPage);
-let currentPage = 1;
-
-function showPage(page) {
-  currentPage = page;
-
-  // Tampilkan artikel sesuai halaman
-  posts.forEach((post, i) => {
-    post.style.display = (i >= (page-1)*perPage && i < page*perPage) ? "block" : "none";
-  });
-
-  renderPagination();
-}
-
-function renderPagination() {
-  pagination.innerHTML = "";
-
-  // Tombol Previous
-  if(currentPage > 1) {
-    const prev = document.createElement("a");
-    prev.textContent = "← Previous";
-    prev.addEventListener("click", () => showPage(currentPage-1));
-    pagination.appendChild(prev);
-  }
-
-  // Angka halaman
-  for (let i = 1; i <= totalPages; i++) {
-    const a = document.createElement("a");
-    a.textContent = i;
-    if(i === currentPage) a.classList.add("active");
-    a.addEventListener("click", () => showPage(i));
-    pagination.appendChild(a);
-  }
-
-  // Tombol Next
-  if(currentPage < totalPages) {
-    const next = document.createElement("a");
-    next.textContent = "Next →";
-    next.addEventListener("click", () => showPage(currentPage+1));
-    pagination.appendChild(next);
-  }
-}
-
-// Inisialisasi
-showPage(1);
-</script>
 </body>
 </html>
