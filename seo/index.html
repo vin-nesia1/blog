@@ -275,16 +275,24 @@
             border-top: 1px solid #eee;
         }
         
-        .pagination a,
+        .pagination button,
         .pagination span {
             padding: 8px 15px;
-            text-decoration: none;
-            color: #333;
             border: 1px solid #ddd;
+            background-color: #fff;
+            color: #333;
+            cursor: pointer;
+            text-decoration: none;
+            font-size: 14px;
         }
         
-        .pagination a:hover {
+        .pagination button:hover:not(:disabled) {
             background-color: #f5f5f5;
+        }
+        
+        .pagination button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
         }
         
         .pagination .current {
@@ -375,7 +383,7 @@
                 gap: 5px;
             }
             
-            .pagination a,
+            .pagination button,
             .pagination span {
                 padding: 6px 10px;
                 font-size: 14px;
@@ -394,6 +402,15 @@
             .sidebar {
                 padding: 20px;
             }
+        }
+
+        /* Hide articles initially */
+        .article-card {
+            display: none;
+        }
+        
+        .article-card.active {
+            display: block;
         }
     </style>
 </head>
@@ -431,9 +448,9 @@
                     <p>Selamat datang di blog SEO terlengkap di Indonesia! Temukan tips, tutorial, dan strategi SEO terbaru untuk mengoptimalkan website Anda. Dari teknik dasar hingga advanced SEO, semua ada di sini untuk membantu meningkatkan ranking Google dan traffic organic website Anda.</p>
                 </div>
                 
-                <div class="articles-grid">
+                <div class="articles-grid" id="articlesGrid">
                     <!-- Article 1 -->
-                    <article class="article-card">
+                    <article class="article-card" data-article="1">
                         <div class="article-meta">
                             <span>📅 21 Agustus 2025</span>
                             <span>👤 Vinnesia</span>
@@ -449,7 +466,7 @@
                     </article>
                     
                     <!-- Article 2 -->
-                    <article class="article-card">
+                    <article class="article-card" data-article="2">
                         <div class="article-meta">
                             <span>📅 21 Agustus 2025</span>
                             <span>👤 Vinnesia</span>
@@ -465,7 +482,7 @@
                     </article>
                     
                     <!-- Article 3 -->
-                    <article class="article-card">
+                    <article class="article-card" data-article="3">
                         <div class="article-meta">
                             <span>📅 20 Agustus 2025</span>
                             <span>👤 Vinnesia</span>
@@ -481,7 +498,7 @@
                     </article>
                     
                     <!-- Article 4 -->
-                    <article class="article-card">
+                    <article class="article-card" data-article="4">
                         <div class="article-meta">
                             <span>📅 19 Agustus 2025</span>
                             <span>👤 Vinnesia</span>
@@ -497,7 +514,7 @@
                     </article>
                     
                     <!-- Article 5 -->
-                    <article class="article-card">
+                    <article class="article-card" data-article="5">
                         <div class="article-meta">
                             <span>📅 18 Agustus 2025</span>
                             <span>👤 Vinnesia</span>
@@ -513,7 +530,7 @@
                     </article>
                     
                     <!-- Article 6 -->
-                    <article class="article-card">
+                    <article class="article-card" data-article="6">
                         <div class="article-meta">
                             <span>📅 17 Agustus 2025</span>
                             <span>👤 Vinnesia</span>
@@ -529,7 +546,7 @@
                     </article>
                     
                     <!-- Article 7 -->
-                    <article class="article-card">
+                    <article class="article-card" data-article="7">
                         <div class="article-meta">
                             <span>📅 16 Agustus 2025</span>
                             <span>👤 Vinnesia</span>
@@ -545,7 +562,7 @@
                     </article>
                     
                     <!-- Article 8 -->
-                    <article class="article-card">
+                    <article class="article-card" data-article="8">
                         <div class="article-meta">
                             <span>📅 15 Agustus 2025</span>
                             <span>👤 Vinnesia</span>
@@ -561,7 +578,7 @@
                     </article>
                     
                     <!-- Article 9 -->
-                    <article class="article-card">
+                    <article class="article-card" data-article="9">
                         <div class="article-meta">
                             <span>📅 14 Agustus 2025</span>
                             <span>👤 Vinnesia</span>
@@ -577,7 +594,7 @@
                     </article>
                     
                     <!-- Article 10 -->
-                    <article class="article-card">
+                    <article class="article-card" data-article="10">
                         <div class="article-meta">
                             <span>📅 13 Agustus 2025</span>
                             <span>👤 Vinnesia</span>
@@ -591,19 +608,236 @@
                             <a href="/tag/tracking/" class="tag">Tracking</a>
                         </div>
                     </article>
+
+                    <!-- Additional Articles (11-25) -->
+                    <article class="article-card" data-article="11">
+                        <div class="article-meta">
+                            <span>📅 12 Agustus 2025</span>
+                            <span>👤 Vinnesia</span>
+                            <span>⏱️ 7 menit</span>
+                        </div>
+                        <a href="/seo/mobile-seo-optimization" class="article-title">Mobile SEO: Optimasi Website untuk Perangkat Mobile</a>
+                        <p class="article-excerpt">Panduan lengkap mobile SEO untuk meningkatkan performa website di perangkat mobile. Core Web Vitals, responsive design, dan mobile-first indexing.</p>
+                        <div class="article-tags">
+                            <a href="/tag/mobile-seo/" class="tag">Mobile SEO</a>
+                            <a href="/tag/responsive/" class="tag">Responsive</a>
+                            <a href="/tag/core-web-vitals/" class="tag">Core Web Vitals</a>
+                        </div>
+                    </article>
+
+                    <article class="article-card" data-article="12">
+                        <div class="article-meta">
+                            <span>📅 11 Agustus 2025</span>
+                            <span>👤 Vinnesia</span>
+                            <span>⏱️ 6 menit</span>
+                        </div>
+                        <a href="/seo/voice-search-optimization" class="article-title">Voice Search SEO: Optimasi untuk Pencarian Suara</a>
+                        <p class="article-excerpt">Strategi SEO untuk voice search dan smart speaker. Pelajari cara mengoptimalkan konten untuk Google Assistant, Siri, dan Alexa.</p>
+                        <div class="article-tags">
+                            <a href="/tag/voice-search/" class="tag">Voice Search</a>
+                            <a href="/tag/smart-speaker/" class="tag">Smart Speaker</a>
+                            <a href="/tag/conversational-seo/" class="tag">Conversational SEO</a>
+                        </div>
+                    </article>
+
+                    <article class="article-card" data-article="13">
+                        <div class="article-meta">
+                            <span>📅 10 Agustus 2025</span>
+                            <span>👤 Vinnesia</span>
+                            <span>⏱️ 8 menit</span>
+                        </div>
+                        <a href="/seo/ecommerce-seo-guide" class="article-title">E-commerce SEO: Panduan Optimasi Toko Online</a>
+                        <p class="article-excerpt">Strategi SEO khusus untuk toko online. Product page optimization, category optimization, dan structured data untuk e-commerce.</p>
+                        <div class="article-tags">
+                            <a href="/tag/ecommerce-seo/" class="tag">E-commerce SEO</a>
+                            <a href="/tag/toko-online/" class="tag">Toko Online</a>
+                            <a href="/tag/product-seo/" class="tag">Product SEO</a>
+                        </div>
+                    </article>
+
+                    <article class="article-card" data-article="14">
+                        <div class="article-meta">
+                            <span>📅 9 Agustus 2025</span>
+                            <span>👤 Vinnesia</span>
+                            <span>⏱️ 5 menit</span>
+                        </div>
+                        <a href="/seo/image-seo-optimization" class="article-title">Image SEO: Optimasi Gambar untuk Mesin Pencari</a>
+                        <p class="article-excerpt">Cara optimasi gambar untuk SEO. Alt text, file name, kompresasi gambar, dan structured data untuk image search.</p>
+                        <div class="article-tags">
+                            <a href="/tag/image-seo/" class="tag">Image SEO</a>
+                            <a href="/tag/alt-text/" class="tag">Alt Text</a>
+                            <a href="/tag/gambar/" class="tag">Gambar</a>
+                        </div>
+                    </article>
+
+                    <article class="article-card" data-article="15">
+                        <div class="article-meta">
+                            <span>📅 8 Agustus 2025</span>
+                            <span>👤 Vinnesia</span>
+                            <span>⏱️ 9 menit</span>
+                        </div>
+                        <a href="/seo/international-seo-guide" class="article-title">International SEO: Strategi SEO untuk Website Global</a>
+                        <p class="article-excerpt">Panduan lengkap international SEO. Hreflang, geo-targeting, dan strategi ekspansi ke pasar global dengan SEO.</p>
+                        <div class="article-tags">
+                            <a href="/tag/international-seo/" class="tag">International SEO</a>
+                            <a href="/tag/hreflang/" class="tag">Hreflang</a>
+                            <a href="/tag/global-seo/" class="tag">Global SEO</a>
+                        </div>
+                    </article>
+
+                    <article class="article-card" data-article="16">
+                        <div class="article-meta">
+                            <span>📅 7 Agustus 2025</span>
+                            <span>👤 Vinnesia</span>
+                            <span>⏱️ 6 menit</span>
+                        </div>
+                        <a href="/seo/video-seo-youtube" class="article-title">Video SEO: Optimasi Video untuk YouTube dan Google</a>
+                        <p class="article-excerpt">Strategi SEO untuk video content. YouTube SEO, video schema markup, dan cara membuat video yang rank di Google.</p>
+                        <div class="article-tags">
+                            <a href="/tag/video-seo/" class="tag">Video SEO</a>
+                            <a href="/tag/youtube/" class="tag">YouTube</a>
+                            <a href="/tag/video-marketing/" class="tag">Video Marketing</a>
+                        </div>
+                    </article>
+
+                    <article class="article-card" data-article="17">
+                        <div class="article-meta">
+                            <span>📅 6 Agustus 2025</span>
+                            <span>👤 Vinnesia</span>
+                            <span>⏱️ 7 menit</span>
+                        </div>
+                        <a href="/seo/featured-snippets-optimization" class="article-title">Featured Snippets: Cara Mendapatkan Posisi Zero Google</a>
+                        <p class="article-excerpt">Strategi untuk mendapatkan featured snippets di Google. Format konten, structured data, dan teknik optimasi untuk posisi zero.</p>
+                        <div class="article-tags">
+                            <a href="/tag/featured-snippets/" class="tag">Featured Snippets</a>
+                            <a href="/tag/posisi-zero/" class="tag">Posisi Zero</a>
+                            <a href="/tag/serp-features/" class="tag">SERP Features</a>
+                        </div>
+                    </article>
+
+                    <article class="article-card" data-article="18">
+                        <div class="article-meta">
+                            <span>📅 5 Agustus 2025</span>
+                            <span>👤 Vinnesia</span>
+                            <span>⏱️ 8 menit</span>
+                        </div>
+                        <a href="/seo/core-web-vitals-optimization" class="article-title">Core Web Vitals: Panduan Lengkap Optimasi Page Speed</a>
+                        <p class="article-excerpt">Cara mengoptimalkan Core Web Vitals untuk ranking yang lebih baik. LCP, FID, CLS, dan tools untuk mengukur performa website.</p>
+                        <div class="article-tags">
+                            <a href="/tag/core-web-vitals/" class="tag">Core Web Vitals</a>
+                            <a href="/tag/page-speed/" class="tag">Page Speed</a>
+                            <a href="/tag/ux-seo/" class="tag">UX SEO</a>
+                        </div>
+                    </article>
+
+                    <article class="article-card" data-article="19">
+                        <div class="article-meta">
+                            <span>📅 4 Agustus 2025</span>
+                            <span>👤 Vinnesia</span>
+                            <span>⏱️ 6 menit</span>
+                        </div>
+                        <a href="/seo/schema-markup-guide" class="article-title">Schema Markup: Panduan Lengkap Structured Data</a>
+                        <p class="article-excerpt">Tutorial implementasi schema markup untuk meningkatkan visibility di SERP. Rich snippets, structured data testing, dan best practices.</p>
+                        <div class="article-tags">
+                            <a href="/tag/schema-markup/" class="tag">Schema Markup</a>
+                            <a href="/tag/structured-data/" class="tag">Structured Data</a>
+                            <a href="/tag/rich-snippets/" class="tag">Rich Snippets</a>
+                        </div>
+                    </article>
+
+                    <article class="article-card" data-article="20">
+                        <div class="article-meta">
+                            <span>📅 3 Agustus 2025</span>
+                            <span>👤 Vinnesia</span>
+                            <span>⏱️ 7 menit</span>
+                        </div>
+                        <a href="/seo/seo-audit-checklist" class="article-title">SEO Audit: Checklist Lengkap Analisis Website</a>
+                        <p class="article-excerpt">Panduan melakukan SEO audit yang komprehensif. Tools, checklist, dan langkah-langkah untuk mengidentifikasi masalah SEO website.</p>
+                        <div class="article-tags">
+                            <a href="/tag/seo-audit/" class="tag">SEO Audit</a>
+                            <a href="/tag/website-analysis/" class="tag">Website Analysis</a>
+                            <a href="/tag/seo-checklist/" class="tag">SEO Checklist</a>
+                        </div>
+                    </article>
+
+                    <article class="article-card" data-article="21">
+                        <div class="article-meta">
+                            <span>📅 2 Agustus 2025</span>
+                            <span>👤 Vinnesia</span>
+                            <span>⏱️ 5 menit</span>
+                        </div>
+                        <a href="/seo/competitor-analysis-seo" class="article-title">Competitor Analysis SEO: Riset Kompetitor untuk Strategi</a>
+                        <p class="article-excerpt">Cara melakukan analisis kompetitor untuk SEO. Tools, metrik, dan strategi untuk mengalahkan kompetitor di SERP.</p>
+                        <div class="article-tags">
+                            <a href="/tag/competitor-analysis/" class="tag">Competitor Analysis</a>
+                            <a href="/tag/riset-kompetitor/" class="tag">Riset Kompetitor</a>
+                            <a href="/tag/seo-strategy/" class="tag">SEO Strategy</a>
+                        </div>
+                    </article>
+
+                    <article class="article-card" data-article="22">
+                        <div class="article-meta">
+                            <span>📅 1 Agustus 2025</span>
+                            <span>👤 Vinnesia</span>
+                            <span>⏱️ 8 menit</span>
+                        </div>
+                        <a href="/seo/seo-reporting-dashboard" class="article-title">SEO Reporting: Cara Membuat Dashboard dan Laporan</a>
+                        <p class="article-excerpt">Panduan membuat laporan SEO yang efektif. KPI tracking, dashboard setup, dan cara mempresentasikan hasil SEO kepada klien.</p>
+                        <div class="article-tags">
+                            <a href="/tag/seo-reporting/" class="tag">SEO Reporting</a>
+                            <a href="/tag/dashboard/" class="tag">Dashboard</a>
+                            <a href="/tag/kpi-tracking/" class="tag">KPI Tracking</a>
+                        </div>
+                    </article>
+
+                    <article class="article-card" data-article="23">
+                        <div class="article-meta">
+                            <span>📅 31 Juli 2025</span>
+                            <span>👤 Vinnesia</span>
+                            <span>⏱️ 6 menit</span>
+                        </div>
+                        <a href="/seo/ai-seo-tools-2025" class="article-title">AI SEO Tools 2025: Revolusi Optimasi dengan Artificial Intelligence</a>
+                        <p class="article-excerpt">Daftar AI tools terbaik untuk SEO di tahun 2025. Content generation, keyword research, dan automation dengan kecerdasan buatan.</p>
+                        <div class="article-tags">
+                            <a href="/tag/ai-seo/" class="tag">AI SEO</a>
+                            <a href="/tag/artificial-intelligence/" class="tag">Artificial Intelligence</a>
+                            <a href="/tag/automation/" class="tag">Automation</a>
+                        </div>
+                    </article>
+
+                    <article class="article-card" data-article="24">
+                        <div class="article-meta">
+                            <span>📅 30 Juli 2025</span>
+                            <span>👤 Vinnesia</span>
+                            <span>⏱️ 7 menit</span>
+                        </div>
+                        <a href="/seo/seo-trends-2025" class="article-title">Tren SEO 2025: Prediksi dan Persiapan Strategi Masa Depan</a>
+                        <p class="article-excerpt">Analisis tren SEO yang akan mendominasi tahun 2025. AI, machine learning, dan perubahan algoritma Google yang perlu diantisipasi.</p>
+                        <div class="article-tags">
+                            <a href="/tag/seo-trends/" class="tag">SEO Trends</a>
+                            <a href="/tag/future-seo/" class="tag">Future SEO</a>
+                            <a href="/tag/google-algorithm/" class="tag">Google Algorithm</a>
+                        </div>
+                    </article>
+
+                    <article class="article-card" data-article="25">
+                        <div class="article-meta">
+                            <span>📅 29 Juli 2025</span>
+                            <span>👤 Vinnesia</span>
+                            <span>⏱️ 9 menit</span>
+                        </div>
+                        <a href="/seo/seo-case-study-indonesia" class="article-title">Case Study SEO Indonesia: Sukses Stories dan Lessons Learned</a>
+                        <p class="article-excerpt">Analisis case study SEO dari berbagai industri di Indonesia. Real results, strategi yang digunakan, dan insight untuk implementasi.</p>
+                        <div class="article-tags">
+                            <a href="/tag/case-study/" class="tag">Case Study</a>
+                            <a href="/tag/success-story/" class="tag">Success Story</a>
+                            <a href="/tag/seo-indonesia/" class="tag">SEO Indonesia</a>
+                        </div>
+                    </article>
                 </div>
                 
-                <!-- Pagination -->
-                <div class="pagination">
-                    <span class="current">1</span>
-                    <a href="/seo/page/2/">2</a>
-                    <a href="/seo/page/3/">3</a>
-                    <a href="/seo/page/4/">4</a>
-                    <a href="/seo/page/5/">5</a>
-                    <span>...</span>
-                    <a href="/seo/page/10/">10</a>
-                    <a href="/seo/page/2/">Selanjutnya →</a>
-                </div>
+                <!-- JavaScript Pagination -->
+                <div class="pagination" id="pagination"></div>
             </main>
             
             <!-- Sidebar -->
@@ -655,13 +889,7 @@
                     </div>
                 </div>
                 
-                <!-- Newsletter -->
-                <div class="widget">
-                    <h3>Newsletter SEO</h3>
-                    <p style="font-size: 14px; margin-bottom: 15px;">Dapatkan tips SEO terbaru langsung di inbox Anda!</p>
-                    <input type="email" class="search-box" placeholder="Email Anda...">
-                    <button class="search-btn">Subscribe</button>
-                </div>
+
             </aside>
         </div>
     </div>
@@ -703,5 +931,293 @@
             </div>
         </div>
     </footer>
+
+    <script>
+        class Pagination {
+            constructor(articlesPerPage = 10) {
+                this.articlesPerPage = articlesPerPage;
+                this.currentPage = 1;
+                this.articles = document.querySelectorAll('.article-card');
+                this.totalArticles = this.articles.length;
+                this.totalPages = Math.ceil(this.totalArticles / this.articlesPerPage);
+                this.paginationContainer = document.getElementById('pagination');
+                
+                this.init();
+            }
+            
+            init() {
+                this.showPage(this.currentPage);
+                this.renderPagination();
+            }
+            
+            showPage(page) {
+                const start = (page - 1) * this.articlesPerPage;
+                const end = start + this.articlesPerPage;
+                
+                // Hide all articles
+                this.articles.forEach((article, index) => {
+                    if (index >= start && index < end) {
+                        article.classList.add('active');
+                    } else {
+                        article.classList.remove('active');
+                    }
+                });
+                
+                // Scroll to top of articles
+                document.getElementById('articlesGrid').scrollIntoView({ 
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
+            
+            renderPagination() {
+                this.paginationContainer.innerHTML = '';
+                
+                // Previous button
+                const prevButton = this.createButton('← Sebelumnya', () => {
+                    if (this.currentPage > 1) {
+                        this.goToPage(this.currentPage - 1);
+                    }
+                });
+                prevButton.disabled = this.currentPage === 1;
+                this.paginationContainer.appendChild(prevButton);
+                
+                // Page numbers
+                const startPage = Math.max(1, this.currentPage - 2);
+                const endPage = Math.min(this.totalPages, this.currentPage + 2);
+                
+                // First page and ellipsis
+                if (startPage > 1) {
+                    this.paginationContainer.appendChild(this.createButton('1', () => this.goToPage(1)));
+                    if (startPage > 2) {
+                        const ellipsis = document.createElement('span');
+                        ellipsis.textContent = '...';
+                        ellipsis.className = 'ellipsis';
+                        this.paginationContainer.appendChild(ellipsis);
+                    }
+                }
+                
+                // Page numbers around current page
+                for (let i = startPage; i <= endPage; i++) {
+                    const button = this.createButton(i.toString(), () => this.goToPage(i));
+                    if (i === this.currentPage) {
+                        button.classList.add('current');
+                    }
+                    this.paginationContainer.appendChild(button);
+                }
+                
+                // Last page and ellipsis
+                if (endPage < this.totalPages) {
+                    if (endPage < this.totalPages - 1) {
+                        const ellipsis = document.createElement('span');
+                        ellipsis.textContent = '...';
+                        ellipsis.className = 'ellipsis';
+                        this.paginationContainer.appendChild(ellipsis);
+                    }
+                    this.paginationContainer.appendChild(this.createButton(this.totalPages.toString(), () => this.goToPage(this.totalPages)));
+                }
+                
+                // Next button
+                const nextButton = this.createButton('Selanjutnya →', () => {
+                    if (this.currentPage < this.totalPages) {
+                        this.goToPage(this.currentPage + 1);
+                    }
+                });
+                nextButton.disabled = this.currentPage === this.totalPages;
+                this.paginationContainer.appendChild(nextButton);
+            }
+            
+            createButton(text, onClick) {
+                const button = document.createElement('button');
+                button.textContent = text;
+                button.addEventListener('click', onClick);
+                return button;
+            }
+            
+            goToPage(page) {
+                if (page >= 1 && page <= this.totalPages) {
+                    this.currentPage = page;
+                    this.showPage(this.currentPage);
+                    this.renderPagination();
+                }
+            }
+        }
+        
+        // Initialize pagination when DOM is loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            paginationInstance = new Pagination(10);
+        });
+        
+        // Search functionality
+        let originalArticles = [];
+        let isSearching = false;
+        let paginationInstance = null;
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const searchBox = document.querySelector('.search-box');
+            const searchBtn = document.querySelector('.search-btn');
+            
+            // Store original articles
+            originalArticles = Array.from(document.querySelectorAll('.article-card'));
+            
+            function performSearch() {
+                const query = searchBox.value.toLowerCase().trim();
+                
+                if (query === '') {
+                    // Reset to show all articles
+                    resetSearch();
+                    return;
+                }
+                
+                isSearching = true;
+                
+                // Hide all articles first
+                originalArticles.forEach(article => {
+                    article.style.display = 'none';
+                    article.classList.remove('active');
+                });
+                
+                // Search in title and excerpt
+                const matchedArticles = originalArticles.filter(article => {
+                    const title = article.querySelector('.article-title').textContent.toLowerCase();
+                    const excerpt = article.querySelector('.article-excerpt').textContent.toLowerCase();
+                    const tags = Array.from(article.querySelectorAll('.tag')).map(tag => tag.textContent.toLowerCase()).join(' ');
+                    
+                    return title.includes(query) || excerpt.includes(query) || tags.includes(query);
+                });
+                
+                if (matchedArticles.length === 0) {
+                    showNoResults(query);
+                } else {
+                    showSearchResults(matchedArticles, query);
+                }
+                
+                // Hide pagination during search
+                document.getElementById('pagination').style.display = 'none';
+                
+                // Scroll to results
+                document.getElementById('articlesGrid').scrollIntoView({ 
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
+            
+            function showSearchResults(articles, query) {
+                // Remove any existing search info
+                removeSearchInfo();
+                
+                // Add search results info
+                const searchInfo = document.createElement('div');
+                searchInfo.className = 'search-info';
+                searchInfo.style.cssText = `
+                    background-color: #f0f8ff;
+                    border: 1px solid #0066cc;
+                    border-radius: 4px;
+                    padding: 15px;
+                    margin-bottom: 20px;
+                    font-size: 14px;
+                `;
+                searchInfo.innerHTML = `
+                    <strong>Hasil Pencarian untuk "${query}"</strong><br>
+                    Ditemukan ${articles.length} artikel yang cocok. 
+                    <button onclick="resetSearch()" style="
+                        background: none;
+                        border: none;
+                        color: #0066cc;
+                        text-decoration: underline;
+                        cursor: pointer;
+                        font-size: 14px;
+                        margin-left: 10px;
+                    ">Tampilkan semua artikel</button>
+                `;
+                
+                document.getElementById('articlesGrid').insertBefore(searchInfo, document.getElementById('articlesGrid').firstChild);
+                
+                // Show matched articles
+                articles.forEach(article => {
+                    article.style.display = 'block';
+                    article.classList.add('active');
+                });
+            }
+            
+            function showNoResults(query) {
+                // Remove any existing search info
+                removeSearchInfo();
+                
+                // Add no results message
+                const noResults = document.createElement('div');
+                noResults.className = 'search-info';
+                noResults.style.cssText = `
+                    background-color: #fff3cd;
+                    border: 1px solid #ffeaa7;
+                    border-radius: 4px;
+                    padding: 20px;
+                    margin-bottom: 20px;
+                    text-align: center;
+                `;
+                noResults.innerHTML = `
+                    <h3 style="color: #856404; margin-bottom: 10px;">Tidak ada artikel yang ditemukan</h3>
+                    <p>Maaf, tidak ada artikel yang cocok dengan pencarian "<strong>${query}</strong>"</p>
+                    <p style="margin-top: 10px;">
+                        <button onclick="resetSearch()" style="
+                            background-color: #000;
+                            color: white;
+                            border: none;
+                            padding: 8px 16px;
+                            border-radius: 4px;
+                            cursor: pointer;
+                        ">Kembali ke semua artikel</button>
+                    </p>
+                `;
+                
+                document.getElementById('articlesGrid').insertBefore(noResults, document.getElementById('articlesGrid').firstChild);
+            }
+            
+            function removeSearchInfo() {
+                const existingSearchInfo = document.querySelector('.search-info');
+                if (existingSearchInfo) {
+                    existingSearchInfo.remove();
+                }
+            }
+            
+            // Make resetSearch global
+            window.resetSearch = function() {
+                isSearching = false;
+                searchBox.value = '';
+                
+                // Remove search info
+                removeSearchInfo();
+                
+                // Reset all articles
+                originalArticles.forEach(article => {
+                    article.style.display = 'block';
+                    article.classList.remove('active');
+                });
+                
+                // Show pagination again
+                document.getElementById('pagination').style.display = 'flex';
+                
+                // Reinitialize pagination
+                if (paginationInstance) {
+                    paginationInstance.currentPage = 1;
+                    paginationInstance.init();
+                }
+            };
+            
+            searchBtn.addEventListener('click', performSearch);
+            searchBox.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    performSearch();
+                }
+            });
+            
+            // Real-time search (optional)
+            searchBox.addEventListener('input', function() {
+                if (searchBox.value.trim() === '') {
+                    resetSearch();
+                }
+            });
+        });
+    </script>
 </body>
 </html>
