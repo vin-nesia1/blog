@@ -1,0 +1,12 @@
+{
+  "name": "Blog Vinnesia",
+  "short_name": "Vinnesia",
+  "icons": [
+    {
+      "src": "/favicon.ico",
+      "sizes": "48x48",
+      "type": "image/x-icon"
+    }
+  ],
+  "start_url": "/"
+}
